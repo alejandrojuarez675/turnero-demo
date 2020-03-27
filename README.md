@@ -1,3 +1,3 @@
 # turnero-demo
 
-[link-demo](https://alejandrojuarez675.github.io/turnero-demo/turnero-demo/home)
+[link-demo](https://alejandrojuarez675.github.io/turnero-demo/)
