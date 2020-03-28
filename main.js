@@ -78,7 +78,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -144,13 +144,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../app/core/store/effects/form.effects */ "./src/app/core/store/effects/form.effects.ts");
-/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
+/* harmony import */ var _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app/core/store/effects/calendar.effects */ "./src/app/core/store/effects/calendar.effects.ts");
+/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
+
 
 
 
@@ -173,17 +175,17 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
-                _core_core_module__WEBPACK_IMPORTED_MODULE_12__["CoreModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_13__["SharedModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
+                _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"],
                 _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["StoreModule"].forRoot({
                     // router: routerReducer,
-                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_9__["formReducer"],
-                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_15__["calendarReducer"],
+                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_10__["formReducer"],
+                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_16__["calendarReducer"],
                 }),
                 _ngrx_router_store__WEBPACK_IMPORTED_MODULE_4__["StoreRouterConnectingModule"].forRoot(),
                 _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__["StoreDevtoolsModule"].instrument({
@@ -191,16 +193,17 @@ var AppModule = /** @class */ (function () {
                     logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].production,
                 }),
                 _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forRoot([
-                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_8__["FormEffects"]
+                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_8__["FormEffects"],
+                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_9__["CalendarEffects"]
                 ]),
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__["BrowserAnimationsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__["BrowserAnimationsModule"],
             ],
             exports: [
-                _core_core_module__WEBPACK_IMPORTED_MODULE_12__["CoreModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_13__["SharedModule"]
+                _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -270,7 +273,7 @@ var CoreModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY29yZS9mb290ZXIvZm9vdGVyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -326,7 +329,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY29yZS9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -379,7 +382,7 @@ var HeaderComponent = /** @class */ (function () {
 /*!*************************************!*\
   !*** ./src/app/core/mocks/mocks.ts ***!
   \*************************************/
-/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks */
+/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -395,6 +398,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "centroAtencionMock", function() { return centroAtencionMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "centroAtencionesMocks", function() { return centroAtencionesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profesionalesMocks", function() { return profesionalesMocks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diasDisponiblesMock", function() { return diasDisponiblesMock; });
+/* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
+
 var planMock1 = {
     codigo: 1,
     nombre: '210 - Básico'
@@ -452,14 +458,14 @@ var disponibilidad = {
     turnoManiana: {
         codigo: '148',
         centroAtencion: centroAtencionMock,
-        fecha: new Date("2020/03/28"),
+        fecha: new Date('2020/03/28'),
         hora: '10:00',
         observaciones: ''
     },
     turnoTarde: {
         codigo: '348',
         centroAtencion: centroAtencionMock,
-        fecha: new Date("2020/03/30"),
+        fecha: new Date('2020/03/30'),
         hora: '20:15',
         observaciones: ''
     }
@@ -467,6 +473,17 @@ var disponibilidad = {
 var profesionalesMocks = [
     disponibilidad, disponibilidad
 ];
+var diasDisponibles = function () {
+    var response = [];
+    _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__["DateUtils"].getDaysArray(new Date(), 15).forEach(function (day, index) {
+        response.push({
+            fecha: _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__["DateUtils"].getFormatDate(day),
+            conDisponibilidad: index % 2 === 0
+        });
+    });
+    return response;
+};
+var diasDisponiblesMock = diasDisponibles();
 
 
 /***/ }),
@@ -504,6 +521,7 @@ var ServiceService = /** @class */ (function () {
         this.endpoint_especialidad = this.endpoint + '/getEspecialidad';
         this.endpoint_centroAtencion = this.endpoint + '/getCentroAtencion';
         this.endpoint_busquedaProfesionales = this.endpoint + '/busquedaProfesionales';
+        this.endpoint_busquedaDiasDisponibles = this.endpoint + '/busquedaDiasDisponibles';
     }
     ServiceService.prototype.getObraSociales = function () {
         if (this.useMockups) {
@@ -512,7 +530,9 @@ var ServiceService = /** @class */ (function () {
         }
         else {
             console.log('Run to server ' + this.endpoint_obraSocial);
-            var respuesta = this.http.get(this.endpoint_obraSocial).toPromise().then(function (obRespuesta) {
+            var respuesta = this.http.get(this.endpoint_obraSocial)
+                .toPromise()
+                .then(function (obRespuesta) {
                 if (obRespuesta.respuesta.codigo === 200) {
                     return obRespuesta.obraSocial;
                 }
@@ -527,7 +547,9 @@ var ServiceService = /** @class */ (function () {
         }
         else {
             console.log('Run to server ' + this.endpoint_especialidad);
-            var respuesta = this.http.get(this.endpoint_especialidad).toPromise().then(function (obRespuesta) {
+            var respuesta = this.http.get(this.endpoint_especialidad)
+                .toPromise()
+                .then(function (obRespuesta) {
                 if (obRespuesta.respuesta.codigo === 200) {
                     return obRespuesta.especialidad;
                 }
@@ -542,7 +564,9 @@ var ServiceService = /** @class */ (function () {
         }
         else {
             console.log('Run to server ' + this.endpoint_centroAtencion);
-            var respuesta = this.http.get(this.endpoint_centroAtencion).toPromise().then(function (obRespuesta) {
+            var respuesta = this.http.get(this.endpoint_centroAtencion)
+                .toPromise()
+                .then(function (obRespuesta) {
                 if (obRespuesta.respuesta.codigo === 200) {
                     return obRespuesta.centroAtencion;
                 }
@@ -558,9 +582,29 @@ var ServiceService = /** @class */ (function () {
         }
         else {
             console.log('Run to server ' + this.endpoint_busquedaProfesionales);
-            var respuesta = this.http.post(this.endpoint_busquedaProfesionales, filter).toPromise().then(function (obRespuesta) {
+            var respuesta = this.http.post(this.endpoint_busquedaProfesionales, filter)
+                .toPromise()
+                .then(function (obRespuesta) {
                 if (obRespuesta.respuesta.codigo === 200) {
                     return obRespuesta.disponibilidad;
+                }
+            });
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+        }
+    };
+    ServiceService.prototype.busquedaDiasDisponibles = function (filter) {
+        if (this.useMockups) {
+            console.log('Run mock for: busquedaDiasDisponibles() - filter: '
+                + JSON.stringify(filter));
+            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["diasDisponiblesMock"]);
+        }
+        else {
+            console.log('Run to server ' + this.endpoint_busquedaDiasDisponibles);
+            var respuesta = this.http.post(this.endpoint_busquedaDiasDisponibles, filter)
+                .toPromise()
+                .then(function (obRespuesta) {
+                if (obRespuesta.respuesta.codigo === 200) {
+                    return obRespuesta.dia;
                 }
             });
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
@@ -581,17 +625,25 @@ var ServiceService = /** @class */ (function () {
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/calendar.actions.ts ***!
   \********************************************************/
-/*! exports provided: SET_PROFESIONALES_DISPONIBLES, setProfesionalesDisponibles */
+/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONALES_DISPONIBLES", function() { return SET_PROFESIONALES_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_DIAS_DISPONIBLES", function() { return GET_DIAS_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DIAS_DISPONIBLES", function() { return SET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalesDisponibles", function() { return setProfesionalesDisponibles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDiasDisponibles", function() { return setDiasDisponibles; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
-var SET_PROFESIONALES_DISPONIBLES = '[Form API] - setProfesionalesDisponibles';
+var SET_PROFESIONALES_DISPONIBLES = '[API] - setProfesionalesDisponibles';
+var GET_DIAS_DISPONIBLES = '[Calendar] - getDiasDisponibles';
+var SET_DIAS_DISPONIBLES = '[API] - setDiasDisponibles';
 var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONALES_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
 
 /***/ }),
@@ -634,9 +686,9 @@ __webpack_require__.r(__webpack_exports__);
 var GET_OBRA_SOCIALES = '[Form] - getObraSociales';
 var GET_ESPECIALIDADES = '[Form] - getEspecialidades';
 var GET_CENTROS_DE_ATENCION = '[Form] - getCentrosDeAtencion';
-var SET_OBRA_SOCIALES = '[Form API] - setObraSociales ';
-var SET_ESPECIALIDADES = '[Form API] - setEspecialidades';
-var SET_CENTROS_DE_ATENCION = '[Form API] - setCentrosDeAtencion';
+var SET_OBRA_SOCIALES = '[API] - setObraSociales ';
+var SET_ESPECIALIDADES = '[API] - setEspecialidades';
+var SET_CENTROS_DE_ATENCION = '[API] - setCentrosDeAtencion';
 var SET_FECHA_NACIMIENTO = '[Form] - setFechaNacimiento ';
 var SET_OBRA_SOCIAL_SELECTED = '[Form] - setObraSocialSelected ';
 var SET_PLAN_SELECTED = '[Form] - setPlanSelected ';
@@ -659,6 +711,53 @@ var getBusquedaProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["
 
 /***/ }),
 
+/***/ "./src/app/core/store/effects/calendar.effects.ts":
+/*!********************************************************!*\
+  !*** ./src/app/core/store/effects/calendar.effects.ts ***!
+  \********************************************************/
+/*! exports provided: CalendarEffects */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarEffects", function() { return CalendarEffects; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/service.service */ "./src/app/core/services/service.service.ts");
+/* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+
+
+
+
+
+
+
+var CalendarEffects = /** @class */ (function () {
+    function CalendarEffects(actions$, service) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.service = service;
+        this.getDiasDisponibles$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["GET_DIAS_DISPONIBLES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.service.busquedaDiasDisponibles(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (diasDisponibles) {
+                return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["SET_DIAS_DISPONIBLES"], diasDisponibles: diasDisponibles });
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+        });
+    }
+    CalendarEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"],
+            _services_service_service__WEBPACK_IMPORTED_MODULE_5__["ServiceService"]])
+    ], CalendarEffects);
+    return CalendarEffects;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/store/effects/form.effects.ts":
 /*!****************************************************!*\
   !*** ./src/app/core/store/effects/form.effects.ts ***!
@@ -674,8 +773,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _actions_form_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
-/* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
 /* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../services/service.service */ "./src/app/core/services/service.service.ts");
 
 
@@ -691,17 +790,17 @@ var FormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.formService = formService;
         this.getObraSociales$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["GET_OBRA_SOCIALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getObraSociales().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (obrasSociales) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["SET_OBRA_SOCIALES"], obrasSociales: obrasSociales }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_OBRA_SOCIALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getObraSociales().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (obrasSociales) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_OBRA_SOCIALES"], obrasSociales: obrasSociales }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
         });
         this.getEspecialidades$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["GET_ESPECIALIDADES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getEspecialidades().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (especialidades) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["SET_ESPECIALIDADES"], especialidades: especialidades }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_ESPECIALIDADES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getEspecialidades().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (especialidades) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_ESPECIALIDADES"], especialidades: especialidades }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
         });
         this.getCentrosDeAtencion$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["GET_CENTROS_DE_ATENCION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getCentrosDeAtencion().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (centrosDeAtencion) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["SET_CENTROS_DE_ATENCION"], centrosDeAtencion: centrosDeAtencion }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_CENTROS_DE_ATENCION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getCentrosDeAtencion().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (centrosDeAtencion) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_CENTROS_DE_ATENCION"], centrosDeAtencion: centrosDeAtencion }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
         });
         this.getBusquedaProfesionales$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_5__["GET_BUSQUEDA_PROFESIONALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.formService.busquedaProfesionales(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (profesionalesDisponibles) {
-                return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["SET_PROFESIONALES_DISPONIBLES"], profesionalesDisponibles: profesionalesDisponibles });
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_BUSQUEDA_PROFESIONALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.formService.busquedaProfesionales(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (profesionalesDisponibles) {
+                return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["SET_PROFESIONALES_DISPONIBLES"], profesionalesDisponibles: profesionalesDisponibles });
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
         });
     }
@@ -730,20 +829,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
+
 
 
 
 var initialState = {
-    profesionalesDisponibles: []
+    profesionalesDisponibles: [],
+    profesionalSelected: undefined,
+    turnoSelected: undefined,
+    diasDisponibles: [],
 };
 var _setProfesionalesDisponibles = function (state, profesionalesDisponibles) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.profesionalesDisponibles = profesionalesDisponibles.slice();
     return stateNew;
 };
+var _setDiasDisponibles = function (state, diasDisponibles) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.diasDisponibles = diasDisponibles.map(function (x) {
+        return {
+            fecha: _utils_date_utils__WEBPACK_IMPORTED_MODULE_3__["DateUtils"].getDate(x.fecha),
+            conDisponibilidad: x.conDisponibilidad
+        };
+    }).slice();
+    return stateNew;
+};
 var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalesDisponibles"], function (state, _a) {
     var profesionalesDisponibles = _a.profesionalesDisponibles;
     return _setProfesionalesDisponibles(state, profesionalesDisponibles);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setDiasDisponibles"], function (state, _a) {
+    var diasDisponibles = _a.diasDisponibles;
+    return _setDiasDisponibles(state, diasDisponibles);
 }));
 function calendarReducer(state, action) {
     return _calendarReducer(state, action);
@@ -848,6 +965,42 @@ var _formReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReduce
 function formReducer(state, action) {
     return _formReducer(state, action);
 }
+
+
+/***/ }),
+
+/***/ "./src/app/core/utils/date.utils.ts":
+/*!******************************************!*\
+  !*** ./src/app/core/utils/date.utils.ts ***!
+  \******************************************/
+/*! exports provided: DateUtils */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DateUtils", function() { return DateUtils; });
+var DateUtils = /** @class */ (function () {
+    function DateUtils() {
+    }
+    DateUtils.getDate = function (string) {
+        var date = string.split('/').map(function (x) { return Number(x); });
+        return new Date(date[1] + "-" + date[0] + "-" + date[2]);
+    };
+    DateUtils.getFormatDate = function (date) {
+        return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+    };
+    DateUtils.getDaysArray = function (from, howManyDays) {
+        var a = [];
+        for (var i = 0; i < howManyDays; i++) {
+            var d = new Date();
+            d.setDate(from.getDate() + i);
+            a.push(d);
+        }
+        return a;
+    };
+    return DateUtils;
+}());
+
 
 
 /***/ }),
