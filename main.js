@@ -138,20 +138,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
-/* harmony import */ var _ngrx_router_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/router-store */ "./node_modules/@ngrx/router-store/fesm5/router-store.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../app/core/store/effects/form.effects */ "./src/app/core/store/effects/form.effects.ts");
-/* harmony import */ var _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app/core/store/effects/calendar.effects */ "./src/app/core/store/effects/calendar.effects.ts");
-/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
+/* harmony import */ var _ngrx_router_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngrx/router-store */ "./node_modules/@ngrx/router-store/fesm5/router-store.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
+/* harmony import */ var _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../app/core/store/effects/calendar.effects */ "./src/app/core/store/effects/calendar.effects.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../app/core/store/effects/form.effects */ "./src/app/core/store/effects/form.effects.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
+/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
+/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
 
 
 
@@ -181,26 +181,26 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
                 _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"],
-                _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["StoreModule"].forRoot({
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"],
+                _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["StoreModule"].forRoot({
                     // router: routerReducer,
-                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_10__["formReducer"],
-                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_16__["calendarReducer"],
+                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__["formReducer"],
+                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__["calendarReducer"],
                 }),
-                _ngrx_router_store__WEBPACK_IMPORTED_MODULE_4__["StoreRouterConnectingModule"].forRoot(),
-                _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__["StoreDevtoolsModule"].instrument({
+                _ngrx_router_store__WEBPACK_IMPORTED_MODULE_5__["StoreRouterConnectingModule"].forRoot(),
+                _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__["StoreDevtoolsModule"].instrument({
                     maxAge: 25,
-                    logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].production,
+                    logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].production,
                 }),
-                _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forRoot([
-                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_8__["FormEffects"],
-                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_9__["CalendarEffects"]
+                _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["EffectsModule"].forRoot([
+                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_10__["FormEffects"],
+                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__["CalendarEffects"]
                 ]),
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__["BrowserAnimationsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
             ],
             exports: [
                 _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"]
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
@@ -625,7 +625,7 @@ var ServiceService = /** @class */ (function () {
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/calendar.actions.ts ***!
   \********************************************************/
-/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles */
+/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -633,17 +633,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONALES_DISPONIBLES", function() { return SET_PROFESIONALES_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_DIAS_DISPONIBLES", function() { return GET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DIAS_DISPONIBLES", function() { return SET_DIAS_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TURNO_SELECTED", function() { return SET_TURNO_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalesDisponibles", function() { return setProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDiasDisponibles", function() { return setDiasDisponibles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTurnoSelected", function() { return setTurnoSelected; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var SET_PROFESIONALES_DISPONIBLES = '[API] - setProfesionalesDisponibles';
 var GET_DIAS_DISPONIBLES = '[Calendar] - getDiasDisponibles';
 var SET_DIAS_DISPONIBLES = '[API] - setDiasDisponibles';
+var SET_TURNO_SELECTED = '[Calendar] - setTurnoSelected';
 var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONALES_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TURNO_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
 
 /***/ }),
@@ -855,12 +859,20 @@ var _setDiasDisponibles = function (state, diasDisponibles) {
     }).slice();
     return stateNew;
 };
+var _setTurnoSelected = function (state, turnoSelected) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.turnoSelected = turnoSelected;
+    return stateNew;
+};
 var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalesDisponibles"], function (state, _a) {
     var profesionalesDisponibles = _a.profesionalesDisponibles;
     return _setProfesionalesDisponibles(state, profesionalesDisponibles);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setDiasDisponibles"], function (state, _a) {
     var diasDisponibles = _a.diasDisponibles;
     return _setDiasDisponibles(state, diasDisponibles);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setTurnoSelected"], function (state, _a) {
+    var turnoSelected = _a.turnoSelected;
+    return _setTurnoSelected(state, turnoSelected);
 }));
 function calendarReducer(state, action) {
     return _calendarReducer(state, action);
