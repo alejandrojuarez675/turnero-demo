@@ -89,7 +89,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\n\n<router-outlet></router-outlet>\n\n<!-- <app-footer></app-footer> -->"
+module.exports = "<app-header></app-header>\n\n<router-outlet></router-outlet>\n<app-error-control></app-error-control>\n\n<!-- <app-footer></app-footer> -->"
 
 /***/ }),
 
@@ -184,7 +184,6 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
-                _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"],
                 _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["StoreModule"].forRoot({
                     // router: routerReducer,
@@ -250,7 +249,7 @@ var CoreModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _footer_footer_component__WEBPACK_IMPORTED_MODULE_3__["FooterComponent"],
-                _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"]
+                _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"],
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -258,7 +257,7 @@ var CoreModule = /** @class */ (function () {
             ],
             exports: [
                 _footer_footer_component__WEBPACK_IMPORTED_MODULE_3__["FooterComponent"],
-                _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"]
+                _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"],
             ],
             providers: [
                 _services_service_service__WEBPACK_IMPORTED_MODULE_5__["ServiceService"],
@@ -589,20 +588,22 @@ var ServiceService = /** @class */ (function () {
         if (this.useMockups) {
             console.log('Run mock for: busquedaDiasDisponibles() - filter', filter);
             // MOCK SIN ERROR
-            // return getWsFromMock(diasDisponiblesMock);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["diasDisponiblesMock"]);
             // PARA PROBAR ERRORES CON MOCK
-            var mock = {
-                dia: _mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["diasDisponiblesMock"],
-                respuesta: {
-                    codigo: 300,
-                    mensaje: 'prueba error'
-                }
-            };
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(mock)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
-                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
-                return res.dia;
-            }));
+            // const mock: DisponibilidadDiasRespuesta = {
+            //   dia: diasDisponiblesMock,
+            //   respuesta: {
+            //     codigo: 300,
+            //     mensaje: 'prueba error'
+            //   }
+            // };
+            // return getWsFromMock(mock)
+            //   .pipe(map(
+            //       (res: DisponibilidadDiasRespuesta) => {
+            //         throwErrorIfBadCode(res);
+            //         return res.dia;
+            //       }
+            //   ));
         }
         else {
             console.log('Run to server ' + this.endpoint_busquedaDiasDisponibles);
@@ -819,7 +820,7 @@ var ErrorEffects = /** @class */ (function () {
         var _this = this;
         this.actions$ = actions$;
         this.showError$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["SHOW_ERROR"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(3000).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function () { return ({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["CLEAN_ERROR"], error: payload.error }); })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["SHOW_ERROR"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(100).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function () { return ({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["CLEAN_ERROR"], error: payload.error }); })); }));
         });
     }
     ErrorEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1115,6 +1116,25 @@ function formReducer(state, action) {
 
 /***/ }),
 
+/***/ "./src/app/core/store/selectors/error.selectors.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/core/store/selectors/error.selectors.ts ***!
+  \*********************************************************/
+/*! exports provided: selectError, selectErrorMessages */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectError", function() { return selectError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectErrorMessages", function() { return selectErrorMessages; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+
+var selectError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('error');
+var selectErrorMessages = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectError, function (error) { return error.errors[error.errors.length - 1]; });
+
+
+/***/ }),
+
 /***/ "./src/app/core/utils/date.utils.ts":
 /*!******************************************!*\
   !*** ./src/app/core/utils/date.utils.ts ***!
@@ -1181,6 +1201,68 @@ function throwErrorIfBadCode(res) {
 
 /***/ }),
 
+/***/ "./src/app/shared/components/errors/error-control/error-control.component.html":
+/*!*************************************************************************************!*\
+  !*** ./src/app/shared/components/errors/error-control/error-control.component.html ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/shared/components/errors/error-control/error-control.component.ts":
+/*!***********************************************************************************!*\
+  !*** ./src/app/shared/components/errors/error-control/error-control.component.ts ***!
+  \***********************************************************************************/
+/*! exports provided: ErrorControlComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorControlComponent", function() { return ErrorControlComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/selectors/error.selectors */ "./src/app/core/store/selectors/error.selectors.ts");
+
+
+
+
+
+var ErrorControlComponent = /** @class */ (function () {
+    function ErrorControlComponent(snackBar, store) {
+        this.snackBar = snackBar;
+        this.store = store;
+    }
+    ErrorControlComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.store.select(_core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_4__["selectErrorMessages"]).subscribe(function (x) { return _this.openDialog(x); });
+    };
+    ErrorControlComponent.prototype.openDialog = function (msg) {
+        if (msg) {
+            this.snackBar.open(msg, 'x', {
+                duration: 3000,
+            });
+        }
+    };
+    ErrorControlComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-error-control',
+            template: __webpack_require__(/*! ./error-control.component.html */ "./src/app/shared/components/errors/error-control/error-control.component.html"),
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"],
+            _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
+    ], ErrorControlComponent);
+    return ErrorControlComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/shared.module.ts":
 /*!*****************************************!*\
   !*** ./src/app/shared/shared.module.ts ***!
@@ -1192,8 +1274,14 @@ function throwErrorIfBadCode(res) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/core.module */ "./src/app/core/core.module.ts");
+/* harmony import */ var _components_errors_error_control_error_control_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/errors/error-control/error-control.component */ "./src/app/shared/components/errors/error-control/error-control.component.ts");
+
+
+
 
 
 
@@ -1201,11 +1289,20 @@ var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
     SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [],
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+            declarations: [
+                _components_errors_error_control_error_control_component__WEBPACK_IMPORTED_MODULE_5__["ErrorControlComponent"],
+            ],
             imports: [
-                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]
-            ]
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"]
+            ],
+            exports: [
+                _components_errors_error_control_error_control_component__WEBPACK_IMPORTED_MODULE_5__["ErrorControlComponent"],
+                _core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
+            ],
+            entryComponents: []
         })
     ], SharedModule);
     return SharedModule;
