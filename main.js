@@ -340,7 +340,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n  <a href=\"home\">\n    <img src=\"../../../assets/img/LogoHE200.png\" alt=\"logo\">\n  </a>\n</div>\n"
+module.exports = "<div class=\"header\">\n  <a href=\"home\">\n    <img src=\"./assets/img/LogoHE200.png\" alt=\"logo\">\n  </a>\n</div>\n"
 
 /***/ }),
 
