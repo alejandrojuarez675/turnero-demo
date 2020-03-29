@@ -152,6 +152,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
 /* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/store/reducers/error.reducers */ "./src/app/core/store/reducers/error.reducers.ts");
+/* harmony import */ var _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./core/store/effects/error.effects */ "./src/app/core/store/effects/error.effects.ts");
+
+
 
 
 
@@ -186,6 +190,7 @@ var AppModule = /** @class */ (function () {
                     // router: routerReducer,
                     formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__["formReducer"],
                     calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__["calendarReducer"],
+                    error: _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_17__["errorReducer"],
                 }),
                 _ngrx_router_store__WEBPACK_IMPORTED_MODULE_5__["StoreRouterConnectingModule"].forRoot(),
                 _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__["StoreDevtoolsModule"].instrument({
@@ -194,7 +199,8 @@ var AppModule = /** @class */ (function () {
                 }),
                 _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["EffectsModule"].forRoot([
                     _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_10__["FormEffects"],
-                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__["CalendarEffects"]
+                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__["CalendarEffects"],
+                    _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_18__["ErrorEffects"],
                 ]),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
             ],
@@ -501,10 +507,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mocks/mocks */ "./src/app/core/mocks/mocks.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../utils/observable.utils */ "./src/app/core/utils/observable.utils.ts");
+/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mocks/mocks */ "./src/app/core/mocks/mocks.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _utils_service_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/service.utils */ "./src/app/core/utils/service.utils.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
@@ -515,8 +521,8 @@ __webpack_require__.r(__webpack_exports__);
 var ServiceService = /** @class */ (function () {
     function ServiceService(http) {
         this.http = http;
-        this.useMockups = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].mockups;
-        this.endpoint = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].endpoint;
+        this.useMockups = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].mockups;
+        this.endpoint = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].endpoint;
         this.endpoint_obraSocial = this.endpoint + '/getObraSocial';
         this.endpoint_especialidad = this.endpoint + '/getEspecialidad';
         this.endpoint_centroAtencion = this.endpoint + '/getCentroAtencion';
@@ -526,88 +532,85 @@ var ServiceService = /** @class */ (function () {
     ServiceService.prototype.getObraSociales = function () {
         if (this.useMockups) {
             console.log('Run mock for: getObraSociales()');
-            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["obrasSocialesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["obrasSocialesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_obraSocial);
-            var respuesta = this.http.get(this.endpoint_obraSocial)
-                .toPromise()
-                .then(function (obRespuesta) {
-                if (obRespuesta.respuesta.codigo === 200) {
-                    return obRespuesta.obraSocial;
-                }
-            });
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+            return this.http.get(this.endpoint_obraSocial)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.obraSocial;
+            }));
         }
     };
     ServiceService.prototype.getEspecialidades = function () {
         if (this.useMockups) {
             console.log('Run mock for: getEspecialidades()');
-            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["especialidadesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["especialidadesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_especialidad);
-            var respuesta = this.http.get(this.endpoint_especialidad)
-                .toPromise()
-                .then(function (obRespuesta) {
-                if (obRespuesta.respuesta.codigo === 200) {
-                    return obRespuesta.especialidad;
-                }
-            });
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+            return this.http.get(this.endpoint_especialidad)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.especialidad;
+            }));
         }
     };
     ServiceService.prototype.getCentrosDeAtencion = function () {
         if (this.useMockups) {
             console.log('Run mock for: getCentrosDeAtencion()');
-            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["centroAtencionesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["centroAtencionesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_centroAtencion);
-            var respuesta = this.http.get(this.endpoint_centroAtencion)
-                .toPromise()
-                .then(function (obRespuesta) {
-                if (obRespuesta.respuesta.codigo === 200) {
-                    return obRespuesta.centroAtencion;
-                }
-            });
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+            return this.http.get(this.endpoint_centroAtencion)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.centroAtencion;
+            }));
         }
     };
     ServiceService.prototype.busquedaProfesionales = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: busquedaProfesionales() - filter: '
-                + JSON.stringify(filter));
-            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["profesionalesMocks"]);
+            console.log('Run mock for: busquedaProfesionales() - filter', filter);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["profesionalesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_busquedaProfesionales);
-            var respuesta = this.http.post(this.endpoint_busquedaProfesionales, filter)
-                .toPromise()
-                .then(function (obRespuesta) {
-                if (obRespuesta.respuesta.codigo === 200) {
-                    return obRespuesta.disponibilidad;
-                }
-            });
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+            return this.http.post(this.endpoint_busquedaProfesionales, filter)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.disponibilidad;
+            }));
         }
     };
     ServiceService.prototype.busquedaDiasDisponibles = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: busquedaDiasDisponibles() - filter: '
-                + JSON.stringify(filter));
-            return Object(_utils_observable_utils__WEBPACK_IMPORTED_MODULE_6__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["diasDisponiblesMock"]);
+            console.log('Run mock for: busquedaDiasDisponibles() - filter', filter);
+            // MOCK SIN ERROR
+            // return getWsFromMock(diasDisponiblesMock);
+            // PARA PROBAR ERRORES CON MOCK
+            var mock = {
+                dia: _mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["diasDisponiblesMock"],
+                respuesta: {
+                    codigo: 300,
+                    mensaje: 'prueba error'
+                }
+            };
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(mock)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.dia;
+            }));
         }
         else {
             console.log('Run to server ' + this.endpoint_busquedaDiasDisponibles);
-            var respuesta = this.http.post(this.endpoint_busquedaDiasDisponibles, filter)
-                .toPromise()
-                .then(function (obRespuesta) {
-                if (obRespuesta.respuesta.codigo === 200) {
-                    return obRespuesta.dia;
-                }
-            });
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(respuesta);
+            return this.http.post(this.endpoint_busquedaDiasDisponibles, filter)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.dia;
+            }));
         }
     };
     ServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -648,6 +651,29 @@ var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0_
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TURNO_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+
+
+/***/ }),
+
+/***/ "./src/app/core/store/actions/error.actions.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/core/store/actions/error.actions.ts ***!
+  \*****************************************************/
+/*! exports provided: SHOW_ERROR, CLEAN_ERROR, showError, cleanError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SHOW_ERROR", function() { return SHOW_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAN_ERROR", function() { return CLEAN_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showError", function() { return showError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanError", function() { return cleanError; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+
+var SHOW_ERROR = '[ERROR] - Show Error';
+var CLEAN_ERROR = '[ERROR] - Clean Error';
+var showError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SHOW_ERROR, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var cleanError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(CLEAN_ERROR, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
 
 /***/ }),
@@ -732,6 +758,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/service.service */ "./src/app/core/services/service.service.ts");
 /* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+
 
 
 
@@ -745,9 +773,11 @@ var CalendarEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.service = service;
         this.getDiasDisponibles$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["GET_DIAS_DISPONIBLES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.service.busquedaDiasDisponibles(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (diasDisponibles) {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["GET_DIAS_DISPONIBLES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (payload) { return _this.service.busquedaDiasDisponibles(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (diasDisponibles) {
                 return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["SET_DIAS_DISPONIBLES"], diasDisponibles: diasDisponibles });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__["SHOW_ERROR"], error: error.message });
+            })); }));
         });
     }
     CalendarEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -756,6 +786,47 @@ var CalendarEffects = /** @class */ (function () {
             _services_service_service__WEBPACK_IMPORTED_MODULE_5__["ServiceService"]])
     ], CalendarEffects);
     return CalendarEffects;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/store/effects/error.effects.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/core/store/effects/error.effects.ts ***!
+  \*****************************************************/
+/*! exports provided: ErrorEffects */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorEffects", function() { return ErrorEffects; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+
+
+
+
+
+
+var ErrorEffects = /** @class */ (function () {
+    function ErrorEffects(actions$) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.showError$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["SHOW_ERROR"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(3000).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function () { return ({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["CLEAN_ERROR"], error: payload.error }); })); }));
+        });
+    }
+    ErrorEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"]])
+    ], ErrorEffects);
+    return ErrorEffects;
 }());
 
 
@@ -778,8 +849,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
-/* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../services/service.service */ "./src/app/core/services/service.service.ts");
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+/* harmony import */ var _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
+/* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../services/service.service */ "./src/app/core/services/service.service.ts");
+
 
 
 
@@ -794,24 +867,32 @@ var FormEffects = /** @class */ (function () {
         this.actions$ = actions$;
         this.formService = formService;
         this.getObraSociales$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_OBRA_SOCIALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getObraSociales().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (obrasSociales) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_OBRA_SOCIALES"], obrasSociales: obrasSociales }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_OBRA_SOCIALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getObraSociales().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (obrasSociales) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["SET_OBRA_SOCIALES"], obrasSociales: obrasSociales }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
+            })); }));
         });
         this.getEspecialidades$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_ESPECIALIDADES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getEspecialidades().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (especialidades) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_ESPECIALIDADES"], especialidades: especialidades }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_ESPECIALIDADES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getEspecialidades().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (especialidades) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["SET_ESPECIALIDADES"], especialidades: especialidades }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
+            })); }));
         });
         this.getCentrosDeAtencion$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_CENTROS_DE_ATENCION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getCentrosDeAtencion().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (centrosDeAtencion) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["SET_CENTROS_DE_ATENCION"], centrosDeAtencion: centrosDeAtencion }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_CENTROS_DE_ATENCION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getCentrosDeAtencion().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (centrosDeAtencion) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["SET_CENTROS_DE_ATENCION"], centrosDeAtencion: centrosDeAtencion }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
+            })); }));
         });
         this.getBusquedaProfesionales$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_6__["GET_BUSQUEDA_PROFESIONALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.formService.busquedaProfesionales(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (profesionalesDisponibles) {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_BUSQUEDA_PROFESIONALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return _this.formService.busquedaProfesionales(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (profesionalesDisponibles) {
                 return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["SET_PROFESIONALES_DISPONIBLES"], profesionalesDisponibles: profesionalesDisponibles });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function () { return rxjs__WEBPACK_IMPORTED_MODULE_3__["EMPTY"]; })); }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
+            })); }));
         });
     }
     FormEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"],
-            _services_service_service__WEBPACK_IMPORTED_MODULE_7__["ServiceService"]])
+            _services_service_service__WEBPACK_IMPORTED_MODULE_8__["ServiceService"]])
     ], FormEffects);
     return FormEffects;
 }());
@@ -850,6 +931,9 @@ var _setProfesionalesDisponibles = function (state, profesionalesDisponibles) {
     return stateNew;
 };
 var _setDiasDisponibles = function (state, diasDisponibles) {
+    if (!diasDisponibles) {
+        return state;
+    }
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.diasDisponibles = diasDisponibles.map(function (x) {
         return {
@@ -876,6 +960,56 @@ var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createRe
 }));
 function calendarReducer(state, action) {
     return _calendarReducer(state, action);
+}
+
+
+/***/ }),
+
+/***/ "./src/app/core/store/reducers/error.reducers.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/core/store/reducers/error.reducers.ts ***!
+  \*******************************************************/
+/*! exports provided: Errors, errorReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Errors", function() { return Errors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "errorReducer", function() { return errorReducer; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+
+
+
+var Errors = /** @class */ (function () {
+    function Errors() {
+    }
+    return Errors;
+}());
+
+var initialState = {
+    errors: []
+};
+var _cleanError = function (state, error) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.errors = state.errors.filter(function (x) { return x !== error; });
+    return stateNew;
+};
+var _showError = function (state, error) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.errors = state.errors.concat([error]);
+    return stateNew;
+};
+var _errorReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_2__["showError"], function (state, _a) {
+    var error = _a.error;
+    return _showError(state, error);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_2__["cleanError"], function (state, _a) {
+    var error = _a.error;
+    return _cleanError(state, error);
+}));
+function errorReducer(state, action) {
+    return _errorReducer(state, action);
 }
 
 
@@ -1017,16 +1151,17 @@ var DateUtils = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/core/utils/observable.utils.ts":
-/*!************************************************!*\
-  !*** ./src/app/core/utils/observable.utils.ts ***!
-  \************************************************/
-/*! exports provided: getWsFromMock */
+/***/ "./src/app/core/utils/service.utils.ts":
+/*!*********************************************!*\
+  !*** ./src/app/core/utils/service.utils.ts ***!
+  \*********************************************/
+/*! exports provided: getWsFromMock, throwErrorIfBadCode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWsFromMock", function() { return getWsFromMock; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throwErrorIfBadCode", function() { return throwErrorIfBadCode; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1__);
@@ -1036,6 +1171,11 @@ var DEFAULT_DELAY = 1000;
 function getWsFromMock(mockup, delayMs) {
     delayMs = delayMs ? delayMs : DEFAULT_DELAY;
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(mockup).pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(delayMs));
+}
+function throwErrorIfBadCode(res) {
+    if (res.respuesta.codigo !== 200) {
+        throw new Error(res.respuesta.codigo + " - " + res.respuesta.mensaje);
+    }
 }
 
 
