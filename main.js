@@ -980,6 +980,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+/* harmony import */ var _utils_error_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../utils/error.utils */ "./src/app/core/utils/error.utils.ts");
+
 
 
 
@@ -992,14 +994,14 @@ var Errors = /** @class */ (function () {
 var initialState = {
     errors: []
 };
-var _cleanError = function (state, error) {
-    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
-    stateNew.errors = state.errors.filter(function (x) { return x !== error; });
-    return stateNew;
-};
 var _showError = function (state, error) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
-    stateNew.errors = state.errors.concat([error]);
+    stateNew.errors = state.errors.concat([_utils_error_utils__WEBPACK_IMPORTED_MODULE_3__["ErrorUtils"].getFormatedError(error)]);
+    return stateNew;
+};
+var _cleanError = function (state, error) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.errors = state.errors.filter(function (x) { return x !== _utils_error_utils__WEBPACK_IMPORTED_MODULE_3__["ErrorUtils"].getFormatedError(error); });
     return stateNew;
 };
 var _errorReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_2__["showError"], function (state, _a) {
@@ -1165,6 +1167,36 @@ var DateUtils = /** @class */ (function () {
         return a;
     };
     return DateUtils;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/utils/error.utils.ts":
+/*!*******************************************!*\
+  !*** ./src/app/core/utils/error.utils.ts ***!
+  \*******************************************/
+/*! exports provided: ErrorUtils */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorUtils", function() { return ErrorUtils; });
+var ErrorUtils = /** @class */ (function () {
+    function ErrorUtils() {
+    }
+    ErrorUtils.listGenericErrors = [
+        'Http failure response for (unknown url): 0 Unknown Error',
+    ];
+    ErrorUtils.getFormatedError = function (error) {
+        var result = error;
+        if (ErrorUtils.listGenericErrors.indexOf(error) !== -1) {
+            result = 'Ha ocurrido un error, reintente nuevamente más tarde.';
+        }
+        return result;
+    };
+    return ErrorUtils;
 }());
 
 
