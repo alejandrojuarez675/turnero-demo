@@ -289,7 +289,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer\">\n</div>"
+module.exports = "<div class=\"footer\">\n    <p>\n        Plataforma de reserva de turnos del Hospital Español.\n    </p>\n</div>"
 
 /***/ }),
 

@@ -25427,7 +25427,7 @@ module.exports = ".cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(eventsLength$ | async) > 0\">\n  <div>\n    <div class=\"row clearfix\">\n      <div mwlCalendarPreviousView class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        << \n      </div>\n      <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      <div mwlCalendarNextView  class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        >>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(eventsLength$ | async) > 0\">\n  <p>\n    Turnos disponibles para Dr/a. \n    {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}\n  </p>\n  <div>\n    <div class=\"row clearfix\">\n      <div mwlCalendarPreviousView class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        << \n      </div>\n      <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      <div mwlCalendarNextView  class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        >>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -25470,6 +25470,7 @@ var SchedulerComponent = /** @class */ (function () {
         this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["disponibilidadDiasToCalendarEvent"])(x); }); }));
         this.events$.subscribe(function (e) { return _this.events = e; });
         this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponiblesLength"]);
+        this.profesionalSelected$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getProfesionalSelected"]);
     }
     SchedulerComponent.prototype.dayClicked = function (_a) {
         var _this = this;
