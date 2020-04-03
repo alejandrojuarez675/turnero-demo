@@ -25478,7 +25478,10 @@ var SchedulerComponent = /** @class */ (function () {
             this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFechaSelected"]({ fecha: date }));
             this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
                 return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getHorariosDisponibles"]({ filter: filtro }));
-            });
+            }).unsubscribe();
+        }
+        else {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
         }
     };
     SchedulerComponent.prototype.isPartOfEvents = function (events, date) {
