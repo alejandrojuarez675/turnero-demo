@@ -89,7 +89,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\n\n<router-outlet></router-outlet>\n<app-error-control></app-error-control>\n\n<!-- <app-footer></app-footer> -->"
+module.exports = "<app-header></app-header>\n\n<div class=\"body\">\n    <router-outlet></router-outlet>\n    <app-error-control></app-error-control>\n</div>\n\n<app-footer></app-footer>"
 
 /***/ }),
 
