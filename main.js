@@ -387,7 +387,7 @@ var HeaderComponent = /** @class */ (function () {
 /*!*************************************!*\
   !*** ./src/app/core/mocks/mocks.ts ***!
   \*************************************/
-/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock */
+/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock, horariosMock */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -404,6 +404,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "centroAtencionesMocks", function() { return centroAtencionesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profesionalesMocks", function() { return profesionalesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diasDisponiblesMock", function() { return diasDisponiblesMock; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "horariosMock", function() { return horariosMock; });
 /* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
 
 var planMock1 = {
@@ -457,23 +458,25 @@ var profesional1 = {
     nombreApellido: 'Perez, Juan',
     observaciones: '',
 };
+var turno1 = {
+    codigo: '148',
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/03/28'),
+    hora: '10:00',
+    observaciones: ''
+};
+var turno2 = {
+    codigo: '348',
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/03/30'),
+    hora: '20:15',
+    observaciones: ''
+};
 var disponibilidad = {
     profesional: profesional1,
     especialidad: especialidadesMocks[0],
-    turnoManiana: {
-        codigo: '148',
-        centroAtencion: centroAtencionMock,
-        fecha: new Date('2020/03/28'),
-        hora: '10:00',
-        observaciones: ''
-    },
-    turnoTarde: {
-        codigo: '348',
-        centroAtencion: centroAtencionMock,
-        fecha: new Date('2020/03/30'),
-        hora: '20:15',
-        observaciones: ''
-    }
+    turnoManiana: turno1,
+    turnoTarde: turno2
 };
 var profesionalesMocks = [
     disponibilidad, disponibilidad
@@ -489,6 +492,9 @@ var diasDisponibles = function () {
     return response;
 };
 var diasDisponiblesMock = diasDisponibles();
+var horariosMock = [
+    turno1, turno2
+];
 
 
 /***/ }),
@@ -506,10 +512,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mocks/mocks */ "./src/app/core/mocks/mocks.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _mocks_mocks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mocks/mocks */ "./src/app/core/mocks/mocks.ts");
 /* harmony import */ var _utils_service_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/service.utils */ "./src/app/core/utils/service.utils.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../../environments/environment */ "./src/environments/environment.ts");
 
 
 
@@ -520,23 +526,24 @@ __webpack_require__.r(__webpack_exports__);
 var ServiceService = /** @class */ (function () {
     function ServiceService(http) {
         this.http = http;
-        this.useMockups = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].mockups;
-        this.endpoint = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].endpoint;
+        this.useMockups = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].mockups;
+        this.endpoint = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].endpoint;
         this.endpoint_obraSocial = this.endpoint + '/getObraSocial';
         this.endpoint_especialidad = this.endpoint + '/getEspecialidad';
         this.endpoint_centroAtencion = this.endpoint + '/getCentroAtencion';
         this.endpoint_busquedaProfesionales = this.endpoint + '/busquedaProfesionales';
         this.endpoint_busquedaDiasDisponibles = this.endpoint + '/busquedaDiasDisponibles';
+        this.endpoint_busquedaHorarios = this.endpoint + '/busquedaHorarios';
     }
     ServiceService.prototype.getObraSociales = function () {
         if (this.useMockups) {
             console.log('Run mock for: getObraSociales()');
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["obrasSocialesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["obrasSocialesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_obraSocial);
             return this.http.get(this.endpoint_obraSocial)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.obraSocial;
             }));
@@ -545,12 +552,12 @@ var ServiceService = /** @class */ (function () {
     ServiceService.prototype.getEspecialidades = function () {
         if (this.useMockups) {
             console.log('Run mock for: getEspecialidades()');
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["especialidadesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["especialidadesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_especialidad);
             return this.http.get(this.endpoint_especialidad)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.especialidad;
             }));
@@ -559,12 +566,12 @@ var ServiceService = /** @class */ (function () {
     ServiceService.prototype.getCentrosDeAtencion = function () {
         if (this.useMockups) {
             console.log('Run mock for: getCentrosDeAtencion()');
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["centroAtencionesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["centroAtencionesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_centroAtencion);
             return this.http.get(this.endpoint_centroAtencion)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.centroAtencion;
             }));
@@ -573,12 +580,12 @@ var ServiceService = /** @class */ (function () {
     ServiceService.prototype.busquedaProfesionales = function (filter) {
         if (this.useMockups) {
             console.log('Run mock for: busquedaProfesionales() - filter', filter);
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["profesionalesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["profesionalesMocks"]);
         }
         else {
             console.log('Run to server ' + this.endpoint_busquedaProfesionales);
             return this.http.post(this.endpoint_busquedaProfesionales, filter)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.disponibilidad;
             }));
@@ -588,10 +595,10 @@ var ServiceService = /** @class */ (function () {
         if (this.useMockups) {
             console.log('Run mock for: busquedaDiasDisponibles() - filter', filter);
             // MOCK SIN ERROR
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_3__["diasDisponiblesMock"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["diasDisponiblesMock"]);
             // PARA PROBAR ERRORES CON MOCK
             // const mock: DisponibilidadDiasRespuesta = {
-            //   dia: diasDisponiblesMock,
+            //   dia: Mock.diasDisponiblesMock,
             //   respuesta: {
             //     codigo: 300,
             //     mensaje: 'prueba error'
@@ -608,9 +615,23 @@ var ServiceService = /** @class */ (function () {
         else {
             console.log('Run to server ' + this.endpoint_busquedaDiasDisponibles);
             return this.http.post(this.endpoint_busquedaDiasDisponibles, filter)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (res) {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.dia;
+            }));
+        }
+    };
+    ServiceService.prototype.busquedaHorarios = function (filter) {
+        if (this.useMockups) {
+            console.log('Run mock for: busquedaHorarios() - filter', filter);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["horariosMock"]);
+        }
+        else {
+            console.log('Run to server ' + this.endpoint_busquedaHorarios);
+            return this.http.post(this.endpoint_busquedaHorarios, filter)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                return res.turno;
             }));
         }
     };
@@ -629,7 +650,7 @@ var ServiceService = /** @class */ (function () {
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/calendar.actions.ts ***!
   \********************************************************/
-/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected */
+/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, SET_PROFESIONAL_SELECTED, SET_FECHA_SELECTED, GET_HORARIOS_DISPONIBLES, SET_HORARIOS_DISPONIBLES, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected, setProfesionalSelected, setFechaSelected, getHorariosDisponibles, setHorariosDisponibles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -638,20 +659,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_DIAS_DISPONIBLES", function() { return GET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DIAS_DISPONIBLES", function() { return SET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TURNO_SELECTED", function() { return SET_TURNO_SELECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONAL_SELECTED", function() { return SET_PROFESIONAL_SELECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FECHA_SELECTED", function() { return SET_FECHA_SELECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_HORARIOS_DISPONIBLES", function() { return GET_HORARIOS_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_HORARIOS_DISPONIBLES", function() { return SET_HORARIOS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalesDisponibles", function() { return setProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDiasDisponibles", function() { return setDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTurnoSelected", function() { return setTurnoSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalSelected", function() { return setProfesionalSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFechaSelected", function() { return setFechaSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHorariosDisponibles", function() { return getHorariosDisponibles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHorariosDisponibles", function() { return setHorariosDisponibles; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var SET_PROFESIONALES_DISPONIBLES = '[API] - setProfesionalesDisponibles';
 var GET_DIAS_DISPONIBLES = '[Calendar] - getDiasDisponibles';
 var SET_DIAS_DISPONIBLES = '[API] - setDiasDisponibles';
 var SET_TURNO_SELECTED = '[Calendar] - setTurnoSelected';
+var SET_PROFESIONAL_SELECTED = '[Calendar] - setProfesionalSelected';
+var SET_FECHA_SELECTED = '[Calendar] - setFechaSelected';
+var GET_HORARIOS_DISPONIBLES = '[Calendar] - getHorariosDisponibles';
+var SET_HORARIOS_DISPONIBLES = '[API] - SET_HORARIOS_DISPONIBLES';
 var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONALES_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TURNO_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONAL_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setFechaSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_FECHA_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_HORARIOS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_HORARIOS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
 
 /***/ }),
@@ -776,6 +813,13 @@ var CalendarEffects = /** @class */ (function () {
         this.getDiasDisponibles$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
             return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["GET_DIAS_DISPONIBLES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (payload) { return _this.service.busquedaDiasDisponibles(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (diasDisponibles) {
                 return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["SET_DIAS_DISPONIBLES"], diasDisponibles: diasDisponibles });
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__["SHOW_ERROR"], error: error.message });
+            })); }));
+        });
+        this.getHorariosDisponibles$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["GET_HORARIOS_DISPONIBLES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (payload) { return _this.service.busquedaHorarios(payload.filter).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (horarios) {
+                return ({ type: _actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["SET_HORARIOS_DISPONIBLES"], horarios: horarios });
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__["SHOW_ERROR"], error: error.message });
             })); }));
@@ -925,6 +969,8 @@ var initialState = {
     profesionalSelected: undefined,
     turnoSelected: undefined,
     diasDisponibles: [],
+    fechaSelected: undefined,
+    horariosDisponibles: [],
 };
 var _setProfesionalesDisponibles = function (state, profesionalesDisponibles) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
@@ -949,6 +995,21 @@ var _setTurnoSelected = function (state, turnoSelected) {
     stateNew.turnoSelected = turnoSelected;
     return stateNew;
 };
+var _setProfesionalSelected = function (state, profesional) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.profesionalSelected = profesional;
+    return stateNew;
+};
+var _setFechaSelected = function (state, fecha) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.fechaSelected = fecha;
+    return stateNew;
+};
+var _setHorariosDisponibles = function (state, horarios) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.horariosDisponibles = horarios;
+    return stateNew;
+};
 var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalesDisponibles"], function (state, _a) {
     var profesionalesDisponibles = _a.profesionalesDisponibles;
     return _setProfesionalesDisponibles(state, profesionalesDisponibles);
@@ -958,6 +1019,15 @@ var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createRe
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setTurnoSelected"], function (state, _a) {
     var turnoSelected = _a.turnoSelected;
     return _setTurnoSelected(state, turnoSelected);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalSelected"], function (state, _a) {
+    var profesional = _a.profesional;
+    return _setProfesionalSelected(state, profesional);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setFechaSelected"], function (state, _a) {
+    var fecha = _a.fecha;
+    return _setFechaSelected(state, fecha);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setHorariosDisponibles"], function (state, _a) {
+    var horarios = _a.horarios;
+    return _setHorariosDisponibles(state, horarios);
 }));
 function calendarReducer(state, action) {
     return _calendarReducer(state, action);

@@ -24878,7 +24878,7 @@ exports.string = string;
 /*!***********************************************************!*\
   !*** ./src/app/core/store/selectors/caledar.selectors.ts ***!
   \***********************************************************/
-/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected */
+/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getProfesionalSelected, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected, getFechaSelected, getBusquedaHorariosRequest, getHorariosDisponibles, getHorariosDisponiblesLength */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24887,10 +24887,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectFormulario", function() { return selectFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponibles", function() { return getProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponiblesLength", function() { return getProfesionalesDisponiblesLength; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalSelected", function() { return getProfesionalSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponiblesLength", function() { return getDiasDisponiblesLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBusquedaDiasDisponiblesRequest", function() { return getBusquedaDiasDisponiblesRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTurnoSelected", function() { return getTurnoSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFechaSelected", function() { return getFechaSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBusquedaHorariosRequest", function() { return getBusquedaHorariosRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHorariosDisponibles", function() { return getHorariosDisponibles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHorariosDisponiblesLength", function() { return getHorariosDisponiblesLength; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
 /* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
@@ -24901,18 +24906,38 @@ var selectCalendario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFe
 var selectFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('formulario');
 var getProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles; });
 var getProfesionalesDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles.length; });
-var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; }); });
-var getDiasDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; }).length; });
-var getBusquedaDiasDisponiblesRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) {
+var getProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalSelected; });
+var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
+    return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; });
+});
+var getDiasDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
+    return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; }).length;
+});
+var getBusquedaDiasDisponiblesRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectFormulario], function (profesionalSelected, formulario) {
     var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaDiasDisponiblesRequest"]();
     request.fechaNacimiento = _utils_date_utils__WEBPACK_IMPORTED_MODULE_2__["DateUtils"].getFormatDate(formulario.fechaNacimiento);
     request.codigoObraSocial = formulario.obraSocialSelected.codigo;
     request.codigoPlan = formulario.planSelected.codigo;
     request.codigoEspecialidad = formulario.especialidadSelected.codigo;
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
+    request.codigoProfesional = profesionalSelected.codigo;
     return request;
 });
 var getTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.turnoSelected; });
+var getFechaSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.fechaSelected; });
+var getBusquedaHorariosRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, getFechaSelected, selectFormulario], function (profesionalSelected, fechaSelected, formulario) {
+    var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaHorariosRequest"]();
+    request.fechaNacimiento = _utils_date_utils__WEBPACK_IMPORTED_MODULE_2__["DateUtils"].getFormatDate(formulario.fechaNacimiento);
+    request.codigoObraSocial = formulario.obraSocialSelected.codigo;
+    request.codigoPlan = formulario.planSelected.codigo;
+    request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
+    request.codigoProfesional = profesionalSelected.codigo;
+    request.fecha = fechaSelected;
+    return request;
+});
+var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles; });
+var getHorariosDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles.length; });
 
 
 /***/ }),
@@ -25207,8 +25232,8 @@ var FormularioComponent = /** @class */ (function () {
     FormularioComponent.prototype.onSubmit = function () {
         var _this = this;
         this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectBusquedaProfesionales"]).subscribe(function (filter) {
-            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getBusquedaProfesionales"]({ filter: filter }));
-        }, function (err) { return console.error(JSON.stringify(err)); });
+            return _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getBusquedaProfesionales"]({ filter: filter }));
+        });
     };
     FormularioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -25280,10 +25305,9 @@ var GrillaTurnosComponent = /** @class */ (function () {
     };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["setProfesionalSelected"]({ profesional: profesional }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            var filter = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, request);
-            filter.codigoProfesional = profesional.codigo;
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["getDiasDisponibles"]({ filter: filter }));
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["getDiasDisponibles"]({ filter: request }));
         });
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
@@ -25423,8 +25447,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
+
 
 
 
@@ -25435,22 +25461,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var SchedulerComponent = /** @class */ (function () {
     function SchedulerComponent(store) {
+        var _this = this;
+        this.store = store;
         this.CalendarView = angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarView"];
         this.viewDate = new Date();
         this.view = angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarView"].Month;
         this.refresh = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getDiasDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_7__["disponibilidadDiasToCalendarEvent"])(x); }); }));
-        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getDiasDisponiblesLength"]);
+        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["disponibilidadDiasToCalendarEvent"])(x); }); }));
+        this.events$.subscribe(function (e) { return _this.events = e; });
+        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponiblesLength"]);
     }
     SchedulerComponent.prototype.dayClicked = function (_a) {
+        var _this = this;
         var date = _a.date;
-        alert('click en ' + date);
+        if (this.isPartOfEvents(this.events, date)) {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFechaSelected"]({ fecha: date }));
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
+                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getHorariosDisponibles"]({ filter: filtro }));
+            });
+        }
+    };
+    SchedulerComponent.prototype.isPartOfEvents = function (events, date) {
+        return events.map(function (x) { return x.start.getTime(); }).indexOf(date.getTime()) !== -1;
     };
     SchedulerComponent.prototype.closeOpenMonthViewDay = function () {
         this.activeDayIsOpen = false;
     };
     SchedulerComponent.prototype._toMonthString = function (month) {
-        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_7__["toMonthString"])(month);
+        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["toMonthString"])(month);
     };
     SchedulerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
