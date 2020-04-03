@@ -405,7 +405,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profesionalesMocks", function() { return profesionalesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diasDisponiblesMock", function() { return diasDisponiblesMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "horariosMock", function() { return horariosMock; });
-/* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
+
 
 var planMock1 = {
     codigo: 1,
@@ -483,9 +485,9 @@ var profesionalesMocks = [
 ];
 var diasDisponibles = function () {
     var response = [];
-    _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__["DateUtils"].getDaysArray(new Date(), 15).forEach(function (day, index) {
+    _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 15).forEach(function (day, index) {
         response.push({
-            fecha: _utils_date_utils__WEBPACK_IMPORTED_MODULE_0__["DateUtils"].getFormatDate(day),
+            fecha: _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getFormatDate(day),
             conDisponibilidad: index % 2 === 0
         });
     });
@@ -493,7 +495,8 @@ var diasDisponibles = function () {
 };
 var diasDisponiblesMock = diasDisponibles();
 var horariosMock = [
-    turno1, turno2
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1, especialidad: especialidadesMocks[0] }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesional1, especialidad: especialidadesMocks[0] })
 ];
 
 

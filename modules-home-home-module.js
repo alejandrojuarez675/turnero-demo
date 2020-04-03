@@ -25509,6 +25509,75 @@ var SchedulerComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.css":
+/*!*******************************************************************************************!*\
+  !*** ./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.css ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2VsZWNjaW9uLWhvcmFyaW8vc2VsZWNjaW9uLWhvcmFyaW8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZjs7QUFFRCxlQUFlOztBQUVmO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtJQUNsQixlQUFlO0NBQ2xCOztBQUVEO0lBQ0ksWUFBWTtDQUNmOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLE9BQU87SUFDUCxRQUFRO0lBQ1IsYUFBYTtJQUNiLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsV0FBVztJQUNYLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0NBQzNCOztBQUVEO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixtQkFBbUI7Q0FDdEI7O0FBRUQsbUJBQW1COztBQUVuQjtJQUNJLGdCQUFnQjtDQUNuQjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NlbGVjY2lvbi1ob3JhcmlvL3NlbGVjY2lvbi1ob3JhcmlvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi8qIFN0cnVjdHVyZSAqL1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmV4YW1wbGUtdGFibGUtY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNDAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbnRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLmV4YW1wbGUtbG9hZGluZy1zaGFkZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAwO1xuICAgIGJvdHRvbTogNTZweDtcbiAgICByaWdodDogMDtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMTUpO1xuICAgIHotaW5kZXg6IDE7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uZXhhbXBsZS1yYXRlLWxpbWl0LXJlYWNoZWQge1xuICAgIGNvbG9yOiAjOTgwMDAwO1xuICAgIG1heC13aWR0aDogMzYwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBDb2x1bW4gV2lkdGhzICovXG5cbi5tYXQtY29sdW1uLW51bWJlciwgLm1hdC1jb2x1bW4tc3RhdGUge1xuICAgIG1heC13aWR0aDogNjRweDtcbn1cblxuLm1hdC1jb2x1bW4tY3JlYXRlZCB7XG4gICAgbWF4LXdpZHRoOiAxMjRweDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.html":
+/*!********************************************************************************************!*\
+  !*** ./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.html ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(horariosLength$ | async) > 0\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef>Fecha</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.fecha | date: 'dd/MM/yyyy'}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"hora\">\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.hora}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n    <mat-paginator [length]=\"horariosLength$ | async\" [pageSize]=\"5\"></mat-paginator>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.ts":
+/*!******************************************************************************************!*\
+  !*** ./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.ts ***!
+  \******************************************************************************************/
+/*! exports provided: SeleccionHorarioComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SeleccionHorarioComponent", function() { return SeleccionHorarioComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+
+
+
+
+
+var SeleccionHorarioComponent = /** @class */ (function () {
+    function SeleccionHorarioComponent(store) {
+        this.store = store;
+        this.displayedColumns = ['fecha', 'hora'];
+        this.horarios$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__["getHorariosDisponibles"]);
+        this.horariosLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__["getHorariosDisponiblesLength"]);
+    }
+    SeleccionHorarioComponent.prototype.ngOnInit = function () {
+    };
+    SeleccionHorarioComponent.prototype.onClickTurno = function (turnoSelected) {
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+    };
+    SeleccionHorarioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-seleccion-horario',
+            template: __webpack_require__(/*! ./seleccion-horario.component.html */ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.html"),
+            styles: [__webpack_require__(/*! ./seleccion-horario.component.css */ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"]])
+    ], SeleccionHorarioComponent);
+    return SeleccionHorarioComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/modules/home/home-routing.module.ts":
 /*!*****************************************************!*\
   !*** ./src/app/modules/home/home-routing.module.ts ***!
@@ -25571,9 +25640,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/formulario/formulario.component */ "./src/app/modules/home/components/formulario/formulario.component.ts");
 /* harmony import */ var _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/grilla-turnos/grilla-turnos.component */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.ts");
 /* harmony import */ var _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/scheduler/scheduler.component */ "./src/app/modules/home/components/scheduler/scheduler.component.ts");
-/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/modules/home/home-routing.module.ts");
-/* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/dashboard/dashboard.component */ "./src/app/modules/home/pages/dashboard/dashboard.component.ts");
+/* harmony import */ var _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/seleccion-horario/seleccion-horario.component */ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.ts");
+/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/modules/home/home-routing.module.ts");
 /* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./material.module */ "./src/app/modules/home/material.module.ts");
+/* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/dashboard/dashboard.component */ "./src/app/modules/home/pages/dashboard/dashboard.component.ts");
+
 
 
 
@@ -25593,16 +25664,17 @@ var HomeModule = /** @class */ (function () {
     HomeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"],
+                _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__["DashboardComponent"],
                 _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_7__["FormularioComponent"],
                 _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_8__["GrillaTurnosComponent"],
                 _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_9__["SchedulerComponent"],
                 _components_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmationComponent"],
                 _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmationDialogComponent"],
+                _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_10__["SeleccionHorarioComponent"],
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _home_routing_module__WEBPACK_IMPORTED_MODULE_10__["HomeRoutingModule"],
+                _home_routing_module__WEBPACK_IMPORTED_MODULE_11__["HomeRoutingModule"],
                 _material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"],
                 angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarModule"].forRoot({ provide: angular_calendar__WEBPACK_IMPORTED_MODULE_3__["DateAdapter"], useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_4__["adapterFactory"] }),
             ],
@@ -25686,7 +25758,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-formulario></app-formulario>\n    </div>\n    <div class=\"my-col-60\">\n        <app-grilla-turnos></app-grilla-turnos>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-60\">\n        <app-scheduler></app-scheduler>\n    </div>\n</div>\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-formulario></app-formulario>\n    </div>\n    <div class=\"my-col-60\">\n        <app-grilla-turnos></app-grilla-turnos>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-60\">\n        <app-scheduler></app-scheduler>\n    </div>\n    <div class=\"my-col-40\">\n        <app-seleccion-horario></app-seleccion-horario>\n    </div>\n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
