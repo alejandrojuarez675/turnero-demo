@@ -140,21 +140,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
-/* harmony import */ var _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../app/core/store/effects/calendar.effects */ "./src/app/core/store/effects/calendar.effects.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../app/core/store/effects/form.effects */ "./src/app/core/store/effects/form.effects.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
-/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
-/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
-/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
-/* harmony import */ var _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/store/reducers/error.reducers */ "./src/app/core/store/reducers/error.reducers.ts");
-/* harmony import */ var _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/store/effects/error.effects */ "./src/app/core/store/effects/error.effects.ts");
-/* harmony import */ var _core_store_effects_reserva_effects__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./core/store/effects/reserva.effects */ "./src/app/core/store/effects/reserva.effects.ts");
-/* harmony import */ var _core_store_reducers_reserva_reducers__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./core/store/reducers/reserva.reducers */ "./src/app/core/store/reducers/reserva.reducers.ts");
+/* harmony import */ var _ngrx_router_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngrx/router-store */ "./node_modules/@ngrx/router-store/fesm5/router-store.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/store-devtools */ "./node_modules/@ngrx/store-devtools/fesm5/store-devtools.js");
+/* harmony import */ var _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../app/core/store/effects/calendar.effects */ "./src/app/core/store/effects/calendar.effects.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../app/core/store/effects/form.effects */ "./src/app/core/store/effects/form.effects.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
+/* harmony import */ var _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/store/reducers/calendar.reducers */ "./src/app/core/store/reducers/calendar.reducers.ts");
+/* harmony import */ var _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./core/store/reducers/form.reducers */ "./src/app/core/store/reducers/form.reducers.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/shared.module */ "./src/app/shared/shared.module.ts");
+/* harmony import */ var _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/store/reducers/error.reducers */ "./src/app/core/store/reducers/error.reducers.ts");
+/* harmony import */ var _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./core/store/effects/error.effects */ "./src/app/core/store/effects/error.effects.ts");
+/* harmony import */ var _core_store_effects_reserva_effects__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./core/store/effects/reserva.effects */ "./src/app/core/store/effects/reserva.effects.ts");
+/* harmony import */ var _core_store_reducers_reserva_reducers__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./core/store/reducers/reserva.reducers */ "./src/app/core/store/reducers/reserva.reducers.ts");
+
 
 
 
@@ -181,38 +183,38 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_15__["SharedModule"],
-                _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["StoreModule"].forRoot({
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"],
+                _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["StoreModule"].forRoot({
                     // router: routerReducer,
-                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_14__["formReducer"],
-                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_13__["calendarReducer"],
-                    reserva: _core_store_reducers_reserva_reducers__WEBPACK_IMPORTED_MODULE_19__["reservaReducer"],
-                    error: _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_16__["errorReducer"],
+                    formulario: _core_store_reducers_form_reducers__WEBPACK_IMPORTED_MODULE_15__["formReducer"],
+                    calendario: _core_store_reducers_calendar_reducers__WEBPACK_IMPORTED_MODULE_14__["calendarReducer"],
+                    reserva: _core_store_reducers_reserva_reducers__WEBPACK_IMPORTED_MODULE_20__["reservaReducer"],
+                    error: _core_store_reducers_error_reducers__WEBPACK_IMPORTED_MODULE_17__["errorReducer"],
                 }),
-                // StoreRouterConnectingModule.forRoot(),
-                _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_6__["StoreDevtoolsModule"].instrument({
+                _ngrx_router_store__WEBPACK_IMPORTED_MODULE_5__["StoreRouterConnectingModule"].forRoot(),
+                _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_7__["StoreDevtoolsModule"].instrument({
                     maxAge: 25,
-                    logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].production,
+                    logOnly: _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].production,
                 }),
                 _ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["EffectsModule"].forRoot([
-                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_9__["FormEffects"],
-                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_7__["CalendarEffects"],
-                    _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_17__["ErrorEffects"],
-                    _core_store_effects_reserva_effects__WEBPACK_IMPORTED_MODULE_18__["ReservaEffects"],
+                    _app_core_store_effects_form_effects__WEBPACK_IMPORTED_MODULE_10__["FormEffects"],
+                    _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__["CalendarEffects"],
+                    _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_18__["ErrorEffects"],
+                    _core_store_effects_reserva_effects__WEBPACK_IMPORTED_MODULE_19__["ReservaEffects"],
                 ]),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
             ],
             exports: [
-                _core_core_module__WEBPACK_IMPORTED_MODULE_12__["CoreModule"],
-                _shared_shared_module__WEBPACK_IMPORTED_MODULE_15__["SharedModule"]
+                _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -491,7 +493,6 @@ var profesionalesMocks = [
 var diasDisponibles = function () {
     var response = [];
     _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 15).forEach(function (day, index) {
-        day.setHours(0, 0, 0, 0);
         response.push({
             fecha: day,
             conDisponibilidad: index % 2 === 0
@@ -505,7 +506,7 @@ var horariosMock = [
     tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesional1, especialidad: especialidadesMocks[0] })
 ];
 var reservaTurnoMock = {
-    codigoReserva: '123',
+    codigoReserva: "123",
     vencimientoReserva: new Date('2020/03/30')
 };
 
@@ -1096,7 +1097,7 @@ var _setDiasDisponibles = function (state, diasDisponibles) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.diasDisponibles = diasDisponibles.map(function (x) {
         return {
-            fecha: x.fecha,
+            fecha: new Date(x.fecha.toString()),
             conDisponibilidad: x.conDisponibilidad
         };
     }).slice();
@@ -1328,11 +1329,13 @@ var initialState = {
 };
 var _setTurnoSelected = function (state, turnoSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    console.log("Entra al setTurnoSelected " + turnoSelected);
     stateNew.turnoSelected = turnoSelected;
     return stateNew;
 };
 var _setReserva = function (state, reservaSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    console.log("Entra y llega al set Reserva con " + reservaSelected);
     stateNew.reserva = reservaSelected;
     return stateNew;
 };
