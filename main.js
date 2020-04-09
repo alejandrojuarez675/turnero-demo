@@ -679,11 +679,12 @@ var ServiceService = /** @class */ (function () {
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/calendar.actions.ts ***!
   \********************************************************/
-/*! exports provided: SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, SET_PROFESIONAL_SELECTED, SET_FECHA_SELECTED, GET_HORARIOS_DISPONIBLES, SET_HORARIOS_DISPONIBLES, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected, setProfesionalSelected, setFechaSelected, getHorariosDisponibles, setHorariosDisponibles */
+/*! exports provided: CLEAN_STORE, SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, SET_PROFESIONAL_SELECTED, SET_FECHA_SELECTED, GET_HORARIOS_DISPONIBLES, SET_HORARIOS_DISPONIBLES, cleanStore, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected, setProfesionalSelected, setFechaSelected, getHorariosDisponibles, setHorariosDisponibles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAN_STORE", function() { return CLEAN_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONALES_DISPONIBLES", function() { return SET_PROFESIONALES_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_DIAS_DISPONIBLES", function() { return GET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DIAS_DISPONIBLES", function() { return SET_DIAS_DISPONIBLES; });
@@ -692,6 +693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FECHA_SELECTED", function() { return SET_FECHA_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_HORARIOS_DISPONIBLES", function() { return GET_HORARIOS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_HORARIOS_DISPONIBLES", function() { return SET_HORARIOS_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanStore", function() { return cleanStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalesDisponibles", function() { return setProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDiasDisponibles", function() { return setDiasDisponibles; });
@@ -702,6 +704,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setHorariosDisponibles", function() { return setHorariosDisponibles; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
+var CLEAN_STORE = '[Calendar] - cleanStore';
 var SET_PROFESIONALES_DISPONIBLES = '[API] - setProfesionalesDisponibles';
 var GET_DIAS_DISPONIBLES = '[Calendar] - getDiasDisponibles';
 var SET_DIAS_DISPONIBLES = '[API] - setDiasDisponibles';
@@ -710,6 +713,7 @@ var SET_PROFESIONAL_SELECTED = '[Calendar] - setProfesionalSelected';
 var SET_FECHA_SELECTED = '[Calendar] - setFechaSelected';
 var GET_HORARIOS_DISPONIBLES = '[Calendar] - getHorariosDisponibles';
 var SET_HORARIOS_DISPONIBLES = '[API] - setHorariosDisponibles';
+var cleanStore = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(CLEAN_STORE);
 var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONALES_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
@@ -812,16 +816,18 @@ var getBusquedaProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["
 /*!*******************************************************!*\
   !*** ./src/app/core/store/actions/reserva.actions.ts ***!
   \*******************************************************/
-/*! exports provided: RESERVA_TURNO, SET_TURNO_SELECTED, SET_RESERVA, GET_RESERVA, SET_PACIENTE, reservaTurno, setTurnoSelected, setReservaSelected, getReservaSelected, setPaciente */
+/*! exports provided: CLEAN_STORE, RESERVA_TURNO, SET_TURNO_SELECTED, SET_RESERVA, GET_RESERVA, SET_PACIENTE, cleanStore, reservaTurno, setTurnoSelected, setReservaSelected, getReservaSelected, setPaciente */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAN_STORE", function() { return CLEAN_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESERVA_TURNO", function() { return RESERVA_TURNO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TURNO_SELECTED", function() { return SET_TURNO_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_RESERVA", function() { return SET_RESERVA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_RESERVA", function() { return GET_RESERVA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PACIENTE", function() { return SET_PACIENTE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanStore", function() { return cleanStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reservaTurno", function() { return reservaTurno; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTurnoSelected", function() { return setTurnoSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setReservaSelected", function() { return setReservaSelected; });
@@ -829,11 +835,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPaciente", function() { return setPaciente; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
+var CLEAN_STORE = '[Reserva] - cleanStore';
 var RESERVA_TURNO = '[Reserva] - ReservaTurno';
 var SET_TURNO_SELECTED = '[Reserva] - setTurnoSelected';
 var SET_RESERVA = '[API] - setReservaSelected ';
 var GET_RESERVA = '[Reserva] - getReservaSelected ';
 var SET_PACIENTE = '[Reserva] - setPaciente ';
+var cleanStore = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(CLEAN_STORE);
 var reservaTurno = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(RESERVA_TURNO, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TURNO_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setReservaSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_RESERVA, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
@@ -1123,7 +1131,7 @@ var _setHorariosDisponibles = function (state, horarios) {
     stateNew.horariosDisponibles = horarios;
     return stateNew;
 };
-var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalesDisponibles"], function (state, _a) {
+var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["cleanStore"], function () { return initialState; }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalesDisponibles"], function (state, _a) {
     var profesionalesDisponibles = _a.profesionalesDisponibles;
     return _setProfesionalesDisponibles(state, profesionalesDisponibles);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setDiasDisponibles"], function (state, _a) {
@@ -1329,13 +1337,11 @@ var initialState = {
 };
 var _setTurnoSelected = function (state, turnoSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
-    console.log("Entra al setTurnoSelected " + turnoSelected);
     stateNew.turnoSelected = turnoSelected;
     return stateNew;
 };
 var _setReserva = function (state, reservaSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
-    console.log("Entra y llega al set Reserva con " + reservaSelected);
     stateNew.reserva = reservaSelected;
     return stateNew;
 };
@@ -1344,7 +1350,7 @@ var _setPaciente = function (state, paciente) {
     stateNew.paciente = paciente;
     return stateNew;
 };
-var _reservaReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_2__["setTurnoSelected"], function (state, _a) {
+var _reservaReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_2__["cleanStore"], function () { return initialState; }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_2__["setTurnoSelected"], function (state, _a) {
     var turnoSelected = _a.turnoSelected;
     return _setTurnoSelected(state, turnoSelected);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_2__["setPaciente"], function (state, _a) {
