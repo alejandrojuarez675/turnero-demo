@@ -25274,7 +25274,7 @@ var FormularioComponent = /** @class */ (function () {
         var _this = this;
         this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectBusquedaProfesionales"]).subscribe(function (filter) {
             return _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getBusquedaProfesionales"]({ filter: filter }));
-        });
+        }).unsubscribe();
     };
     FormularioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -25349,7 +25349,7 @@ var GrillaTurnosComponent = /** @class */ (function () {
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["setProfesionalSelected"]({ profesional: profesional }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
             _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["getDiasDisponibles"]({ filter: request }));
-        });
+        }).unsubscribe();
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
         var turnoLigthSelected = horario === 'T' ? row.turnoTarde : row.turnoManiana;
