@@ -1,5 +1,98 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["modules-home-home-module"],{
 
+/***/ "./node_modules/@angular/common/locales/es-AR.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@angular/common/locales/es-AR.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+(function (factory) {
+    if ( true && typeof module.exports === "object") {
+        var v = factory(null, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    // THIS CODE IS GENERATED - DO NOT MODIFY
+    // See angular/tools/gulp-tasks/cldr/extract.js
+    var u = undefined;
+    function plural(n) {
+        if (n === 1)
+            return 1;
+        return 5;
+    }
+    exports.default = [
+        'es-AR', [['a. m.', 'p. m.'], u, u], u,
+        [
+            ['D', 'L', 'M', 'M', 'J', 'V', 'S'], ['dom.', 'lun.', 'mar.', 'mié.', 'jue.', 'vie.', 'sáb.'],
+            ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+            ['DO', 'LU', 'MA', 'MI', 'JU', 'VI', 'SA']
+        ],
+        u,
+        [
+            ['E', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+            [
+                'ene.', 'feb.', 'mar.', 'abr.', 'may.', 'jun.', 'jul.', 'ago.', 'sep.', 'oct.', 'nov.', 'dic.'
+            ],
+            [
+                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre',
+                'octubre', 'noviembre', 'diciembre'
+            ]
+        ],
+        u, [['a. C.', 'd. C.'], u, ['antes de Cristo', 'después de Cristo']], 0, [6, 0],
+        ['d/M/yy', 'd MMM y', 'd \'de\' MMMM \'de\' y', 'EEEE, d \'de\' MMMM \'de\' y'],
+        ['HH:mm', 'HH:mm:ss', 'HH:mm:ss z', 'HH:mm:ss zzzz'], ['{1} {0}', u, '{1}, {0}', u],
+        [',', '.', ';', '%', '+', '-', 'E', '×', '‰', '∞', 'NaN', ':'],
+        ['#,##0.###', '#,##0 %', '¤ #,##0.00', '#E0'], '$', 'peso argentino', {
+            'ARS': ['$'],
+            'AUD': [u, '$'],
+            'BRL': [u, 'R$'],
+            'CAD': [u, '$'],
+            'CNY': [u, '¥'],
+            'ESP': ['₧'],
+            'EUR': [u, '€'],
+            'FKP': [u, 'FK£'],
+            'GBP': [u, '£'],
+            'HKD': [u, '$'],
+            'ILS': [u, '₪'],
+            'INR': [u, '₹'],
+            'JPY': [u, '¥'],
+            'KRW': [u, '₩'],
+            'MXN': [u, '$'],
+            'NZD': [u, '$'],
+            'RON': [u, 'L'],
+            'SSP': [u, 'SD£'],
+            'SYP': [u, 'S£'],
+            'TWD': [u, 'NT$'],
+            'USD': ['US$', '$'],
+            'VEF': [u, 'BsF'],
+            'VND': [u, '₫'],
+            'XAF': [],
+            'XCD': [u, '$'],
+            'XOF': []
+        },
+        plural
+    ];
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXMtQVIuanMiLCJzb3VyY2VSb290IjoiLi4vLi4vLi4vIiwic291cmNlcyI6WyJwYWNrYWdlcy9jb21tb24vbG9jYWxlcy9lcy1BUi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7Ozs7Ozs7Ozs7OztJQUVILHlDQUF5QztJQUN6QywrQ0FBK0M7SUFFL0MsSUFBTSxDQUFDLEdBQUcsU0FBUyxDQUFDO0lBRXBCLFNBQVMsTUFBTSxDQUFDLENBQVM7UUFDdkIsSUFBSSxDQUFDLEtBQUssQ0FBQztZQUFFLE9BQU8sQ0FBQyxDQUFDO1FBQ3RCLE9BQU8sQ0FBQyxDQUFDO0lBQ1gsQ0FBQztJQUVELGtCQUFlO1FBQ2IsT0FBTyxFQUFFLENBQUMsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsQ0FBQyxFQUFFLENBQUM7UUFDdEM7WUFDRSxDQUFDLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsQ0FBQyxFQUFFLENBQUMsTUFBTSxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxDQUFDO1lBQzdGLENBQUMsU0FBUyxFQUFFLE9BQU8sRUFBRSxRQUFRLEVBQUUsV0FBVyxFQUFFLFFBQVEsRUFBRSxTQUFTLEVBQUUsUUFBUSxDQUFDO1lBQzFFLENBQUMsSUFBSSxFQUFFLElBQUksRUFBRSxJQUFJLEVBQUUsSUFBSSxFQUFFLElBQUksRUFBRSxJQUFJLEVBQUUsSUFBSSxDQUFDO1NBQzNDO1FBQ0QsQ0FBQztRQUNEO1lBQ0UsQ0FBQyxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsQ0FBQztZQUM1RDtnQkFDRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU0sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE1BQU07YUFDL0Y7WUFDRDtnQkFDRSxPQUFPLEVBQUUsU0FBUyxFQUFFLE9BQU8sRUFBRSxPQUFPLEVBQUUsTUFBTSxFQUFFLE9BQU8sRUFBRSxPQUFPLEVBQUUsUUFBUSxFQUFFLFlBQVk7Z0JBQ3RGLFNBQVMsRUFBRSxXQUFXLEVBQUUsV0FBVzthQUNwQztTQUNGO1FBQ0QsQ0FBQyxFQUFFLENBQUMsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsaUJBQWlCLEVBQUUsbUJBQW1CLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUM7UUFDL0UsQ0FBQyxRQUFRLEVBQUUsU0FBUyxFQUFFLHdCQUF3QixFQUFFLDhCQUE4QixDQUFDO1FBQy9FLENBQUMsT0FBTyxFQUFFLFVBQVUsRUFBRSxZQUFZLEVBQUUsZUFBZSxDQUFDLEVBQUUsQ0FBQyxTQUFTLEVBQUUsQ0FBQyxFQUFFLFVBQVUsRUFBRSxDQUFDLENBQUM7UUFDbkYsQ0FBQyxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsS0FBSyxFQUFFLEdBQUcsQ0FBQztRQUM5RCxDQUFDLFdBQVcsRUFBRSxTQUFTLEVBQUUsWUFBWSxFQUFFLEtBQUssQ0FBQyxFQUFFLEdBQUcsRUFBRSxnQkFBZ0IsRUFBRTtZQUNwRSxLQUFLLEVBQUUsQ0FBQyxHQUFHLENBQUM7WUFDWixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLElBQUksQ0FBQztZQUNoQixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLEdBQUcsQ0FBQztZQUNmLEtBQUssRUFBRSxDQUFDLEdBQUcsQ0FBQztZQUNaLEtBQUssRUFBRSxDQUFDLENBQUMsRUFBRSxHQUFHLENBQUM7WUFDZixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsS0FBSyxDQUFDO1lBQ2pCLEtBQUssRUFBRSxDQUFDLENBQUMsRUFBRSxHQUFHLENBQUM7WUFDZixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLEdBQUcsQ0FBQztZQUNmLEtBQUssRUFBRSxDQUFDLENBQUMsRUFBRSxHQUFHLENBQUM7WUFDZixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLEdBQUcsQ0FBQztZQUNmLEtBQUssRUFBRSxDQUFDLENBQUMsRUFBRSxHQUFHLENBQUM7WUFDZixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLEdBQUcsQ0FBQztZQUNmLEtBQUssRUFBRSxDQUFDLENBQUMsRUFBRSxLQUFLLENBQUM7WUFDakIsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLElBQUksQ0FBQztZQUNoQixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsS0FBSyxDQUFDO1lBQ2pCLEtBQUssRUFBRSxDQUFDLEtBQUssRUFBRSxHQUFHLENBQUM7WUFDbkIsS0FBSyxFQUFFLENBQUMsQ0FBQyxFQUFFLEtBQUssQ0FBQztZQUNqQixLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLEVBQUU7WUFDVCxLQUFLLEVBQUUsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDO1lBQ2YsS0FBSyxFQUFFLEVBQUU7U0FDVjtRQUNELE1BQU07S0FDUCxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBJbmMuIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG4vLyBUSElTIENPREUgSVMgR0VORVJBVEVEIC0gRE8gTk9UIE1PRElGWVxuLy8gU2VlIGFuZ3VsYXIvdG9vbHMvZ3VscC10YXNrcy9jbGRyL2V4dHJhY3QuanNcblxuY29uc3QgdSA9IHVuZGVmaW5lZDtcblxuZnVuY3Rpb24gcGx1cmFsKG46IG51bWJlcik6IG51bWJlciB7XG4gIGlmIChuID09PSAxKSByZXR1cm4gMTtcbiAgcmV0dXJuIDU7XG59XG5cbmV4cG9ydCBkZWZhdWx0IFtcbiAgJ2VzLUFSJywgW1snYS4gbS4nLCAncC4gbS4nXSwgdSwgdV0sIHUsXG4gIFtcbiAgICBbJ0QnLCAnTCcsICdNJywgJ00nLCAnSicsICdWJywgJ1MnXSwgWydkb20uJywgJ2x1bi4nLCAnbWFyLicsICdtacOpLicsICdqdWUuJywgJ3ZpZS4nLCAnc8OhYi4nXSxcbiAgICBbJ2RvbWluZ28nLCAnbHVuZXMnLCAnbWFydGVzJywgJ21pw6lyY29sZXMnLCAnanVldmVzJywgJ3ZpZXJuZXMnLCAnc8OhYmFkbyddLFxuICAgIFsnRE8nLCAnTFUnLCAnTUEnLCAnTUknLCAnSlUnLCAnVkknLCAnU0EnXVxuICBdLFxuICB1LFxuICBbXG4gICAgWydFJywgJ0YnLCAnTScsICdBJywgJ00nLCAnSicsICdKJywgJ0EnLCAnUycsICdPJywgJ04nLCAnRCddLFxuICAgIFtcbiAgICAgICdlbmUuJywgJ2ZlYi4nLCAnbWFyLicsICdhYnIuJywgJ21heS4nLCAnanVuLicsICdqdWwuJywgJ2Fnby4nLCAnc2VwLicsICdvY3QuJywgJ25vdi4nLCAnZGljLidcbiAgICBdLFxuICAgIFtcbiAgICAgICdlbmVybycsICdmZWJyZXJvJywgJ21hcnpvJywgJ2FicmlsJywgJ21heW8nLCAnanVuaW8nLCAnanVsaW8nLCAnYWdvc3RvJywgJ3NlcHRpZW1icmUnLFxuICAgICAgJ29jdHVicmUnLCAnbm92aWVtYnJlJywgJ2RpY2llbWJyZSdcbiAgICBdXG4gIF0sXG4gIHUsIFtbJ2EuIEMuJywgJ2QuIEMuJ10sIHUsIFsnYW50ZXMgZGUgQ3Jpc3RvJywgJ2Rlc3B1w6lzIGRlIENyaXN0byddXSwgMCwgWzYsIDBdLFxuICBbJ2QvTS95eScsICdkIE1NTSB5JywgJ2QgXFwnZGVcXCcgTU1NTSBcXCdkZVxcJyB5JywgJ0VFRUUsIGQgXFwnZGVcXCcgTU1NTSBcXCdkZVxcJyB5J10sXG4gIFsnSEg6bW0nLCAnSEg6bW06c3MnLCAnSEg6bW06c3MgeicsICdISDptbTpzcyB6enp6J10sIFsnezF9IHswfScsIHUsICd7MX0sIHswfScsIHVdLFxuICBbJywnLCAnLicsICc7JywgJyUnLCAnKycsICctJywgJ0UnLCAnw5cnLCAn4oCwJywgJ+KInicsICdOYU4nLCAnOiddLFxuICBbJyMsIyMwLiMjIycsICcjLCMjMMKgJScsICfCpMKgIywjIzAuMDAnLCAnI0UwJ10sICckJywgJ3Blc28gYXJnZW50aW5vJywge1xuICAgICdBUlMnOiBbJyQnXSxcbiAgICAnQVVEJzogW3UsICckJ10sXG4gICAgJ0JSTCc6IFt1LCAnUiQnXSxcbiAgICAnQ0FEJzogW3UsICckJ10sXG4gICAgJ0NOWSc6IFt1LCAnwqUnXSxcbiAgICAnRVNQJzogWyfigqcnXSxcbiAgICAnRVVSJzogW3UsICfigqwnXSxcbiAgICAnRktQJzogW3UsICdGS8KjJ10sXG4gICAgJ0dCUCc6IFt1LCAnwqMnXSxcbiAgICAnSEtEJzogW3UsICckJ10sXG4gICAgJ0lMUyc6IFt1LCAn4oKqJ10sXG4gICAgJ0lOUic6IFt1LCAn4oK5J10sXG4gICAgJ0pQWSc6IFt1LCAnwqUnXSxcbiAgICAnS1JXJzogW3UsICfigqknXSxcbiAgICAnTVhOJzogW3UsICckJ10sXG4gICAgJ05aRCc6IFt1LCAnJCddLFxuICAgICdST04nOiBbdSwgJ0wnXSxcbiAgICAnU1NQJzogW3UsICdTRMKjJ10sXG4gICAgJ1NZUCc6IFt1LCAnU8KjJ10sXG4gICAgJ1RXRCc6IFt1LCAnTlQkJ10sXG4gICAgJ1VTRCc6IFsnVVMkJywgJyQnXSxcbiAgICAnVkVGJzogW3UsICdCc0YnXSxcbiAgICAnVk5EJzogW3UsICfigqsnXSxcbiAgICAnWEFGJzogW10sXG4gICAgJ1hDRCc6IFt1LCAnJCddLFxuICAgICdYT0YnOiBbXVxuICB9LFxuICBwbHVyYWxcbl07XG4iXX0=
+
+/***/ }),
+
 /***/ "./node_modules/angular-calendar/date-adapters/date-fns/index.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/angular-calendar/date-adapters/date-fns/index.js ***!
@@ -24878,7 +24971,7 @@ exports.string = string;
 /*!***********************************************************!*\
   !*** ./src/app/core/store/selectors/caledar.selectors.ts ***!
   \***********************************************************/
-/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getProfesionalSelected, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected, getFechaSelected, getBusquedaHorariosRequest, getHorariosDisponibles, getHorariosDisponiblesLength */
+/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getProfesionalSelected, getDiasTurnosDisponibles, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected, getFechaSelected, getBusquedaHorariosRequest, getHorariosDisponibles, getHorariosDisponiblesLength */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24888,6 +24981,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponibles", function() { return getProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponiblesLength", function() { return getProfesionalesDisponiblesLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalSelected", function() { return getProfesionalSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasTurnosDisponibles", function() { return getDiasTurnosDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponiblesLength", function() { return getDiasDisponiblesLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBusquedaDiasDisponiblesRequest", function() { return getBusquedaDiasDisponiblesRequest; });
@@ -24905,11 +24999,14 @@ var selectFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFe
 var getProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles; });
 var getProfesionalesDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles.length; });
 var getProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalSelected; });
-var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
+var getDiasTurnosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
     return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; });
 });
+var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
+    return calendario.diasDisponibles;
+});
 var getDiasDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
-    return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; }).length;
+    return calendario.diasDisponibles.length;
 });
 var getBusquedaDiasDisponiblesRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectFormulario], function (profesionalSelected, formulario) {
     var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaDiasDisponiblesRequest"]();
@@ -24918,7 +25015,9 @@ var getBusquedaDiasDisponiblesRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MOD
     request.codigoPlan = formulario.planSelected.codigo;
     request.codigoEspecialidad = formulario.especialidadSelected.codigo;
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
-    request.codigoProfesional = profesionalSelected.codigo;
+    if (profesionalSelected != undefined) {
+        request.codigoProfesional = profesionalSelected.codigo;
+    }
     return request;
 });
 var getTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.turnoSelected; });
@@ -24930,12 +25029,35 @@ var getBusquedaHorariosRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__
     request.codigoPlan = formulario.planSelected.codigo;
     request.codigoEspecialidad = formulario.especialidadSelected.codigo;
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
-    request.codigoProfesional = profesionalSelected.codigo;
+    if (profesionalSelected != undefined) {
+        request.codigoProfesional = profesionalSelected.codigo;
+    }
     request.fecha = fechaSelected;
     return request;
 });
 var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles; });
 var getHorariosDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles.length; });
+
+
+/***/ }),
+
+/***/ "./src/app/core/store/selectors/contexto.selectors.ts":
+/*!************************************************************!*\
+  !*** ./src/app/core/store/selectors/contexto.selectors.ts ***!
+  \************************************************************/
+/*! exports provided: selectContexto, getEstado */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectContexto", function() { return selectContexto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEstado", function() { return getEstado; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+
+var selectContexto = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('contexto');
+var getEstado = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectContexto, function (contexto) {
+    return contexto.estado;
+});
 
 
 /***/ }),
@@ -24987,41 +25109,23 @@ var selectBusquedaProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0_
 
 /***/ }),
 
-/***/ "./src/app/core/store/selectors/reserva.selectors.ts":
-/*!***********************************************************!*\
-  !*** ./src/app/core/store/selectors/reserva.selectors.ts ***!
-  \***********************************************************/
-/*! exports provided: selectFormulario, selectReserva, reservarTurno, getReservaSelected, getReserva, getTurnoSelected */
+/***/ "./src/app/core/store/selectors/reservacion.selectors.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/core/store/selectors/reservacion.selectors.ts ***!
+  \***************************************************************/
+/*! exports provided: selectReserva, getReserva */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectFormulario", function() { return selectFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectReserva", function() { return selectReserva; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reservarTurno", function() { return reservarTurno; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReservaSelected", function() { return getReservaSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReserva", function() { return getReserva; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTurnoSelected", function() { return getTurnoSelected; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
 
-
-var selectFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('reserva');
-var selectReserva = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('reserva');
-var reservarTurno = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (filter) {
-    if (!filter || !filter.turnoSelected) {
-        return;
-    }
-    var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["ReservaTurnoRequest"]();
-    request.paciente = filter.paciente;
-    request.codigoTurno = filter.turnoSelected.codigo;
-    return request;
+var selectReserva = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('reservacion');
+var getReserva = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectReserva, function (reserva) {
+    return reserva;
 });
-var getReservaSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (reserva) { return reserva; });
-var getReserva = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (reservaSelected) {
-    return reservaSelected;
-});
-var getTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (reserva) { return reserva.turnoSelected; });
 
 
 /***/ }),
@@ -25127,11 +25231,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
 /* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
 /* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/home/components/confirmation-dialog/confirmation-dialog.component.ts");
 
@@ -25145,26 +25249,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ConfirmationComponent = /** @class */ (function () {
-    function ConfirmationComponent(dialog, store, router) {
+    function ConfirmationComponent(dialog, store) {
         this.dialog = dialog;
         this.store = store;
-        this.router = router;
     }
     ConfirmationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_8__["getTurnoSelected"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (x) { return x !== undefined; })).subscribe(function (x) { return _this.openDialog(x); });
+        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_8__["getTurnoSelected"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (x) { return x !== undefined; })).subscribe(function (x) { return _this.openDialog(x); });
     };
     ConfirmationComponent.prototype.openDialog = function (turno) {
         var _this = this;
         this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], { data: { turno: turno } })
             .afterClosed().subscribe(function (result) {
             if (result) {
-                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__["setTurnoSelected"]({ turnoSelected: turno }));
-                _this.router.navigate(['/home/reserva']);
+                _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["setEstado"]({ newEstado: 5 }));
+                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_6__["setTurnoSelected"]({ turnoSelected: turno }));
             }
             else {
-                _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setTurnoSelected"](undefined));
-                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__["setTurnoSelected"](undefined));
+                _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setTurnoSelected"](undefined));
+                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_6__["setTurnoSelected"](undefined));
             }
         });
     };
@@ -25175,8 +25278,7 @@ var ConfirmationComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./confirmation.component.css */ "./src/app/modules/home/components/confirmation/confirmation.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
-            _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
     ], ConfirmationComponent);
     return ConfirmationComponent;
 }());
@@ -25222,7 +25324,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
-/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
+
 
 
 
@@ -25237,10 +25341,10 @@ var FormularioComponent = /** @class */ (function () {
         this.plan = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
         this.especialidad = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
         this.centroAtencion = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.obrasSociales$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectAllObrasSociales"]);
-        this.planes$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectPlanes"]);
-        this.especialidades$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectAllEspecialidades"]);
-        this.centrosDeAtencion$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectAllCentrosDeAtencion"]);
+        this.obrasSociales$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectAllObrasSociales"]);
+        this.planes$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectPlanes"]);
+        this.especialidades$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectAllEspecialidades"]);
+        this.centrosDeAtencion$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectAllCentrosDeAtencion"]);
     }
     FormularioComponent.prototype.ngOnInit = function () {
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getObraSociales"]());
@@ -25252,6 +25356,7 @@ var FormularioComponent = /** @class */ (function () {
     };
     FormularioComponent.prototype.cambioObraSocial = function (event) {
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["setObraSocialSelected"]({ obraSocialSelected: event.value }));
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["setPlanSelected"]({ planSelected: undefined })); // FIXME
     };
     FormularioComponent.prototype.cambioPlan = function (event) {
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["setPlanSelected"]({ planSelected: event.value }));
@@ -25272,9 +25377,10 @@ var FormularioComponent = /** @class */ (function () {
     };
     FormularioComponent.prototype.onSubmit = function () {
         var _this = this;
-        this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectBusquedaProfesionales"]).subscribe(function (filter) {
-            return _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getBusquedaProfesionales"]({ filter: filter }));
-        }).unsubscribe();
+        this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectBusquedaProfesionales"]).subscribe(function (filter) {
+            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 2 }));
+            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_4__["getBusquedaProfesionales"]({ filter: filter }));
+        });
     };
     FormularioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -25309,7 +25415,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(profesionalesDisponiblesLenght$ | async) > 0\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional o turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"profesionalesDisponibles$ | async\">\n\n        <ng-container matColumnDef=\"profesional.nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoManiana.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row, 'M')\"\n            title=\"Seleccionar turno\">\n            {{row.turnoManiana.fecha | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoTarde.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row, 'T')\"\n            title=\"Seleccionar turno\">\n            {{row.turnoTarde.fecha | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n    <mat-paginator [length]=\"profesionalesDisponiblesLenght$ | async\" [pageSize]=\"5\"></mat-paginator>\n  </div>\n</div>\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"cuadro-formulario\" \n  *ngIf=\"(((profesionalesDisponiblesLenght$ | async) == 0) && ((estado$ | async) == 2))\">\n  <p>\n    No se encontraron turnos para los criterios ingresados.\n  </p>\n</div>\n\n<div class=\"cuadro-formulario\" *ngIf=\"(profesionalesDisponiblesLenght$ | async) > 0\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"profesionalesDisponibles$ | async\">\n\n        <ng-container matColumnDef=\"profesional.nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoManiana.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoManiana.fecha | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoTarde.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoTarde.fecha | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
@@ -25326,8 +25432,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+
+
 
 
 
@@ -25337,32 +25447,43 @@ var GrillaTurnosComponent = /** @class */ (function () {
     function GrillaTurnosComponent(store) {
         this.store = store;
         this.displayedColumns = [
-            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha'
+            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha', 'profesional.observaciones'
         ];
-        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getProfesionalesDisponibles"]);
-        this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getProfesionalesDisponiblesLength"]);
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__["getEstado"]);
+        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]);
+        this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponiblesLength"]);
     }
     GrillaTurnosComponent.prototype.ngOnInit = function () {
     };
+    GrillaTurnosComponent.prototype.onClickTodos = function () {
+        var _this = this;
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
+        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
+        });
+    };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["setProfesionalSelected"]({ profesional: profesional }));
-        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["getDiasDisponibles"]({ filter: request }));
-        }).unsubscribe();
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"]({ profesional: profesional }));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
+        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
+        });
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
         var turnoLigthSelected = horario === 'T' ? row.turnoTarde : row.turnoManiana;
         var turnoSelected = {
             profesional: row.profesional,
-            especialidad: row.especialidad,
+            especialidad: row.profesional.especialidad,
             codigo: turnoLigthSelected.codigo,
             centroAtencion: turnoLigthSelected.centroAtencion,
             fecha: turnoLigthSelected.fecha,
             hora: turnoLigthSelected.hora,
             observaciones: turnoLigthSelected.observaciones
         };
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
     };
     GrillaTurnosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -25397,7 +25518,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.reserva\">\n    Se le ha enviado un mail a la dirección {{ data.reserva.paciente.mail}}.\n  </p>\n  <p *ngIf=\"data?.reserva?.reserva?.vencimientoReserva\">\n    Tiene tiempo hasta el día \n    {{ data.reserva.reserva.vencimientoReserva | date:'dd/MM/yyyy'}}\n    para confirmarlo.\n  </p>\n</mat-dialog-content>\n\n<div mat-dialog-actions>\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>OK</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.datosReserva?.paciente\">\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}}.\n  </p>\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\n    Tiene tiempo hasta el día \n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\n    para confirmarlo.\n  </p>\n</mat-dialog-content>\n\n<div mat-dialog-actions>\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>OK</button>\n</div>"
 
 /***/ }),
 
@@ -25477,10 +25598,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
-/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
-/* harmony import */ var _reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../reserva-email-dialog/reserva-email-dialog.component */ "./src/app/modules/home/components/reserva-email-dialog/reserva-email-dialog.component.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
+/* harmony import */ var _core_store_actions_reservacion_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/actions/reservacion.actions */ "./src/app/core/store/actions/reservacion.actions.ts");
+/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
+/* harmony import */ var _core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../core/store/selectors/reservacion.selectors */ "./src/app/core/store/selectors/reservacion.selectors.ts");
+/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
+/* harmony import */ var _reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../reserva-email-dialog/reserva-email-dialog.component */ "./src/app/modules/home/components/reserva-email-dialog/reserva-email-dialog.component.ts");
+
+
+
+
 
 
 
@@ -25497,19 +25626,23 @@ var ReservaEmailComponent = /** @class */ (function () {
     }
     ReservaEmailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_7__["getReserva"]).pipe(
-        // TODO cambiarlo por codigo reserva cuando ya esté funcionando bien
-        // filter(x => x !== undefined && x.reserva !== undefined && x.reserva.codigoReserva !== undefined)
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (x) { return x !== undefined && x.paciente !== undefined && x.paciente.dni !== undefined; })).subscribe(function (x) {
-            _this.openDialog(x);
+        this.datosReserva = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__["DatosReserva"]();
+        this.store.select(_core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_10__["getReserva"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (x) { return x != undefined && x.codigo != undefined; })).subscribe(function (x) {
+            _this.reserva$ = _this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_9__["getReserva"]);
+            _this.reserva$.subscribe(function (reserva) { return _this.datosReserva.paciente = reserva.paciente; });
+            _this.datosReserva.reserva = x;
+            _this.openDialog(_this.datosReserva);
         });
     };
-    ReservaEmailComponent.prototype.openDialog = function (reservaConfirm) {
+    ReservaEmailComponent.prototype.openDialog = function (datosReserva) {
         var _this = this;
-        this.dialog.open(_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_8__["ReservaEmailDialogComponent"], { data: { reserva: reservaConfirm } })
+        this.dialog.open(_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_12__["ReservaEmailDialogComponent"], { data: { datosReserva: datosReserva } })
             .afterClosed().subscribe(function () {
-            _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_6__["cleanStore"]());
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["cleanStore"]());
+            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 1 }));
+            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["cleanStore"]());
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["cleanStore"]());
+            _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__["cleanStore"]());
+            _this.store.dispatch(_core_store_actions_reservacion_actions__WEBPACK_IMPORTED_MODULE_8__["cleanStore"]());
         });
     };
     ReservaEmailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -25546,7 +25679,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(turnoSelected$ | async) != undefined\">\n    <div class=\"row clearfix\">\n        <p>\n          Ingrese los siguientes datos para reservar el turno\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>DNI</mat-label>\n            <input matInput [formControl]=\"dni\" \n                   placeholder=\"Ingrese su DNI\">\n            <mat-error *ngIf=\"dni.invalid\">\n                Ingrese su DNI\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Sexo</mat-label>\n            <mat-select [formControl]=\"sexo\">\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\n                    {{sexo}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Nombre y Apellido</mat-label>\n            <input matInput [formControl]=\"nombreApellido\" \n                   placeholder=\"Ingrese su nombre y apellido\">\n            <mat-error *ngIf=\"nombreApellido.invalid\">\n                Ingrese su nombre y apellido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Teléfono</mat-label>\n            <input matInput [formControl]=\"telefono\" \n                   placeholder=\"Ingrese su Teléfono\">\n            <mat-error *ngIf=\"telefono.invalid\">\n                Ingrese su Teléfono\n            </mat-error>\n        </mat-form-field>\n    </div>\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Mail</mat-label>\n            <input matInput [formControl]=\"mail\" \n                   placeholder=\"Ingrese su mail\">\n            <mat-error *ngIf=\"mail.invalid\">\n                Ingrese un mail válido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\n            RESERVAR TURNO\n        </button>\n    </div>\n    <app-reserva-email></app-reserva-email>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"\n    (((turnoSelected$ | async) != undefined) && ((estado$ | async) == 5))\">\n    <div class=\"row clearfix\">\n        <p>\n          Ingrese los siguientes datos para reservar el turno\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>DNI</mat-label>\n            <input matInput [formControl]=\"dni\" \n                   placeholder=\"Ingrese su DNI\">\n            <mat-error *ngIf=\"dni.invalid\">\n                Ingrese su DNI\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Sexo</mat-label>\n            <mat-select [formControl]=\"sexo\">\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\n                    {{sexo}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Nombre y Apellido</mat-label>\n            <input matInput [formControl]=\"nombreApellido\" \n                   placeholder=\"Ingrese su nombre y apellido\">\n            <mat-error *ngIf=\"nombreApellido.invalid\">\n                Ingrese su nombre y apellido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Teléfono</mat-label>\n            <input matInput [formControl]=\"telefono\" \n                   placeholder=\"Ingrese su Teléfono\">\n            <mat-error *ngIf=\"telefono.invalid\">\n                Ingrese su Teléfono\n            </mat-error>\n        </mat-form-field>\n    </div>\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Mail</mat-label>\n            <input matInput [formControl]=\"mail\" \n                   placeholder=\"Ingrese su mail\">\n            <mat-error *ngIf=\"mail.invalid\">\n                Ingrese un mail válido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\n            RESERVAR TURNO\n        </button>\n    </div>\n    <app-reserva-email></app-reserva-email>\n</div>\n"
 
 /***/ }),
 
@@ -25563,11 +25696,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
-/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
-/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
+/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
 /* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
 
 
@@ -25579,9 +25712,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReservaComponent = /** @class */ (function () {
-    function ReservaComponent(store, router) {
+    function ReservaComponent(store) {
         this.store = store;
-        this.router = router;
         this.sexo$ = ['Femenino', 'Masculino'];
         this.dni = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6),
@@ -25594,16 +25726,13 @@ var ReservaComponent = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(/^\d+$/)]);
         this.mail = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]);
-        this.turnoSelected$ = store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_7__["getTurnoSelected"]);
-        this.obraSocialSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectObraSocialSelected"]);
-        this.planSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectPlanSelected"]);
-        this.fechaNacimientoSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_6__["selectFechaNacimiento"]);
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_5__["getEstado"]);
+        this.turnoSelected$ = store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_6__["getTurnoSelected"]);
+        this.obraSocialSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectObraSocialSelected"]);
+        this.planSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectPlanSelected"]);
+        this.fechaNacimientoSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectFechaNacimiento"]);
     }
     ReservaComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.turnoSelected$.subscribe(function (turno) { if (!turno) {
-            _this.router.navigate(['/home']);
-        } });
     };
     ReservaComponent.prototype.reservar = function () {
         var _this = this;
@@ -25616,20 +25745,20 @@ var ReservaComponent = /** @class */ (function () {
         paciente.sexo = this.sexo.value === 'Femenino' ? 'F' : 'M';
         paciente.nombreApellido = this.nombreApellido.value;
         paciente.telefono = this.telefono.value;
-        paciente.mail = this.mail.value;
+        paciente.email = this.mail.value;
         paciente.codigoObraSocial = this.obraSocialSelected.codigo;
         paciente.codigoPlan = this.planSelected.codigo;
         paciente.fechaNacimiento = this.fechaNacimientoSelected;
-        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_5__["setPaciente"]({ paciente: paciente }));
+        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__["setPaciente"]({ paciente: paciente }));
         this.onSubmit();
     };
     ReservaComponent.prototype.onSubmit = function () {
         var _this = this;
-        this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_7__["reservarTurno"]).subscribe(
+        this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_6__["reservarTurno"]).subscribe(
         // tslint:disable-next-line: no-shadowed-variable
         function (filter) {
             if (filter) {
-                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_5__["reservaTurno"]({ filter: filter }));
+                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__["reservaTurno"]({ filter: filter }));
             }
         });
     };
@@ -25647,8 +25776,7 @@ var ReservaComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./reserva.component.html */ "./src/app/modules/home/components/reserva/reserva.component.html"),
             styles: [__webpack_require__(/*! ./reserva.component.css */ "./src/app/modules/home/components/reserva/reserva.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
     ], ReservaComponent);
     return ReservaComponent;
 }());
@@ -25673,13 +25801,32 @@ var colors = {
         primary: '#1061a7',
         secondary: '#1061a7'
     },
+    yellow: {
+        primary: '#cbe620',
+        secondary: '#e32296'
+    },
 };
 var disponibilidadDiasToCalendarEvent = function (dia) {
-    return {
-        start: dia.fecha,
-        title: '',
-        color: colors.blue,
-    };
+    if (dia.conDisponibilidad) {
+        return {
+            start: dia.fecha,
+            title: '',
+            color: colors.blue,
+            meta: {
+                incrementsBadgeTotal: false,
+            },
+        };
+    }
+    else {
+        return {
+            start: dia.fecha,
+            title: '',
+            color: colors.yellow,
+            meta: {
+                incrementsBadgeTotal: false,
+            },
+        };
+    }
 };
 var toMonthString = function (month) {
     var result = '';
@@ -25735,7 +25882,7 @@ var toMonthString = function (month) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n    font-size: 24px;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksZ0JBQWdCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhbWJpby1tZXN7XG4gICAgcGFkZGluZy1sZWZ0OiAyJTtcbiAgICBwYWRkaW5nLXJpZ2h0OiAyJTtcbiAgICBwYWRkaW5nLXRvcDogMSU7XG4gICAgZm9udC1zaXplOiAyNHB4O1xufVxuXG4uY2FtYmlvLW1lczpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufSJdfQ== */"
+module.exports = ".lightskyblue {\n    background-color: lightskyblue !important;\n}\n\n.lightslategray {\n    background-color: lightslategray !important;\n}\n\n.cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n    font-size: 24px;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksMENBQTBDO0NBQzdDOztBQUVEO0lBQ0ksNENBQTRDO0NBQy9DOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksZ0JBQWdCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxpZ2h0c2t5Ymx1ZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRza3libHVlICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNsYXRlZ3JheSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRzbGF0ZWdyYXkgIWltcG9ydGFudDtcbn1cblxuLmNhbWJpby1tZXN7XG4gICAgcGFkZGluZy1sZWZ0OiAyJTtcbiAgICBwYWRkaW5nLXJpZ2h0OiAyJTtcbiAgICBwYWRkaW5nLXRvcDogMSU7XG4gICAgZm9udC1zaXplOiAyNHB4O1xufVxuXG4uY2FtYmlvLW1lczpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4iXX0= */"
 
 /***/ }),
 
@@ -25746,7 +25893,7 @@ module.exports = ".cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(eventsLength$ | async) > 0\">\n  <p>\n    Turnos disponibles para Dr/a. \n    {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}\n  </p>\n  <div>\n    <div class=\"row clearfix\">\n      <div mwlCalendarPreviousView class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        << \n      </div>\n      <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      <div mwlCalendarNextView  class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        >>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((eventsLength$ | async) > 0) && ((estado$ | async) >= 3))\">\n  <p>\n    Turnos disponibles para \n    <span *ngIf=\"(profesionalSelected$ | async) != undefined\">\n      Dr/a. {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}\n    </span>\n    <span *ngIf=\"(profesionalSelected$ | async) == undefined\">\n      {{especialidad.nombre || 'N/A'}}\n    </span>\n  </p>\n  <div>\n    <div class=\"row clearfix\">\n      <div mwlCalendarPreviousView class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        << \n      </div>\n      <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      <div mwlCalendarNextView  class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        >>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (beforeViewRender)=\"beforeMonthViewRender($event)\"\n      [locale]=\"locale\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -25766,9 +25913,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
+
+
 
 
 
@@ -25786,22 +25937,58 @@ var SchedulerComponent = /** @class */ (function () {
         this.viewDate = new Date();
         this.view = angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarView"].Month;
         this.refresh = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["disponibilidadDiasToCalendarEvent"])(x); }); }));
+        this.locale = 'es-AR';
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__["getEstado"]);
+        // crea los eventos (puntitos) 
+        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasTurnosDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_10__["disponibilidadDiasToCalendarEvent"])(x); }); }));
         this.events$.subscribe(function (e) { return _this.events = e; });
-        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponiblesLength"]);
-        this.profesionalSelected$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getProfesionalSelected"]);
+        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasDisponiblesLength"]);
+        this.profesionalSelected$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getProfesionalSelected"]);
+        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getProfesionalesDisponibles"]);
+        this.profesionalesDisponibles$.subscribe(function (disponibilidad) {
+            disponibilidad.filter(function (x) {
+                _this.especialidad = x.profesional.especialidad;
+            });
+        });
     }
+    SchedulerComponent.prototype.beforeMonthViewRender = function (renderEvent) {
+        renderEvent.body.forEach(function (day) {
+            day.badgeTotal = day.events.filter(function (event) { return event.meta.incrementsBadgeTotal; }).length;
+        });
+        this.dias$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasDisponibles"]);
+        this.dias$.subscribe(function (x) {
+            return x.forEach(function (d) {
+                renderEvent.body.forEach(function (day) {
+                    var a = true;
+                    if (a && day.date.getDate() == d.fecha.getDate() &&
+                        day.date.getMonth() == d.fecha.getMonth() &&
+                        day.date.getFullYear() == d.fecha.getFullYear()) {
+                        a = false;
+                        if (d.conDisponibilidad) {
+                            day.cssClass = 'lightskyblue';
+                        }
+                        else {
+                            day.cssClass = 'lightslategray';
+                        }
+                    }
+                });
+            });
+        });
+    };
+    ;
     SchedulerComponent.prototype.dayClicked = function (_a) {
         var _this = this;
         var date = _a.date;
         if (this.isPartOfEvents(this.events, date)) {
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFechaSelected"]({ fecha: date }));
-            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
-                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getHorariosDisponibles"]({ filter: filtro }));
+            this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["setEstado"]({ newEstado: 4 }));
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["setFechaSelected"]({ fecha: date }));
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
+                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["getHorariosDisponibles"]({ filter: filtro }));
             }).unsubscribe();
         }
         else {
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
+            this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["setEstado"]({ newEstado: 3 }));
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["setHorariosDisponibles"]({ horarios: [] }));
         }
     };
     SchedulerComponent.prototype.isPartOfEvents = function (events, date) {
@@ -25814,12 +26001,13 @@ var SchedulerComponent = /** @class */ (function () {
         this.activeDayIsOpen = false;
     };
     SchedulerComponent.prototype._toMonthString = function (month) {
-        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["toMonthString"])(month);
+        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_10__["toMonthString"])(month);
     };
     SchedulerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-scheduler',
             changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
             template: __webpack_require__(/*! ./scheduler.component.html */ "./src/app/modules/home/components/scheduler/scheduler.component.html"),
             styles: [__webpack_require__(/*! ./scheduler.component.css */ "./src/app/modules/home/components/scheduler/scheduler.component.css")]
         }),
@@ -25850,7 +26038,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(horariosLength$ | async) > 0\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef>Fecha</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.fecha | date: 'dd/MM/yyyy'}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"hora\">\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.hora}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n    <mat-paginator [length]=\"horariosLength$ | async\" [pageSize]=\"5\"></mat-paginator>\n  </div>\n</div>"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((horariosLength$ | async) > 0) && ((estado$ | async) >=4))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef>Fecha</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.fecha | date: 'dd/MM/yyyy'}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"hora\">\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.hora}} \n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional\">\n          <th mat-header-cell *matHeaderCellDef>Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.profesional.nombreApellido}} \n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            {{row.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -25867,8 +26055,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+
 
 
 
@@ -25877,14 +26067,15 @@ __webpack_require__.r(__webpack_exports__);
 var SeleccionHorarioComponent = /** @class */ (function () {
     function SeleccionHorarioComponent(store) {
         this.store = store;
-        this.displayedColumns = ['fecha', 'hora'];
-        this.horarios$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__["getHorariosDisponibles"]);
-        this.horariosLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_3__["getHorariosDisponiblesLength"]);
+        this.displayedColumns = ['fecha', 'hora', 'profesional', 'observaciones'];
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__["getEstado"]);
+        this.horarios$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getHorariosDisponibles"]);
+        this.horariosLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getHorariosDisponiblesLength"]);
     }
     SeleccionHorarioComponent.prototype.ngOnInit = function () {
     };
     SeleccionHorarioComponent.prototype.onClickTurno = function (turnoSelected) {
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
     };
     SeleccionHorarioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -25915,16 +26106,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/dashboard/dashboard.component */ "./src/app/modules/home/pages/dashboard/dashboard.component.ts");
-/* harmony import */ var _pages_reserva_page_reserva_page_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/reserva-page/reserva-page.component */ "./src/app/modules/home/pages/reserva-page/reserva-page.component.ts");
-
 
 
 
 
 var routes = [
     { path: '', component: _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"] },
-    { path: 'reserva', component: _pages_reserva_page_reserva_page_component__WEBPACK_IMPORTED_MODULE_4__["ReservaPageComponent"] },
-    { path: '**', redirectTo: '' },
 ];
 var HomeRoutingModule = /** @class */ (function () {
     function HomeRoutingModule() {
@@ -25958,23 +26145,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
-/* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angular-calendar/date-adapters/date-fns */ "./node_modules/angular-calendar/date-adapters/date-fns/index.js");
-/* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/home/components/confirmation-dialog/confirmation-dialog.component.ts");
-/* harmony import */ var _components_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confirmation/confirmation.component */ "./src/app/modules/home/components/confirmation/confirmation.component.ts");
-/* harmony import */ var _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/formulario/formulario.component */ "./src/app/modules/home/components/formulario/formulario.component.ts");
-/* harmony import */ var _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/grilla-turnos/grilla-turnos.component */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.ts");
-/* harmony import */ var _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/scheduler/scheduler.component */ "./src/app/modules/home/components/scheduler/scheduler.component.ts");
-/* harmony import */ var _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/seleccion-horario/seleccion-horario.component */ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.ts");
-/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/modules/home/home-routing.module.ts");
-/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./material.module */ "./src/app/modules/home/material.module.ts");
-/* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/dashboard/dashboard.component */ "./src/app/modules/home/pages/dashboard/dashboard.component.ts");
-/* harmony import */ var _components_reserva_reserva_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/reserva/reserva.component */ "./src/app/modules/home/components/reserva/reserva.component.ts");
-/* harmony import */ var _components_reserva_email_reserva_email_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/reserva-email/reserva-email.component */ "./src/app/modules/home/components/reserva-email/reserva-email.component.ts");
-/* harmony import */ var _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/reserva-email-dialog/reserva-email-dialog.component */ "./src/app/modules/home/components/reserva-email-dialog/reserva-email-dialog.component.ts");
-/* harmony import */ var _pages_reserva_page_reserva_page_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pages/reserva-page/reserva-page.component */ "./src/app/modules/home/pages/reserva-page/reserva-page.component.ts");
+/* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/locales/es-AR */ "./node_modules/@angular/common/locales/es-AR.js");
+/* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
+/* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-calendar/date-adapters/date-fns */ "./node_modules/angular-calendar/date-adapters/date-fns/index.js");
+/* harmony import */ var angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/home/components/confirmation-dialog/confirmation-dialog.component.ts");
+/* harmony import */ var _components_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/confirmation/confirmation.component */ "./src/app/modules/home/components/confirmation/confirmation.component.ts");
+/* harmony import */ var _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/formulario/formulario.component */ "./src/app/modules/home/components/formulario/formulario.component.ts");
+/* harmony import */ var _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/grilla-turnos/grilla-turnos.component */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.ts");
+/* harmony import */ var _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/reserva-email-dialog/reserva-email-dialog.component */ "./src/app/modules/home/components/reserva-email-dialog/reserva-email-dialog.component.ts");
+/* harmony import */ var _components_reserva_email_reserva_email_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/reserva-email/reserva-email.component */ "./src/app/modules/home/components/reserva-email/reserva-email.component.ts");
+/* harmony import */ var _components_reserva_reserva_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/reserva/reserva.component */ "./src/app/modules/home/components/reserva/reserva.component.ts");
+/* harmony import */ var _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/scheduler/scheduler.component */ "./src/app/modules/home/components/scheduler/scheduler.component.ts");
+/* harmony import */ var _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/seleccion-horario/seleccion-horario.component */ "./src/app/modules/home/components/seleccion-horario/seleccion-horario.component.ts");
+/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home-routing.module */ "./src/app/modules/home/home-routing.module.ts");
+/* harmony import */ var _material_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./material.module */ "./src/app/modules/home/material.module.ts");
+/* harmony import */ var _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pages/dashboard/dashboard.component */ "./src/app/modules/home/pages/dashboard/dashboard.component.ts");
+
+
+ // to register spanish
 
 
 
@@ -25990,36 +26181,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["registerLocaleData"])(_angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_2___default.a);
 var HomeModule = /** @class */ (function () {
     function HomeModule() {
     }
     HomeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__["DashboardComponent"],
-                _pages_reserva_page_reserva_page_component__WEBPACK_IMPORTED_MODULE_17__["ReservaPageComponent"],
-                _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_7__["FormularioComponent"],
-                _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_8__["GrillaTurnosComponent"],
-                _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_9__["SchedulerComponent"],
-                _components_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmationComponent"],
-                _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmationDialogComponent"],
-                _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_10__["SeleccionHorarioComponent"],
-                _components_reserva_reserva_component__WEBPACK_IMPORTED_MODULE_14__["ReservaComponent"],
-                _components_reserva_email_reserva_email_component__WEBPACK_IMPORTED_MODULE_15__["ReservaEmailComponent"],
-                _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_16__["ReservaEmailDialogComponent"],
+                _pages_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_17__["DashboardComponent"],
+                _components_formulario_formulario_component__WEBPACK_IMPORTED_MODULE_8__["FormularioComponent"],
+                _components_grilla_turnos_grilla_turnos_component__WEBPACK_IMPORTED_MODULE_9__["GrillaTurnosComponent"],
+                _components_scheduler_scheduler_component__WEBPACK_IMPORTED_MODULE_13__["SchedulerComponent"],
+                _components_confirmation_confirmation_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmationComponent"],
+                _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmationDialogComponent"],
+                _components_seleccion_horario_seleccion_horario_component__WEBPACK_IMPORTED_MODULE_14__["SeleccionHorarioComponent"],
+                _components_reserva_reserva_component__WEBPACK_IMPORTED_MODULE_12__["ReservaComponent"],
+                _components_reserva_email_reserva_email_component__WEBPACK_IMPORTED_MODULE_11__["ReservaEmailComponent"],
+                _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_10__["ReservaEmailDialogComponent"],
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _home_routing_module__WEBPACK_IMPORTED_MODULE_11__["HomeRoutingModule"],
-                _material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"],
-                angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarModule"].forRoot({ provide: angular_calendar__WEBPACK_IMPORTED_MODULE_3__["DateAdapter"], useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_4__["adapterFactory"] }),
+                _home_routing_module__WEBPACK_IMPORTED_MODULE_15__["HomeRoutingModule"],
+                _material_module__WEBPACK_IMPORTED_MODULE_16__["MaterialModule"],
+                angular_calendar__WEBPACK_IMPORTED_MODULE_4__["CalendarModule"].forRoot({ provide: angular_calendar__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"], useFactory: angular_calendar_date_adapters_date_fns__WEBPACK_IMPORTED_MODULE_5__["adapterFactory"] }),
             ],
             entryComponents: [
-                _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmationDialogComponent"],
-                _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_16__["ReservaEmailDialogComponent"],
+                _components_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmationDialogComponent"],
+                _components_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_10__["ReservaEmailDialogComponent"],
             ]
         })
     ], HomeModule);
@@ -26098,7 +26286,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-formulario></app-formulario>\n    </div>\n    <div class=\"my-col-60\">\n        <app-grilla-turnos></app-grilla-turnos>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-60\">\n        <app-scheduler></app-scheduler>\n    </div>\n    <div class=\"my-col-40\">\n        <app-seleccion-horario></app-seleccion-horario>\n    </div>\n</div>"
+module.exports = "<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-formulario></app-formulario>\n    </div>\n    <div class=\"my-col-60\">\n        <app-grilla-turnos></app-grilla-turnos>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-60\">\n        <app-scheduler></app-scheduler>\n    </div>\n    <div class=\"my-col-40\">\n        <app-seleccion-horario></app-seleccion-horario>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-reserva></app-reserva>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -26136,67 +26324,11 @@ var DashboardComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/modules/home/pages/reserva-page/reserva-page.component.css":
-/*!****************************************************************************!*\
-  !*** ./src/app/modules/home/pages/reserva-page/reserva-page.component.css ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9wYWdlcy9yZXNlcnZhLXBhZ2UvcmVzZXJ2YS1wYWdlLmNvbXBvbmVudC5jc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/modules/home/pages/reserva-page/reserva-page.component.html":
-/*!*****************************************************************************!*\
-  !*** ./src/app/modules/home/pages/reserva-page/reserva-page.component.html ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"content\">\n  <div class=\"my-col-40\">\n      <app-reserva></app-reserva>\n  </div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/modules/home/pages/reserva-page/reserva-page.component.ts":
-/*!***************************************************************************!*\
-  !*** ./src/app/modules/home/pages/reserva-page/reserva-page.component.ts ***!
-  \***************************************************************************/
-/*! exports provided: ReservaPageComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaPageComponent", function() { return ReservaPageComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var ReservaPageComponent = /** @class */ (function () {
-    function ReservaPageComponent() {
-    }
-    ReservaPageComponent.prototype.ngOnInit = function () {
-    };
-    ReservaPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-reserva-page',
-            template: __webpack_require__(/*! ./reserva-page.component.html */ "./src/app/modules/home/pages/reserva-page/reserva-page.component.html"),
-            styles: [__webpack_require__(/*! ./reserva-page.component.css */ "./src/app/modules/home/pages/reserva-page/reserva-page.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], ReservaPageComponent);
-    return ReservaPageComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/models/datos.models.ts":
 /*!***********************************************!*\
   !*** ./src/app/shared/models/datos.models.ts ***!
   \***********************************************/
-/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, Formulario, Calendario, ReservaFormulario, Paciente */
+/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, DatosReserva */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26222,10 +26354,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDiasStore", function() { return DisponibilidadDiasStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reserva", function() { return Reserva; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaRespuesta", function() { return ReservaRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoRespuesta", function() { return TurnoRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Contexto", function() { return Contexto; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Formulario", function() { return Formulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Calendario", function() { return Calendario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaFormulario", function() { return ReservaFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Paciente", function() { return Paciente; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatosReserva", function() { return DatosReserva; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
 var CodigoNombre = /** @class */ (function () {
@@ -26376,6 +26511,20 @@ var ReservaRespuesta = /** @class */ (function (_super) {
     return ReservaRespuesta;
 }(Respuesta));
 
+var TurnoRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](TurnoRespuesta, _super);
+    function TurnoRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TurnoRespuesta;
+}(Respuesta));
+
+var Contexto = /** @class */ (function () {
+    function Contexto() {
+    }
+    return Contexto;
+}());
+
 var Formulario = /** @class */ (function () {
     function Formulario() {
     }
@@ -26400,51 +26549,10 @@ var Paciente = /** @class */ (function () {
     return Paciente;
 }());
 
-
-
-/***/ }),
-
-/***/ "./src/app/shared/models/request.models.ts":
-/*!*************************************************!*\
-  !*** ./src/app/shared/models/request.models.ts ***!
-  \*************************************************/
-/*! exports provided: BusquedaProfesionalesRequest, BusquedaDiasDisponiblesRequest, BusquedaHorariosRequest, ReservaTurnoRequest */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaProfesionalesRequest", function() { return BusquedaProfesionalesRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaDiasDisponiblesRequest", function() { return BusquedaDiasDisponiblesRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaHorariosRequest", function() { return BusquedaHorariosRequest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaTurnoRequest", function() { return ReservaTurnoRequest; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-var BusquedaProfesionalesRequest = /** @class */ (function () {
-    function BusquedaProfesionalesRequest() {
+var DatosReserva = /** @class */ (function () {
+    function DatosReserva() {
     }
-    return BusquedaProfesionalesRequest;
-}());
-
-var BusquedaDiasDisponiblesRequest = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](BusquedaDiasDisponiblesRequest, _super);
-    function BusquedaDiasDisponiblesRequest() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return BusquedaDiasDisponiblesRequest;
-}(BusquedaProfesionalesRequest));
-
-var BusquedaHorariosRequest = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](BusquedaHorariosRequest, _super);
-    function BusquedaHorariosRequest() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return BusquedaHorariosRequest;
-}(BusquedaDiasDisponiblesRequest));
-
-var ReservaTurnoRequest = /** @class */ (function () {
-    function ReservaTurnoRequest() {
-    }
-    return ReservaTurnoRequest;
+    return DatosReserva;
 }());
 
 
