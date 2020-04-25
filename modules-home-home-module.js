@@ -25425,7 +25425,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" \n  *ngIf=\"(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"dataSource\" matSort>\n\n        <ng-container matColumnDef=\"abc\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header style=\"width: 40%;\">EJM</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\">\n            {{row.abc}}\n          </td>\n        </ng-container>\n\n\n        <ng-container matColumnDef=\"profesional.nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header style=\"width: 40%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoManiana.fecha\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoManiana.fecha | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoTarde.fecha\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoTarde.fecha | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"cuadro-formulario\" \n  *ngIf=\"(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"profesionalesDisponibles$ | async\">\n\n        <ng-container matColumnDef=\"profesional.nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoManiana.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoManiana.fecha | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoTarde.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoTarde.fecha | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
@@ -25441,13 +25441,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GrillaTurnosComponent", function() { return GrillaTurnosComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
 /* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-
 
 
 
@@ -25457,41 +25455,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var GrillaTurnosComponent = /** @class */ (function () {
     function GrillaTurnosComponent(store) {
-        var _this = this;
         this.store = store;
         this.displayedColumns = [
-            'abc', 'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha', 'profesional.observaciones'
+            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha', 'profesional.observaciones'
         ];
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__["getEstado"]);
-        store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]).subscribe(function (profesionales) {
-            var x = profesionales.map(function (y, idx, _) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, y, { abc: idx })); });
-            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](x);
-            _this.dataSource.sort = _this.sort;
-        });
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__["getEstado"]);
+        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]);
         this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponiblesLength"]);
     }
     GrillaTurnosComponent.prototype.ngOnInit = function () {
-        // this.dataSource.sort = this.sort;
     };
     GrillaTurnosComponent.prototype.onClickTodos = function () {
         var _this = this;
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
         });
     };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"]({ profesional: profesional }));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"]({ profesional: profesional }));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
         });
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
         var turnoLigthSelected = horario === 'T' ? row.turnoTarde : row.turnoManiana;
         var turnoSelected = {
             profesional: row.profesional,
@@ -25501,19 +25492,15 @@ var GrillaTurnosComponent = /** @class */ (function () {
             hora: turnoLigthSelected.hora,
             observaciones: turnoLigthSelected.observaciones
         };
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
-    ], GrillaTurnosComponent.prototype, "sort", void 0);
     GrillaTurnosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-grilla-turnos',
             template: __webpack_require__(/*! ./grilla-turnos.component.html */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.html"),
             styles: [__webpack_require__(/*! ./grilla-turnos.component.css */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"]])
     ], GrillaTurnosComponent);
     return GrillaTurnosComponent;
 }());
@@ -26280,7 +26267,6 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_5__["MatDatepickerModule"],
                 _angular_material_core__WEBPACK_IMPORTED_MODULE_4__["MatNativeDateModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSortModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginatorModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],

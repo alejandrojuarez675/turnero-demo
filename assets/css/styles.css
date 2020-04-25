@@ -131,7 +131,3 @@ body {
     background-color: var(--azul);
     color: white;
 }
-
-th.mat-sort-header-sorted {
-    color: black;
-}
