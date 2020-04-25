@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [
     { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
-    { path: 'confirmacionreserva', component: _modules_home_components_confirmation_reserva_confirmation_reserva_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmationReservaComponent"] },
+    { path: 'confirmacionReserva', component: _modules_home_components_confirmation_reserva_confirmation_reserva_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmationReservaComponent"] },
     { path: '**', redirectTo: 'home' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -164,7 +164,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_home_components_confirmation_reserva_confirmation_reserva_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./modules/home/components/confirmation-reserva/confirmation-reserva.component */ "./src/app/modules/home/components/confirmation-reserva/confirmation-reserva.component.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _auth_token_interceptor__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./auth/token.interceptor */ "./src/app/auth/token.interceptor.ts");
+/* harmony import */ var _core_interceptor_token_interceptor__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./core/interceptor/token.interceptor */ "./src/app/core/interceptor/token.interceptor.ts");
+/* harmony import */ var _core_interceptor_error_interceptor__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./core/interceptor/error.interceptor */ "./src/app/core/interceptor/error.interceptor.ts");
+/* harmony import */ var _core_store_effects_context_effects__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./core/store/effects/context.effects */ "./src/app/core/store/effects/context.effects.ts");
+
+
 
 
 
@@ -224,6 +228,7 @@ var AppModule = /** @class */ (function () {
                     _app_core_store_effects_calendar_effects__WEBPACK_IMPORTED_MODULE_8__["CalendarEffects"],
                     _core_store_effects_error_effects__WEBPACK_IMPORTED_MODULE_19__["ErrorEffects"],
                     _core_store_effects_reserva_effects__WEBPACK_IMPORTED_MODULE_20__["ReservaEffects"],
+                    _core_store_effects_context_effects__WEBPACK_IMPORTED_MODULE_28__["ContextEffects"],
                 ]),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatProgressSpinnerModule"],
@@ -236,7 +241,12 @@ var AppModule = /** @class */ (function () {
             providers: [
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_25__["HTTP_INTERCEPTORS"],
-                    useClass: _auth_token_interceptor__WEBPACK_IMPORTED_MODULE_26__["TokenInterceptor"],
+                    useClass: _core_interceptor_token_interceptor__WEBPACK_IMPORTED_MODULE_26__["TokenInterceptor"],
+                    multi: true
+                },
+                {
+                    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_25__["HTTP_INTERCEPTORS"],
+                    useClass: _core_interceptor_error_interceptor__WEBPACK_IMPORTED_MODULE_27__["HttpErrorInterceptor"],
                     multi: true
                 },
                 { provide: _angular_material__WEBPACK_IMPORTED_MODULE_24__["MAT_DATE_LOCALE"], useValue: 'es-AR' }
@@ -251,10 +261,10 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/auth/auth.service.ts":
-/*!**************************************!*\
-  !*** ./src/app/auth/auth.service.ts ***!
-  \**************************************/
+/***/ "./src/app/core/authentification/auth.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/core/authentification/auth.service.ts ***!
+  \*******************************************************/
 /*! exports provided: AuthService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -264,70 +274,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @auth0/angular-jwt */ "./node_modules/@auth0/angular-jwt/fesm5/auth0-angular-jwt.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
 
 
  // npm install @auth0/angular-jwt
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService() {
+    function AuthService(store) {
+        this.store = store;
     }
     AuthService.prototype.getToken = function () {
-        //return localStorage.getItem('token'); 
-        // TODO: property externa
-        return _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].token;
+        var _this = this;
+        this.token$ = this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_4__["getToken"]);
+        this.token$.subscribe(function (token) { return _this.token = token; });
+        return this.token;
     };
     AuthService.prototype.isAuthenticated = function () {
         var helper = new _auth0_angular_jwt__WEBPACK_IMPORTED_MODULE_2__["JwtHelperService"]();
-        // get the token
         var token = this.getToken();
-        // return a boolean reflecting 
-        // whether or not the token is expired
         return helper.isTokenExpired(token);
     };
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
     ], AuthService);
     return AuthService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/auth/token.interceptor.ts":
-/*!*******************************************!*\
-  !*** ./src/app/auth/token.interceptor.ts ***!
-  \*******************************************/
-/*! exports provided: TokenInterceptor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TokenInterceptor", function() { return TokenInterceptor; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.service */ "./src/app/auth/auth.service.ts");
-
-
-
-var TokenInterceptor = /** @class */ (function () {
-    function TokenInterceptor(auth) {
-        this.auth = auth;
-    }
-    TokenInterceptor.prototype.intercept = function (request, next) {
-        request = request.clone({
-            setHeaders: {
-                Authorization: "Bearer " + this.auth.getToken()
-            }
-        });
-        return next.handle(request);
-    };
-    TokenInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
-    ], TokenInterceptor);
-    return TokenInterceptor;
 }());
 
 
@@ -351,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header/header.component */ "./src/app/core/header/header.component.ts");
 /* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/service.service */ "./src/app/core/services/service.service.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _core_authentification_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/authentification/auth.service */ "./src/app/core/authentification/auth.service.ts");
 
 
 
@@ -379,7 +352,7 @@ var CoreModule = /** @class */ (function () {
             ],
             providers: [
                 _services_service_service__WEBPACK_IMPORTED_MODULE_5__["ServiceService"],
-                _auth_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
+                _core_authentification_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
             ]
         })
     ], CoreModule);
@@ -502,11 +475,112 @@ var HeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/interceptor/error.interceptor.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/core/interceptor/error.interceptor.ts ***!
+  \*******************************************************/
+/*! exports provided: HttpErrorInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorInterceptor", function() { return HttpErrorInterceptor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
+/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/service.service */ "./src/app/core/services/service.service.ts");
+/* harmony import */ var _utils_service_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/service.utils */ "./src/app/core/utils/service.utils.ts");
+
+
+
+
+
+
+var HttpErrorInterceptor = /** @class */ (function () {
+    function HttpErrorInterceptor(errorService) {
+        this.errorService = errorService;
+    }
+    HttpErrorInterceptor.prototype.intercept = function (req, next) {
+        return next.handle(req).pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (error) {
+            var errorMessage = '';
+            if (error instanceof ErrorEvent) {
+                // client-side error
+                errorMessage = "Client-side error: " + error.error.message;
+            }
+            else {
+                // backend error
+                if (error.error != undefined && error.error.mensaje) {
+                    errorMessage = "" + error.error.mensaje;
+                }
+                else {
+                    errorMessage = "Error " + error.status + ": " + error.message;
+                }
+                console.log("Server-side error: " + error.error.codigo + " " + error.error.mensaje);
+            }
+            // aquí podrías agregar código que muestre el error en alguna parte fija de la pantalla.
+            Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])(errorMessage);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errorMessage);
+        }));
+    };
+    HttpErrorInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_service_service__WEBPACK_IMPORTED_MODULE_4__["ServiceService"]])
+    ], HttpErrorInterceptor);
+    return HttpErrorInterceptor;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/interceptor/token.interceptor.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/core/interceptor/token.interceptor.ts ***!
+  \*******************************************************/
+/*! exports provided: TokenInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TokenInterceptor", function() { return TokenInterceptor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _authentification_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../authentification/auth.service */ "./src/app/core/authentification/auth.service.ts");
+
+
+
+var TokenInterceptor = /** @class */ (function () {
+    function TokenInterceptor(auth) {
+        this.auth = auth;
+    }
+    TokenInterceptor.prototype.intercept = function (request, next) {
+        request = request.clone({
+            setHeaders: {
+                Authorization: "Bearer " + this.auth.getToken()
+            }
+        });
+        return next.handle(request);
+    };
+    TokenInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_authentification_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+    ], TokenInterceptor);
+    return TokenInterceptor;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/mocks/mocks.ts":
 /*!*************************************!*\
   !*** ./src/app/core/mocks/mocks.ts ***!
   \*************************************/
-/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock, horariosMock, reservaTurnoMock, turnoMock */
+/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock, horariosMock, reservaTurnoMock, turnoMock, tokenMock */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -526,6 +600,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "horariosMock", function() { return horariosMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reservaTurnoMock", function() { return reservaTurnoMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "turnoMock", function() { return turnoMock; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokenMock", function() { return tokenMock; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/date.utils */ "./src/app/core/utils/date.utils.ts");
 
@@ -572,13 +647,19 @@ var especialidadesMocks = [
     }
 ];
 var centroAtencionMock = {
-    codigo: 'HE',
+    codigo: 1,
     nombre: 'Hospital Español'
 };
 var centroAtencionesMocks = [centroAtencionMock];
 var profesional1 = {
-    codigo: 'PeJu',
+    codigo: 1,
     nombreApellido: 'Perez, Juan',
+    observaciones: '',
+    especialidad: especialidadesMocks[0]
+};
+var profesional2 = {
+    codigo: 2,
+    nombreApellido: 'Riquelme, Roman',
     observaciones: '',
     especialidad: especialidadesMocks[0]
 };
@@ -596,19 +677,38 @@ var turno2 = {
     hora: '20:15',
     observaciones: ''
 };
+var turno3 = {
+    codigo: 548,
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/03/29'),
+    hora: '10:00',
+    observaciones: ''
+};
+var turno4 = {
+    codigo: 648,
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/04/4'),
+    hora: '20:15',
+    observaciones: ''
+};
 var disponibilidad = {
     profesional: profesional1,
     turnoManiana: turno1,
     turnoTarde: turno2
 };
+var disponibilidad2 = {
+    profesional: profesional2,
+    turnoManiana: turno3,
+    turnoTarde: turno4
+};
 var profesionalesMocks = [
-    disponibilidad, disponibilidad
+    disponibilidad, disponibilidad2
 ];
 var diasDisponibles = function () {
     var response = [];
-    _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 15).forEach(function (day, index) {
+    _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 9).forEach(function (day, index) {
         response.push({
-            fecha: day,
+            fecha: '2020-04-0' + index,
             conDisponibilidad: index % 2 === 0
         });
     });
@@ -616,14 +716,16 @@ var diasDisponibles = function () {
 };
 var diasDisponiblesMock = diasDisponibles();
 var horariosMock = [
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1, especialidad: especialidadesMocks[0] }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesional1, especialidad: especialidadesMocks[0] })
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1 }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesional1 })
 ];
 var reservaTurnoMock = {
     codigo: 123,
     vencimiento: new Date('2020/03/30')
 };
-var turnoMock = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1, especialidad: especialidadesMocks[0] });
+var turnoMock = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1 });
+// tslint:disable-next-line: max-line-length
+var tokenMock = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IlNPUE9SVEVJVCIsIlNlc3Npb25JZCI6IjExYTEzYTljLTc3NmQtNGM3Ni05YjUwLThjZDM0YWIwZThiNCIsImV4cCI6MTU4NzkwMDMxOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNzMvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNzMvIn0.n5SJmebQ5BzAwRrWt0JCDoD5qW7rVr7aXVGcGJSk7eY';
 
 
 /***/ }),
@@ -659,6 +761,8 @@ var ServiceService = /** @class */ (function () {
         this.endpoint = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].endpoint;
         this.endpointC = this.endpoint + "/Consext";
         this.endpointG = this.endpoint + "/Gestion";
+        this.endpointA = this.endpoint + "/Auth";
+        this.endpoint_login = this.endpointA + '/Login';
         this.endpoint_obraSocial = this.endpointC + '/getObraSocial';
         this.endpoint_especialidad = this.endpointC + '/getEspecialidad';
         this.endpoint_centroAtencion = this.endpointG + '/getCentroAtencion';
@@ -668,6 +772,20 @@ var ServiceService = /** @class */ (function () {
         this.endpoint_reservaTurno = this.endpointC + '/reservaTurno';
         this.endpoint_confirmacionTurno = this.endpointC + '/confirmacionTurno';
     }
+    ServiceService.prototype.login = function (usuario) {
+        if (this.useMockups) {
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["tokenMock"]);
+        }
+        else {
+            return this.http.post(this.endpoint_login, usuario)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
+                if (res.token == undefined || res.token.length == 0) {
+                    Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])("Por favor intente m\u00E1s tarde.");
+                }
+                return res.token;
+            }));
+        }
+    };
     ServiceService.prototype.getObraSociales = function () {
         if (this.useMockups) {
             console.log('Run mock for: getObraSociales()');
@@ -738,6 +856,9 @@ var ServiceService = /** @class */ (function () {
             return this.http.post(this.endpoint_busquedaProfesionales, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                if (res.disponibilidad == undefined || res.disponibilidad.length == 0) {
+                    Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])("No se encontraron coincidencias para los criterios ingresados.");
+                }
                 return res.disponibilidad;
             }));
         }
@@ -782,6 +903,9 @@ var ServiceService = /** @class */ (function () {
             return this.http.post(this.endpoint_busquedaHorarios, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                if (res.turno == undefined || res.turno.length == 0) {
+                    Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])("No hay turnos disponibles para el d\u00EDa seleccionado");
+                }
                 return res.turno;
             }));
         }
@@ -880,21 +1004,29 @@ var setHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["cr
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/contexto.actions.ts ***!
   \********************************************************/
-/*! exports provided: CLEAN_STORE, SET_ESTADO, cleanStore, setEstado */
+/*! exports provided: CLEAN_STORE, SET_ESTADO, GET_TOKEN, SET_TOKEN, cleanStore, setEstado, getToken, setToken */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAN_STORE", function() { return CLEAN_STORE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_ESTADO", function() { return SET_ESTADO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOKEN", function() { return GET_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TOKEN", function() { return SET_TOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanStore", function() { return cleanStore; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setEstado", function() { return setEstado; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setToken", function() { return setToken; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var CLEAN_STORE = '[Contexto] - cleanStore';
 var SET_ESTADO = '[Contexto] - setEstado';
+var GET_TOKEN = '[Contexto] - getToken';
+var SET_TOKEN = '[Contexto] - setToken';
 var cleanStore = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(CLEAN_STORE);
 var setEstado = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_ESTADO, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var getToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_TOKEN, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TOKEN, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
 
 /***/ }),
@@ -1109,6 +1241,57 @@ var CalendarEffects = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/store/effects/context.effects.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/core/store/effects/context.effects.ts ***!
+  \*******************************************************/
+/*! exports provided: ContextEffects */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContextEffects", function() { return ContextEffects; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/effects */ "./node_modules/@ngrx/effects/fesm5/effects.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _services_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/service.service */ "./src/app/core/services/service.service.ts");
+/* harmony import */ var _actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions/error.actions */ "./src/app/core/store/actions/error.actions.ts");
+
+
+
+
+
+
+
+
+var ContextEffects = /** @class */ (function () {
+    function ContextEffects(actions$, service) {
+        var _this = this;
+        this.actions$ = actions$;
+        this.service = service;
+        this.getToken$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["GET_TOKEN"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (payload) { return _this.service.login(payload.login).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (token) {
+                return ({ type: _actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["SET_TOKEN"], token: token });
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_7__["SHOW_ERROR"], error: error.message });
+            })); }));
+        });
+    }
+    ContextEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"],
+            _services_service_service__WEBPACK_IMPORTED_MODULE_5__["ServiceService"]])
+    ], ContextEffects);
+    return ContextEffects;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/store/effects/error.effects.ts":
 /*!*****************************************************!*\
   !*** ./src/app/core/store/effects/error.effects.ts ***!
@@ -1136,7 +1319,7 @@ var ErrorEffects = /** @class */ (function () {
         var _this = this;
         this.actions$ = actions$;
         this.showError$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["SHOW_ERROR"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(100).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function () { return ({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["CLEAN_ERROR"], error: payload.error }); })); }));
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["SHOW_ERROR"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function (payload) { return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(10000).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function () { return ({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_5__["CLEAN_ERROR"], error: payload.error }); })); }));
         });
     }
     ErrorEffects = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1314,7 +1497,7 @@ var _setDiasDisponibles = function (state, diasDisponibles) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.diasDisponibles = diasDisponibles.map(function (x) {
         return {
-            fecha: new Date(x.fecha.toString()),
+            fecha: new Date(x.fecha.toString() + 'T00:00:00'),
             conDisponibilidad: x.conDisponibilidad
         };
     }).slice();
@@ -1385,15 +1568,24 @@ __webpack_require__.r(__webpack_exports__);
 
 var initialState = {
     estado: 1,
+    token: undefined,
 };
 var _setEstado = function (state, newEstado) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.estado = newEstado;
     return stateNew;
 };
+var _setToken = function (state, newToken) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.token = newToken;
+    return stateNew;
+};
 var _contextoReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_2__["setEstado"], function (state, _a) {
     var newEstado = _a.newEstado;
     return _setEstado(state, newEstado);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_2__["setToken"], function (state, _a) {
+    var token = _a.token;
+    return _setToken(state, token);
 }));
 function contextoReducer(state, action) {
     return _contextoReducer(state, action);
@@ -1639,6 +1831,31 @@ function reservacionReducer(state, action) {
 
 /***/ }),
 
+/***/ "./src/app/core/store/selectors/contexto.selectors.ts":
+/*!************************************************************!*\
+  !*** ./src/app/core/store/selectors/contexto.selectors.ts ***!
+  \************************************************************/
+/*! exports provided: selectContexto, getEstado, getToken */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectContexto", function() { return selectContexto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEstado", function() { return getEstado; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+
+var selectContexto = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('contexto');
+var getEstado = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectContexto, function (contexto) {
+    return contexto.estado;
+});
+var getToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectContexto, function (contexto) {
+    return contexto.token;
+});
+
+
+/***/ }),
+
 /***/ "./src/app/core/store/selectors/error.selectors.ts":
 /*!*********************************************************!*\
   !*** ./src/app/core/store/selectors/error.selectors.ts ***!
@@ -1763,12 +1980,13 @@ var ErrorUtils = /** @class */ (function () {
 /*!*********************************************!*\
   !*** ./src/app/core/utils/service.utils.ts ***!
   \*********************************************/
-/*! exports provided: getWsFromMock, throwErrorIfBadCode */
+/*! exports provided: getWsFromMock, throwErrorToUser, throwErrorIfBadCode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWsFromMock", function() { return getWsFromMock; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throwErrorToUser", function() { return throwErrorToUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throwErrorIfBadCode", function() { return throwErrorIfBadCode; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
@@ -1779,6 +1997,9 @@ var DEFAULT_DELAY = 1000;
 function getWsFromMock(mockup, delayMs) {
     delayMs = delayMs ? delayMs : DEFAULT_DELAY;
     return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(mockup).pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_1__["delay"])(delayMs));
+}
+function throwErrorToUser(msj) {
+    throw new Error("" + msj);
 }
 function throwErrorIfBadCode(res) {
     if (res.respuesta.codigo !== 200) {
@@ -1807,7 +2028,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" >\n    <mat-spinner *ngIf=\"loading\"></mat-spinner>\n\n    <div *ngIf=\"turno != undefined\">\n        <div class=\"row clearfix\">\n            <p>\n              Se ha realizado exitosamente la confirmación del siguiente turno\n            </p>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Fecha y hora: </div>\n            <div>{{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs</div>\n        </div>\n        <div class=\"row clearfix\" *ngIf='turno.observaciones !== \"\"'>\n            <div style=\"width: 10%;\">Observaciones: </div>\n            <div>{{ turno.observaciones }}</div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Profesional: </div>\n            <div>{{ turno.profesional.nombreApellido }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Especialidad: </div>\n            <div>{{ turno.especialidad.nombre }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Centro Médico: </div>\n            <div>{{ turno.centroAtencion.nombre }} </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" >\n    <mat-spinner *ngIf=\"loading\"></mat-spinner>\n\n    <div *ngIf=\"turno != undefined\">\n        <div class=\"row clearfix\">\n            <p>\n              Se ha realizado exitosamente la confirmación del siguiente turno\n            </p>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Fecha y hora: </div>\n            <div>{{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs</div>\n        </div>\n        <div class=\"row clearfix\" *ngIf='turno.observaciones !== \"\"'>\n            <div style=\"width: 10%;\">Observaciones: </div>\n            <div>{{ turno.observaciones }}</div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Profesional: </div>\n            <div>{{ turno.profesional?.nombreApellido }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Especialidad: </div>\n            <div>{{ turno.profesional?.especialidad?.nombre }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Centro Médico: </div>\n            <div>{{ turno.centroAtencion.nombre }} </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -2056,8 +2277,9 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     endpoint: 'http://localhost:8080',
-    token: '',
-    mockups: true
+    mockups: true,
+    username: 'Test',
+    password: 'password',
 };
 /*
  * For easier debugging in development mode, you can import the following file
