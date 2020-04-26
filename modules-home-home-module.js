@@ -25487,7 +25487,7 @@ var GrillaTurnosComponent = /** @class */ (function () {
     function GrillaTurnosComponent(store) {
         this.store = store;
         this.displayedColumns = [
-            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha', 'profesional.observaciones'
+            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha',
         ];
         this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__["getEstado"]);
         this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]);
