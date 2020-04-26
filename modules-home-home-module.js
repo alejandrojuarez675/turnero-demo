@@ -25137,7 +25137,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.turno\">\n    Usted ha seleccionado un turno con el/la Dr./a. \n    {{ data.turno.profesional.nombreApellido}} para el\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \n    {{ data.turno.centroAtencion.nombre }}.\n  </p>\n\n  <p>¿Está seguro que desea reservar este turno?</p>\n</mat-dialog-content>\n\n<div mat-dialog-actions>\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>Si</button>\n  <button mat-button (click)=\"onNoClick()\">No</button>  \n</div>"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.turno\">\n    Usted ha seleccionado un turno con el/la Dr./a. \n    {{ data.turno.profesional.nombreApellido}} para el\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \n    {{ data.turno.centroAtencion.nombre }}.\n  </p>\n\n  <p>¿Está seguro que desea reservar este turno?</p>\n</mat-dialog-content>\n\n<div mat-dialog-actions align=\"center\">\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>Si</button>\n  <button mat-button (click)=\"onNoClick()\">No</button>  \n</div>"
 
 /***/ }),
 
@@ -25457,7 +25457,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" \n  *ngIf=\"(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"profesionalesDisponibles$ | async\">\n\n        <ng-container matColumnDef=\"profesional.nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoManiana.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoManiana.fecha | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoTarde.fecha\">\n          <th mat-header-cell *matHeaderCellDef>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoTarde.fecha | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"cuadro-formulario\" \n  [hidden]=\"!(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"datasource\" matSort>\n\n        <ng-container matColumnDef=\"nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\" mat-sort-header>Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoM\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoM | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoT\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoT | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
@@ -25473,11 +25473,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GrillaTurnosComponent", function() { return GrillaTurnosComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
 /* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+
 
 
 
@@ -25487,34 +25489,38 @@ __webpack_require__.r(__webpack_exports__);
 
 var GrillaTurnosComponent = /** @class */ (function () {
     function GrillaTurnosComponent(store) {
+        var _this = this;
         this.store = store;
         this.displayedColumns = [
-            'profesional.nombreApellido', 'turnoManiana.fecha', 'turnoTarde.fecha',
+            'nombreApellido', 'turnoM', 'turnoT',
         ];
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_3__["getEstado"]);
-        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]);
+        this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__["getEstado"]);
+        store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]).subscribe(function (disponibilidades) {
+            _this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](disponibilidades
+                .map(function (x) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, x, { nombreApellido: x.profesional.nombreApellido, turnoM: x.turnoManiana.fecha, turnoT: x.turnoTarde.fecha })); }));
+            _this.datasource.sort = _this.sort;
+        });
         this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponiblesLength"]);
     }
-    GrillaTurnosComponent.prototype.ngOnInit = function () {
-    };
     GrillaTurnosComponent.prototype.onClickTodos = function () {
         var _this = this;
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
         }).unsubscribe();
     };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"]({ profesional: profesional }));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"]({ profesional: profesional }));
+        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
         }).unsubscribe();
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setProfesionalSelected"](undefined));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
         var turnoLigthSelected = horario === 'T' ? row.turnoTarde : row.turnoManiana;
         var turnoSelected = {
             profesional: row.profesional,
@@ -25524,17 +25530,21 @@ var GrillaTurnosComponent = /** @class */ (function () {
             hora: turnoLigthSelected.hora,
             observaciones: turnoLigthSelected.observaciones
         };
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setHorariosDisponibles"]({ horarios: [] }));
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setDiasDisponibles"]({ diasDisponibles: [] }));
-        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setHorariosDisponibles"]({ horarios: [] }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setDiasDisponibles"]({ diasDisponibles: [] }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], GrillaTurnosComponent.prototype, "sort", void 0);
     GrillaTurnosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-grilla-turnos',
             template: __webpack_require__(/*! ./grilla-turnos.component.html */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.html"),
             styles: [__webpack_require__(/*! ./grilla-turnos.component.css */ "./src/app/modules/home/components/grilla-turnos/grilla-turnos.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_2__["Store"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
     ], GrillaTurnosComponent);
     return GrillaTurnosComponent;
 }());
@@ -25561,7 +25571,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.datosReserva?.paciente\">\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}}.\n  </p>\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\n    Tiene tiempo hasta el día \n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\n    para confirmarlo.\n  </p>\n</mat-dialog-content>\n\n<div mat-dialog-actions>\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>OK</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.datosReserva?.paciente\">\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}} con un enlace para completar el proceso de solicitud de turno.\n  </p>\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\n    Tiene tiempo hasta el día \n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\n    para confirmarlo.\n  </p>\n</mat-dialog-content>\n\n<div mat-dialog-actions align=\"center\">\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>ACEPTAR</button>\n</div>"
 
 /***/ }),
 
@@ -25714,7 +25724,7 @@ var ReservaEmailComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3Jlc2VydmEvcmVzZXJ2YS5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".material-icons{\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n.col-md-6 {\n    flex: 0 0 50.0%;\n    max-width: 50.0%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvcmVzZXJ2YS9yZXNlcnZhLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFHRDtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2hvbWUvY29tcG9uZW50cy9yZXNlcnZhL3Jlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuXG4uY29sLW1kLTYge1xuICAgIGZsZXg6IDAgMCA1MC4wJTtcbiAgICBtYXgtd2lkdGg6IDUwLjAlO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -25725,7 +25735,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"\n    (((turnoSelected$ | async) != undefined) && ((estado$ | async) == 5))\">\n    <div class=\"overlay\" *ngIf=\"loading\">\n        <div class=\"center\" style=\"top: 40%\">\n            <mat-spinner ></mat-spinner>\n        </div>\n    </div>\n    <div class=\"row clearfix\">\n        <p>\n          Ingrese los siguientes datos para finalizar la reserva del turno\n        </p>\n    </div>\n    <div class=\"row clearfix\">\n        <div style=\"width: 30%;\">Profesional: </div>\n        <div>{{ turnoSelected?.profesional?.nombreApellido }} </div>\n    </div>\n    <div class=\"row clearfix\">\n        <div style=\"width: 30%;\">Especialidad: </div>\n        <div>{{ turnoSelected?.profesional?.especialidad?.nombre }} </div>\n    </div>\n    <div class=\"row clearfix\">\n        <div style=\"width: 30%;\">Turno: </div>\n        <div>{{turnoSelected?.fecha | date: 'dd/MM/yyyy'}} {{turnoSelected?.hora}} </div>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>DNI</mat-label>\n            <input matInput [formControl]=\"dni\" \n                   placeholder=\"Ingrese su DNI\">\n            <mat-error *ngIf=\"dni.invalid\">\n                Ingrese su DNI\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Sexo</mat-label>\n            <mat-select [formControl]=\"sexo\">\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\n                    {{sexo}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Nombre y Apellido</mat-label>\n            <input matInput [formControl]=\"nombreApellido\" \n                   placeholder=\"Ingrese su nombre y apellido\">\n            <mat-error *ngIf=\"nombreApellido.invalid\">\n                Ingrese su nombre y apellido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Teléfono</mat-label>\n            <input matInput [formControl]=\"telefono\" \n                   placeholder=\"Ingrese su Teléfono\">\n            <mat-error *ngIf=\"telefono.invalid\">\n                Ingrese su Teléfono\n            </mat-error>\n        </mat-form-field>\n    </div>\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Mail</mat-label>\n            <input matInput [formControl]=\"mail\" \n                   placeholder=\"Ingrese su mail\">\n            <mat-error *ngIf=\"mail.invalid\">\n                Ingrese un mail válido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 50%;\" class=\"button-default\" mat-flat-button (click)=\"volverASeleccionDeTurno()\">\n            VOLVER ATRAS\n        </button>\n        <button style=\"width: 50%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\n            RESERVAR TURNO\n        </button>\n    </div>\n    <app-reserva-email></app-reserva-email>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"\n    (((turnoSelected$ | async) != undefined) && ((estado$ | async) == 5))\">\n    <div class=\"overlay\" *ngIf=\"loading\">\n        <div class=\"center\" style=\"top: 40%\">\n            <mat-spinner ></mat-spinner>\n        </div>\n    </div>\n    <div class=\"row clearfix\">\n        <p>\n          Turno seleccionado:\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">calendar_today</span>\n            Fecha y hora: {{turnoSelected?.fecha | date: 'dd/MM/yyyy'}} {{turnoSelected?.hora}}\n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">local_hospital</span>\n            Centro Médico: {{ turnoSelected?.centroAtencion.nombre }} \n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">person</span>\n            Profesional: {{ turnoSelected?.profesional?.nombreApellido }}\n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">work</span>\n            Especialidad: {{ turnoSelected?.profesional?.especialidad?.nombre }} \n        </div>\n    </div>\n\n    <div class=\"row clearfix\"></div>\n    <div class=\"row clearfix\">\n        <p>\n            Ingrese los siguientes datos para finalizar la reserva del turno\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>DNI</mat-label>\n            <input matInput [formControl]=\"dni\" \n                   placeholder=\"Ingrese su DNI\">\n            <mat-error *ngIf=\"dni.invalid\">\n                Ingrese su DNI\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Sexo</mat-label>\n            <mat-select [formControl]=\"sexo\">\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\n                    {{sexo}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Nombre y Apellido</mat-label>\n            <input matInput [formControl]=\"nombreApellido\" \n                   placeholder=\"Ingrese su nombre y apellido\">\n            <mat-error *ngIf=\"nombreApellido.invalid\">\n                Ingrese su nombre y apellido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Teléfono</mat-label>\n            <input matInput [formControl]=\"telefono\" \n                   placeholder=\"Ingrese su Teléfono\">\n            <mat-error *ngIf=\"telefono.invalid\">\n                Ingrese su Teléfono\n            </mat-error>\n        </mat-form-field>\n    </div>\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Mail</mat-label>\n            <input matInput [formControl]=\"mail\" \n                   placeholder=\"Ingrese su mail\">\n            <mat-error *ngIf=\"mail.invalid\">\n                Ingrese un mail válido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 50%;\" class=\"button-default\" mat-flat-button (click)=\"volverASeleccionDeTurno()\">\n            VOLVER\n        </button>\n        <button style=\"width: 50%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\n            RESERVAR\n        </button>\n    </div>\n    <app-reserva-email></app-reserva-email>\n</div>\n"
 
 /***/ }),
 
@@ -25958,7 +25968,7 @@ var toMonthString = function (month) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".lightskyblue {\n    background-color: #1061a760 !important;\n}\n\n.lightskyblue:hover {\n    background-color: #1061a780 !important;\n}\n\n.lightslategray {\n    background-color: #e2e2e2 !important;\n}\n\n.lightslategray:hover {\n    background-color: #e7e7e7 !important;\n}\n\n.cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n    font-size: 24px;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n\n.cal-day-number {\n    color: black;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksdUNBQXVDO0NBQzFDOztBQUVEO0lBQ0ksdUNBQXVDO0NBQzFDOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksYUFBYTtDQUNoQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NjaGVkdWxlci9zY2hlZHVsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5saWdodHNreWJsdWUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxMDYxYTc2MCAhaW1wb3J0YW50O1xufVxuXG4ubGlnaHRza3libHVlOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTA2MWE3ODAgIWltcG9ydGFudDtcbn1cblxuLmxpZ2h0c2xhdGVncmF5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTJlMmUyICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNsYXRlZ3JheTpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2U3ZTdlNyAhaW1wb3J0YW50O1xufVxuXG4uY2FtYmlvLW1lc3tcbiAgICBwYWRkaW5nLWxlZnQ6IDIlO1xuICAgIHBhZGRpbmctcmlnaHQ6IDIlO1xuICAgIHBhZGRpbmctdG9wOiAxJTtcbiAgICBmb250LXNpemU6IDI0cHg7XG59XG5cbi5jYW1iaW8tbWVzOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5jYWwtZGF5LW51bWJlciB7XG4gICAgY29sb3I6IGJsYWNrO1xufSJdfQ== */"
+module.exports = "h3 {\n    margin: 0 0 10px;\n    font-size: 1.75rem;\n}  \n\n.col-md-2 {\n    flex: 0 0 16.666667%;\n    max-width: 16.666667%;\n}  \n\n.col-md-5 {\n    flex: 0 0 41.666667%;\n    max-width: 41.666667%;\n}  \n\n.col-md-4 {\n    flex: 0 0 33.333333%;\n    max-width: 33.333333%;\n}  \n\n.text-right {\n    text-align: right !important;\n }  \n\n.text-left {\n   text-align: left !important;\n}  \n\n.text-center {\n   text-align: center !important;\n}  \n\n.lightskyblue {\n    background-color: #1061a760 !important;\n}  \n\n.lightskyblue:hover {\n    background-color: #1061a780 !important;\n}  \n\n.lightslategray {\n    background-color: #e2e2e2 !important;\n}  \n\n.lightslategray:hover {\n    background-color: #e7e7e7 !important;\n}  \n\n.cambio-mes{\n    margin: 0 0 10px;\n    font-size: 1.75rem;\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n}  \n\n.cambio-mes:hover {\n    cursor: pointer;\n}  \n\n.cal-day-number {\n    color: black;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHFCQUFxQjtJQUNyQixzQkFBc0I7Q0FDekI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0kscUJBQXFCO0lBQ3JCLHNCQUFzQjtDQUN6Qjs7QUFFRDtJQUNJLDZCQUE2QjtFQUMvQjs7QUFFRjtHQUNHLDRCQUE0QjtDQUM5Qjs7QUFFRDtHQUNHLDhCQUE4QjtDQUNoQzs7QUFFRDtJQUNJLHVDQUF1QztDQUMxQzs7QUFFRDtJQUNJLHVDQUF1QztDQUMxQzs7QUFFRDtJQUNJLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxhQUFhO0NBQ2hCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaDMge1xuICAgIG1hcmdpbjogMCAwIDEwcHg7XG4gICAgZm9udC1zaXplOiAxLjc1cmVtO1xufSAgXG5cbi5jb2wtbWQtMiB7XG4gICAgZmxleDogMCAwIDE2LjY2NjY2NyU7XG4gICAgbWF4LXdpZHRoOiAxNi42NjY2NjclO1xufVxuXG4uY29sLW1kLTUge1xuICAgIGZsZXg6IDAgMCA0MS42NjY2NjclO1xuICAgIG1heC13aWR0aDogNDEuNjY2NjY3JTtcbn1cblxuLmNvbC1tZC00IHtcbiAgICBmbGV4OiAwIDAgMzMuMzMzMzMzJTtcbiAgICBtYXgtd2lkdGg6IDMzLjMzMzMzMyU7XG59XG5cbi50ZXh0LXJpZ2h0IHtcbiAgICB0ZXh0LWFsaWduOiByaWdodCAhaW1wb3J0YW50O1xuIH1cblxuLnRleHQtbGVmdCB7XG4gICB0ZXh0LWFsaWduOiBsZWZ0ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0LWNlbnRlciB7XG4gICB0ZXh0LWFsaWduOiBjZW50ZXIgIWltcG9ydGFudDtcbn1cblxuLmxpZ2h0c2t5Ymx1ZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzEwNjFhNzYwICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNreWJsdWU6aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxMDYxYTc4MCAhaW1wb3J0YW50O1xufVxuXG4ubGlnaHRzbGF0ZWdyYXkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNlMmUyZTIgIWltcG9ydGFudDtcbn1cblxuLmxpZ2h0c2xhdGVncmF5OmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdlN2U3ICFpbXBvcnRhbnQ7XG59XG5cbi5jYW1iaW8tbWVze1xuICAgIG1hcmdpbjogMCAwIDEwcHg7XG4gICAgZm9udC1zaXplOiAxLjc1cmVtO1xuICAgIHBhZGRpbmctbGVmdDogMiU7XG4gICAgcGFkZGluZy1yaWdodDogMiU7XG4gICAgcGFkZGluZy10b3A6IDElO1xufVxuXG4uY2FtYmlvLW1lczpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uY2FsLWRheS1udW1iZXIge1xuICAgIGNvbG9yOiBibGFjaztcbn0iXX0= */"
 
 /***/ }),
 
@@ -25969,7 +25979,7 @@ module.exports = ".lightskyblue {\n    background-color: #1061a760 !important;\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((eventsLength$ | async) > 0) && ((estado$ | async) >= 3))\">\n  <p>\n    Turnos disponibles para \n    <span *ngIf=\"(profesionalSelected$ | async) != undefined\">\n      Dr/a. {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}\n    </span>\n    <span *ngIf=\"(profesionalSelected$ | async) == undefined\">\n      {{especialidad.nombre || 'N/A'}}\n    </span>\n  </p>\n  <div>\n    <div class=\"row clearfix\">\n      <div mwlCalendarPreviousView class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        << \n      </div>\n      <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      <div mwlCalendarNextView  class=\"cambio-mes\"\n        [view]=\"view\" \n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"closeOpenMonthViewDay()\">\n        >>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (beforeViewRender)=\"beforeMonthViewRender($event)\"\n      [locale]=\"locale\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((eventsLength$ | async) > 0) && ((estado$ | async) >= 3))\">\n  <div class=\"row clearfix\">\n    <p>Turnos disponibles para \n      <span *ngIf=\"(profesionalSelected$ | async) != undefined\">\n        Dr/a. {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}\n      </span>\n      <span *ngIf=\"(profesionalSelected$ | async) == undefined\">\n        {{especialidad.nombre || 'N/A'}}\n      </span>\n    </p>\n  </div>\n  <div>\n    <div class=\"row clearfix text-center\">\n      <div class=\"col-md-4\">\n        <div class=\"cambio-mes text-right\" mwlCalendarPreviousView \n            [view]=\"view\" \n            [(viewDate)]=\"viewDate\"\n            (viewDateChange)=\"closeOpenMonthViewDay()\">\n            << \n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"cambio-mes text-left\" mwlCalendarNextView  \n          [view]=\"view\" \n          [(viewDate)]=\"viewDate\"\n          (viewDateChange)=\"closeOpenMonthViewDay()\">\n          >>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (beforeViewRender)=\"beforeMonthViewRender($event)\"\n      [locale]=\"locale\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -26322,6 +26332,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// tslint:disable-next-line: max-line-length
 
 
 
@@ -26342,6 +26353,8 @@ var MaterialModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginatorModule"],
             ],
             declarations: [],
         })
@@ -26427,7 +26440,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\n  <div class=\"my-col-40\">\n      <app-reserva></app-reserva>\n  </div>\n</div>"
+module.exports = "<div class=\"content\">\n  <div class=\"my-col-60\">\n      <app-reserva></app-reserva>\n  </div>\n</div>"
 
 /***/ }),
 
