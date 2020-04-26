@@ -702,7 +702,10 @@ var disponibilidad2 = {
     turnoTarde: turno4
 };
 var profesionalesMocks = [
-    disponibilidad, disponibilidad2
+    disponibilidad, disponibilidad2,
+    disponibilidad, disponibilidad2,
+    disponibilidad, disponibilidad2,
+    disponibilidad, disponibilidad2,
 ];
 var diasDisponibles = function () {
     var response = [];
