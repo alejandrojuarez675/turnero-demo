@@ -25501,7 +25501,7 @@ var GrillaTurnosComponent = /** @class */ (function () {
         this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_4__["setEstado"]({ newEstado: 3 }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
             _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_5__["getDiasDisponibles"]({ filter: request }));
-        });
+        }).unsubscribe();
     };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
