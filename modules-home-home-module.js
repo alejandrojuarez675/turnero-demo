@@ -25303,7 +25303,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\">\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Fecha de Nacimiento</mat-label>\n            <input matInput [matDatepicker]=\"picker\" [max]=\"maxDate\" (dateInput)=\"cambioFechaNacimiento($event)\"\n                [formControl]=\"fechaNacimiento\">\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n            <mat-datepicker #picker></mat-datepicker>\n            <mat-error *ngIf=\"fechaNacimiento.invalid\">Ingrese su Fecha de Nacimiento</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>Obra Social</mat-label>\n            <mat-select (selectionChange)=\"cambioObraSocial($event)\" [formControl]=\"obrasSocial\">\n                <mat-option *ngFor=\"let os of obrasSociales$ | async\" [value]=\"os\">\n                    {{os.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"obrasSocial.invalid\">Ingrese su Obra Social</mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Plan</mat-label>\n            <mat-select (selectionChange)=\"cambioPlan($event)\" [formControl]=\"plan\">\n                <mat-option *ngFor=\"let p of planes$ | async\" [value]=\"p\">\n                    {{p.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"plan.invalid\">Ingrese su Plan</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Especialidad</mat-label>\n            <mat-select (selectionChange)=\"cambioEspecialidad($event)\" [formControl]=\"especialidad\">\n                <mat-option *ngFor=\"let e of especialidades$ | async\" [value]=\"e\">\n                    {{e.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"especialidad.invalid\">Ingrese su Especialidad</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Centro de Atencion</mat-label>\n            <mat-select (selectionChange)=\"cambioCentroDeAtencion($event)\" [formControl]=\"centroAtencion\">\n                <mat-option *ngFor=\"let ca of centrosDeAtencion$ | async\" [value]=\"ca\">\n                    {{ca.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"centroAtencion.invalid\">Ingrese el Centro de Atención</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"onSubmit()\">\n            BUSCAR\n        </button>\n    </div>\n</div>"
+module.exports = "<div class=\"cuadro-formulario\">\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Fecha de Nacimiento</mat-label>\n            <input matInput [matDatepicker]=\"picker\" [max]=\"maxDate\" (dateInput)=\"cambioFechaNacimiento($event)\"\n                [formControl]=\"fechaNacimiento\">\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n            <mat-datepicker #picker></mat-datepicker>\n            <mat-error *ngIf=\"fechaNacimiento.invalid\">Ingrese su Fecha de Nacimiento</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>Obra Social</mat-label>\n            <input type=\"text\" placeholder=\"Elija una\" matInput [formControl]=\"obrasSocial\" \n                [matAutocomplete]=\"autoOS\">\n            <mat-autocomplete #autoOS=\"matAutocomplete\" [displayWith]=\"displayFn\" \n                (selectedValueChange)=\"cambioObraSocial($event)\">\n                <mat-option *ngFor=\"let os of filteredObrasSociales$ | async\" [value]=\"os\">\n                    {{os.nombre}}\n                </mat-option>\n            </mat-autocomplete>\n            <mat-error *ngIf=\"obrasSocial.invalid\">Ingrese su Obra Social</mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Plan</mat-label>\n            <input type=\"text\" placeholder=\"Elija una\" matInput [formControl]=\"plan\" \n                [matAutocomplete]=\"autoPlan\">\n            <mat-autocomplete #autoPlan=\"matAutocomplete\" [displayWith]=\"displayFn\">\n                <mat-option *ngFor=\"let p of filteredPlanes$ | async\" [value]=\"p\" \n                    (selectionChange)=\"cambioPlan($event)\">\n                    {{p.nombre}}\n                </mat-option>\n            </mat-autocomplete>\n            <mat-error *ngIf=\"plan.invalid\">Ingrese su Plan</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Especialidad</mat-label>\n            <input type=\"text\" placeholder=\"Elija una\" matInput [formControl]=\"especialidad\" \n                [matAutocomplete]=\"autoEsp\">\n            <mat-autocomplete #autoEsp=\"matAutocomplete\" [displayWith]=\"displayFn\">\n                <mat-option *ngFor=\"let e of filteredEspecialidades$ | async\" [value]=\"e\"\n                    (selectionChange)=\"cambioEspecialidad($event)\">\n                    {{e.nombre}}\n                </mat-option>\n            </mat-autocomplete>\n            <mat-error *ngIf=\"especialidad.invalid\">Ingrese su Especialidad</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Centro de Atencion</mat-label>\n            <mat-select (selectionChange)=\"cambioCentroDeAtencion($event)\" [formControl]=\"centroAtencion\">\n                <mat-option *ngFor=\"let ca of centrosDeAtencion$ | async\" [value]=\"ca\">\n                    {{ca.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"centroAtencion.invalid\">Ingrese el Centro de Atención</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"onSubmit()\">\n            BUSCAR\n        </button>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -25360,9 +25360,9 @@ var FormularioComponent = /** @class */ (function () {
         var login = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__["Login"]();
         login.username = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].username;
         login.password = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].password;
-        this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return token == undefined; })).subscribe(function () {
+        this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return token === undefined; })).subscribe(function () {
             _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["getToken"]({ login: login }));
-            _this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return (token != undefined); })).subscribe(function () {
+            _this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return (token !== undefined); })).subscribe(function () {
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getObraSociales"]());
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getEspecialidades"]());
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getCentrosDeAtencion"]());
@@ -25377,23 +25377,45 @@ var FormularioComponent = /** @class */ (function () {
                 _this.centroAtencion.setValue(datosFormulario.centroAtencion);
             }
         }).unsubscribe();
+        this.filteredObrasSociales$ = this.obrasSocial.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombre; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterOs(x); }));
+        this.filteredPlanes$ = this.plan.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombre; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterPlan(x); }));
+        this.filteredEspecialidades$ = this.especialidad.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombre; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterEsp(x); }));
+        this.obrasSocial.valueChanges.subscribe(function (value) { return _this.cambioObraSocial(value); });
+        this.plan.valueChanges.subscribe(function (value) { return _this.cambioPlan(value); });
+        this.especialidad.valueChanges.subscribe(function (value) { return _this.cambioEspecialidad(value); });
+    };
+    FormularioComponent.prototype.filterOs = function (value) {
+        var filterValue = value.toLowerCase();
+        return this.obrasSociales$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (os) { return os.filter(function (el) { return el.nombre.toLowerCase().indexOf(filterValue) !== -1; }); }));
+    };
+    FormularioComponent.prototype.filterPlan = function (value) {
+        var filterValue = value.toLowerCase();
+        return this.planes$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return !p || p.length === 0 ? [] : p; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (p) { return p.filter(function (el) { return el.nombre.toLowerCase().indexOf(filterValue) !== -1; }); }));
+    };
+    FormularioComponent.prototype.filterEsp = function (value) {
+        var filterValue = value.toLowerCase();
+        return this.especialidades$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (e) { return e.filter(function (el) { return el.nombre.toLowerCase().indexOf(filterValue) !== -1; }); }));
+    };
+    FormularioComponent.prototype.displayFn = function (option) {
+        return option ? option.nombre : undefined;
     };
     FormularioComponent.prototype.cambioFechaNacimiento = function (event) {
         this.cleanResultadoDisponibilidad();
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setFechaNacimiento"]({ fechaNacimiento: event.value }));
     };
-    FormularioComponent.prototype.cambioObraSocial = function (event) {
+    FormularioComponent.prototype.cambioObraSocial = function (value) {
         this.cleanResultadoDisponibilidad();
-        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setObraSocialSelected"]({ obraSocialSelected: event.value }));
-        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: undefined })); // FIXME
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setObraSocialSelected"]({ obraSocialSelected: value }));
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: undefined }));
+        this.plan.setValue('');
     };
-    FormularioComponent.prototype.cambioPlan = function (event) {
+    FormularioComponent.prototype.cambioPlan = function (value) {
         this.cleanResultadoDisponibilidad();
-        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: event.value }));
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: value }));
     };
-    FormularioComponent.prototype.cambioEspecialidad = function (event) {
+    FormularioComponent.prototype.cambioEspecialidad = function (value) {
         this.cleanResultadoDisponibilidad();
-        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setEspecialidadSelected"]({ especialidadSelected: event.value }));
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setEspecialidadSelected"]({ especialidadSelected: value }));
     };
     FormularioComponent.prototype.cambioCentroDeAtencion = function (event) {
         this.cleanResultadoDisponibilidad();
@@ -26355,6 +26377,8 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatProgressSpinnerModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSortModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginatorModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatAutocompleteModule"],
             ],
             declarations: [],
         })
