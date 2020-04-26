@@ -2144,7 +2144,7 @@ var ErrorControlComponent = /** @class */ (function () {
     ErrorControlComponent.prototype.openDialog = function (msg) {
         if (msg) {
             this.snackBar.open(msg, 'x', {
-                duration: 3000,
+                duration: 5000,
             });
         }
     };
