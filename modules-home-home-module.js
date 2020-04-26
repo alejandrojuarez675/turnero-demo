@@ -25872,12 +25872,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMonthString", function() { return toMonthString; });
 var colors = {
     blue: {
-        primary: '#87cefa',
-        secondary: '#87cefa'
+        primary: '#00000000',
+        secondary: '#00000000'
     },
     yellow: {
-        primary: '#cbe620',
-        secondary: '#e32296'
+        primary: '#00000000',
+        secondary: '#00000000'
     },
 };
 var disponibilidadDiasToCalendarEvent = function (dia) {
@@ -25956,7 +25956,7 @@ var toMonthString = function (month) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".lightskyblue {\n    background-color: lightskyblue !important;\n}\n\n.lightslategray {\n    background-color: lightslategray !important;\n}\n\n.cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n    font-size: 24px;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksMENBQTBDO0NBQzdDOztBQUVEO0lBQ0ksNENBQTRDO0NBQy9DOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksZ0JBQWdCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxpZ2h0c2t5Ymx1ZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRza3libHVlICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNsYXRlZ3JheSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRzbGF0ZWdyYXkgIWltcG9ydGFudDtcbn1cblxuLmNhbWJpby1tZXN7XG4gICAgcGFkZGluZy1sZWZ0OiAyJTtcbiAgICBwYWRkaW5nLXJpZ2h0OiAyJTtcbiAgICBwYWRkaW5nLXRvcDogMSU7XG4gICAgZm9udC1zaXplOiAyNHB4O1xufVxuXG4uY2FtYmlvLW1lczpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4iXX0= */"
+module.exports = ".lightskyblue {\n    background-color: #1061a760 !important;\n}\n\n.lightskyblue:hover {\n    background-color: #1061a780 !important;\n}\n\n.lightslategray {\n    background-color: #e2e2e2 !important;\n}\n\n.lightslategray:hover {\n    background-color: #e7e7e7 !important;\n}\n\n.cambio-mes{\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n    font-size: 24px;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n\n.cal-day-number {\n    color: black;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksdUNBQXVDO0NBQzFDOztBQUVEO0lBQ0ksdUNBQXVDO0NBQzFDOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksYUFBYTtDQUNoQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NjaGVkdWxlci9zY2hlZHVsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5saWdodHNreWJsdWUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxMDYxYTc2MCAhaW1wb3J0YW50O1xufVxuXG4ubGlnaHRza3libHVlOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTA2MWE3ODAgIWltcG9ydGFudDtcbn1cblxuLmxpZ2h0c2xhdGVncmF5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTJlMmUyICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNsYXRlZ3JheTpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2U3ZTdlNyAhaW1wb3J0YW50O1xufVxuXG4uY2FtYmlvLW1lc3tcbiAgICBwYWRkaW5nLWxlZnQ6IDIlO1xuICAgIHBhZGRpbmctcmlnaHQ6IDIlO1xuICAgIHBhZGRpbmctdG9wOiAxJTtcbiAgICBmb250LXNpemU6IDI0cHg7XG59XG5cbi5jYW1iaW8tbWVzOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5jYWwtZGF5LW51bWJlciB7XG4gICAgY29sb3I6IGJsYWNrO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -25995,6 +25995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// tslint:disable-next-line: max-line-length
 
 
 
@@ -26013,7 +26014,7 @@ var SchedulerComponent = /** @class */ (function () {
         this.refresh = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.locale = 'es-AR';
         this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__["getEstado"]);
-        // crea los eventos (puntitos) 
+        // crea los eventos (puntitos)
         this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasTurnosDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_10__["disponibilidadDiasToCalendarEvent"])(x); }); }));
         this.events$.subscribe(function (e) { return _this.events = e; });
         this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasDisponiblesLength"]);
@@ -26034,9 +26035,9 @@ var SchedulerComponent = /** @class */ (function () {
             return x.forEach(function (d) {
                 renderEvent.body.forEach(function (day) {
                     var a = true;
-                    if (a && day.date.getDate() == d.fecha.getDate() &&
-                        day.date.getMonth() == d.fecha.getMonth() &&
-                        day.date.getFullYear() == d.fecha.getFullYear()) {
+                    if (a && day.date.getDate() === d.fecha.getDate() &&
+                        day.date.getMonth() === d.fecha.getMonth() &&
+                        day.date.getFullYear() === d.fecha.getFullYear()) {
                         a = false;
                         if (d.conDisponibilidad) {
                             day.cssClass = 'lightskyblue';
@@ -26049,7 +26050,6 @@ var SchedulerComponent = /** @class */ (function () {
             });
         });
     };
-    ;
     SchedulerComponent.prototype.dayClicked = function (_a) {
         var _this = this;
         var date = _a.date;
