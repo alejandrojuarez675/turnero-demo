@@ -2028,7 +2028,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" >\n    <mat-spinner *ngIf=\"loading\"></mat-spinner>\n\n    <div *ngIf=\"turno != undefined\">\n        <div class=\"row clearfix\">\n            <p>\n              Se ha realizado exitosamente la confirmación del siguiente turno\n            </p>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Fecha y hora: </div>\n            <div>{{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs</div>\n        </div>\n        <div class=\"row clearfix\" *ngIf='turno.observaciones !== \"\"'>\n            <div style=\"width: 10%;\">Observaciones: </div>\n            <div>{{ turno.observaciones }}</div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Profesional: </div>\n            <div>{{ turno.profesional?.nombreApellido }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Especialidad: </div>\n            <div>{{ turno.profesional?.especialidad?.nombre }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Centro Médico: </div>\n            <div>{{ turno.centroAtencion.nombre }} </div>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"cuadro-formulario\" >\n    <div class=\"center\">\n        <mat-spinner *ngIf=\"loading\"></mat-spinner> \n    </div>\n    <div *ngIf=\"turno != undefined\">\n        <div class=\"row clearfix\">\n            <p>\n              Se ha realizado exitosamente la confirmación del siguiente turno\n            </p>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Fecha y hora: </div>\n            <div>{{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs</div>\n        </div>\n        <div class=\"row clearfix\" *ngIf='turno.observaciones !== \"\"'>\n            <div style=\"width: 10%;\">Observaciones: </div>\n            <div>{{ turno.observaciones }}</div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Profesional: </div>\n            <div>{{ turno.profesional?.nombreApellido }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Especialidad: </div>\n            <div>{{ turno.profesional?.especialidad?.nombre }} </div>\n        </div>\n        <div class=\"row clearfix\">\n            <div style=\"width: 10%;\">Centro Médico: </div>\n            <div>{{ turno.centroAtencion.nombre }} </div>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -2065,8 +2065,7 @@ var ConfirmationReservaComponent = /** @class */ (function () {
     ConfirmationReservaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loading = true;
-        this.route.queryParams
-            .subscribe(function (params) {
+        this.subscription = this.route.queryParams.subscribe(function (params) {
             _this.codigoReserva = params['reserva'];
         });
         var reserva = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_6__["ConfirmacionTurnoRequest"];
@@ -2074,6 +2073,9 @@ var ConfirmationReservaComponent = /** @class */ (function () {
         this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__["retrieveTurno"]({ reserva: reserva }));
         this.turnoSelected$ = this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_5__["getTurnoSelected"]);
         this.turnoSelected$.subscribe(function (turno) { return _this.turno = turno; });
+    };
+    ConfirmationReservaComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
     };
     ConfirmationReservaComponent.prototype.ngDoCheck = function () {
         if (this.turno != undefined) {
@@ -2162,17 +2164,24 @@ var ErrorControlComponent = /** @class */ (function () {
 /*!*************************************************!*\
   !*** ./src/app/shared/models/request.models.ts ***!
   \*************************************************/
-/*! exports provided: BusquedaProfesionalesRequest, BusquedaDiasDisponiblesRequest, BusquedaHorariosRequest, ReservaTurnoRequest, ConfirmacionTurnoRequest */
+/*! exports provided: DatosFormulario, BusquedaProfesionalesRequest, BusquedaDiasDisponiblesRequest, BusquedaHorariosRequest, ReservaTurnoRequest, ConfirmacionTurnoRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatosFormulario", function() { return DatosFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaProfesionalesRequest", function() { return BusquedaProfesionalesRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaDiasDisponiblesRequest", function() { return BusquedaDiasDisponiblesRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusquedaHorariosRequest", function() { return BusquedaHorariosRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaTurnoRequest", function() { return ReservaTurnoRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmacionTurnoRequest", function() { return ConfirmacionTurnoRequest; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+var DatosFormulario = /** @class */ (function () {
+    function DatosFormulario() {
+    }
+    return DatosFormulario;
+}());
 
 var BusquedaProfesionalesRequest = /** @class */ (function () {
     function BusquedaProfesionalesRequest() {
