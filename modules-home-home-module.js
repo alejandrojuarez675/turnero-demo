@@ -25360,11 +25360,13 @@ var FormularioComponent = /** @class */ (function () {
         var login = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__["Login"]();
         login.username = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].username;
         login.password = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].password;
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["getToken"]({ login: login }));
-        this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return token !== undefined; })).subscribe(function () {
-            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getObraSociales"]());
-            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getEspecialidades"]());
-            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getCentrosDeAtencion"]());
+        this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return token == undefined; })).subscribe(function () {
+            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["getToken"]({ login: login }));
+            _this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return (token != undefined); })).subscribe(function () {
+                _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getObraSociales"]());
+                _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getEspecialidades"]());
+                _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getCentrosDeAtencion"]());
+            });
         });
         this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectDatosFormulario"]).subscribe(function (datosFormulario) {
             if (datosFormulario) {
