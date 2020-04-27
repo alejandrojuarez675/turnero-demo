@@ -507,19 +507,22 @@ var HttpErrorInterceptor = /** @class */ (function () {
             var errorMessage = '';
             if (error instanceof ErrorEvent) {
                 // client-side error
-                errorMessage = "Client-side error: " + error.error.message;
+                //errorMessage = `Client-side error: ${error.error.message}`;
+                console.log("Client-side error: " + error.error.message);
+                errorMessage = "Se ha producido un error. Por favor reintente m\u00E1s tarde";
             }
             else {
                 // backend error
                 if (error.error != undefined && error.error.mensaje) {
                     errorMessage = "" + error.error.mensaje;
+                    console.log("Server-side error: " + error.error.codigo + " " + error.error.mensaje);
                 }
                 else {
-                    errorMessage = "Error " + error.status + ": " + error.message;
+                    //errorMessage = `Error ${error.status}: ${error.message}`;
+                    errorMessage = "Se ha producido un error. Por favor reintente m\u00E1s tarde";
+                    console.log("Error " + error.status + ": " + error.message);
                 }
-                console.log("Server-side error: " + error.error.codigo + " " + error.error.mensaje);
             }
-            // aquí podrías agregar código que muestre el error en alguna parte fija de la pantalla.
             Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])(errorMessage);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errorMessage);
         }));
@@ -660,7 +663,7 @@ var profesional1 = {
 var profesional2 = {
     codigo: 2,
     nombreApellido: 'Riquelme, Roman',
-    observaciones: '',
+    observaciones: 'Solo particular',
     especialidad: especialidadesMocks[0]
 };
 var turno1 = {
@@ -675,14 +678,14 @@ var turno2 = {
     centroAtencion: centroAtencionMock,
     fecha: new Date('2020/03/30'),
     hora: '20:15',
-    observaciones: ''
+    observaciones: 'Solo particular'
 };
 var turno3 = {
     codigo: 548,
     centroAtencion: centroAtencionMock,
     fecha: new Date('2020/03/29'),
     hora: '10:00',
-    observaciones: ''
+    observaciones: 'Solo particular'
 };
 var turno4 = {
     codigo: 648,
@@ -1863,17 +1866,19 @@ var getToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"]
 /*!*********************************************************!*\
   !*** ./src/app/core/store/selectors/error.selectors.ts ***!
   \*********************************************************/
-/*! exports provided: selectError, selectErrorMessages */
+/*! exports provided: selectError, selectErrorMessages, getCountError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectError", function() { return selectError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectErrorMessages", function() { return selectErrorMessages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCountError", function() { return getCountError; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var selectError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('error');
 var selectErrorMessages = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectError, function (error) { return error.errors[error.errors.length - 1]; });
+var getCountError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectError, function (error) { return error.errors.length; });
 
 
 /***/ }),
@@ -2051,7 +2056,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
 /* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
-/* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
+/* harmony import */ var _core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/error.selectors */ "./src/app/core/store/selectors/error.selectors.ts");
+/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
+/* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
 
 
 
@@ -2064,6 +2081,7 @@ var ConfirmationReservaComponent = /** @class */ (function () {
         this.store = store;
         this.route = route;
         this.loading = false;
+        this.errorBackend$ = store.select(_core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_6__["getCountError"]);
     }
     ConfirmationReservaComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2071,11 +2089,22 @@ var ConfirmationReservaComponent = /** @class */ (function () {
         this.subscription = this.route.queryParams.subscribe(function (params) {
             _this.codigoReserva = params['reserva'];
         });
-        var reserva = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_6__["ConfirmacionTurnoRequest"];
+        this.errorBackend$.subscribe(function () {
+            _this.loading = false;
+        });
+        var reserva = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_10__["ConfirmacionTurnoRequest"];
         reserva.codigoReserva = this.codigoReserva;
-        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__["retrieveTurno"]({ reserva: reserva }));
-        this.turnoSelected$ = this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_5__["getTurnoSelected"]);
-        this.turnoSelected$.subscribe(function (turno) { return _this.turno = turno; });
+        var login = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_9__["Login"]();
+        login.username = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].username;
+        login.password = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].password;
+        this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (token) { return token === undefined; })).subscribe(function () {
+            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["getToken"]({ login: login }));
+            _this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (token) { return (token !== undefined); })).subscribe(function () {
+                _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_4__["retrieveTurno"]({ reserva: reserva }));
+                _this.turnoSelected$ = _this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_5__["getTurnoSelected"]);
+                _this.turnoSelected$.subscribe(function (turno) { return _this.turno = turno; });
+            });
+        });
     };
     ConfirmationReservaComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
@@ -2157,6 +2186,255 @@ var ErrorControlComponent = /** @class */ (function () {
             _ngrx_store__WEBPACK_IMPORTED_MODULE_3__["Store"]])
     ], ErrorControlComponent);
     return ErrorControlComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/models/datos.models.ts":
+/*!***********************************************!*\
+  !*** ./src/app/shared/models/datos.models.ts ***!
+  \***********************************************/
+/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, DatosReserva, Login, loginRespuesta */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodigoNombre", function() { return CodigoNombre; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RespuestaDTO", function() { return RespuestaDTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Respuesta", function() { return Respuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObraSocialRespuesta", function() { return ObraSocialRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObraSocial", function() { return ObraSocial; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plan", function() { return Plan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Especialidad", function() { return Especialidad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EspecialidadRespuesta", function() { return EspecialidadRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencion", function() { return CentroAtencion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencionRespuesta", function() { return CentroAtencionRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Profesional", function() { return Profesional; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disponibilidad", function() { return Disponibilidad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoLight", function() { return TurnoLight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadRespuesta", function() { return DisponibilidadRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Turno", function() { return Turno; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDias", function() { return DisponibilidadDias; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDiasRespuesta", function() { return DisponibilidadDiasRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HorariosRespuesta", function() { return HorariosRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDiasStore", function() { return DisponibilidadDiasStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reserva", function() { return Reserva; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaRespuesta", function() { return ReservaRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoRespuesta", function() { return TurnoRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Contexto", function() { return Contexto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Formulario", function() { return Formulario; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Calendario", function() { return Calendario; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaFormulario", function() { return ReservaFormulario; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Paciente", function() { return Paciente; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatosReserva", function() { return DatosReserva; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginRespuesta", function() { return loginRespuesta; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+var CodigoNombre = /** @class */ (function () {
+    function CodigoNombre() {
+    }
+    return CodigoNombre;
+}());
+
+var RespuestaDTO = /** @class */ (function () {
+    function RespuestaDTO() {
+    }
+    return RespuestaDTO;
+}());
+
+var Respuesta = /** @class */ (function () {
+    function Respuesta() {
+    }
+    return Respuesta;
+}());
+
+var ObraSocialRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ObraSocialRespuesta, _super);
+    function ObraSocialRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ObraSocialRespuesta;
+}(Respuesta));
+
+var ObraSocial = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ObraSocial, _super);
+    function ObraSocial() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ObraSocial;
+}(CodigoNombre));
+
+var Plan = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Plan, _super);
+    function Plan() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Plan;
+}(CodigoNombre));
+
+var Especialidad = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Especialidad, _super);
+    function Especialidad() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Especialidad;
+}(CodigoNombre));
+
+var EspecialidadRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](EspecialidadRespuesta, _super);
+    function EspecialidadRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return EspecialidadRespuesta;
+}(Respuesta));
+
+var CentroAtencion = /** @class */ (function () {
+    function CentroAtencion() {
+    }
+    return CentroAtencion;
+}());
+
+var CentroAtencionRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](CentroAtencionRespuesta, _super);
+    function CentroAtencionRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return CentroAtencionRespuesta;
+}(Respuesta));
+
+var Profesional = /** @class */ (function () {
+    function Profesional() {
+    }
+    return Profesional;
+}());
+
+var Disponibilidad = /** @class */ (function () {
+    function Disponibilidad() {
+    }
+    return Disponibilidad;
+}());
+
+var TurnoLight = /** @class */ (function () {
+    function TurnoLight() {
+    }
+    return TurnoLight;
+}());
+
+var DisponibilidadRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](DisponibilidadRespuesta, _super);
+    function DisponibilidadRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return DisponibilidadRespuesta;
+}(Respuesta));
+
+var Turno = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Turno, _super);
+    function Turno() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Turno;
+}(TurnoLight));
+
+var DisponibilidadDias = /** @class */ (function () {
+    function DisponibilidadDias() {
+    }
+    return DisponibilidadDias;
+}());
+
+var DisponibilidadDiasRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](DisponibilidadDiasRespuesta, _super);
+    function DisponibilidadDiasRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return DisponibilidadDiasRespuesta;
+}(Respuesta));
+
+var HorariosRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](HorariosRespuesta, _super);
+    function HorariosRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return HorariosRespuesta;
+}(Respuesta));
+
+var DisponibilidadDiasStore = /** @class */ (function () {
+    function DisponibilidadDiasStore() {
+    }
+    return DisponibilidadDiasStore;
+}());
+
+var Reserva = /** @class */ (function () {
+    function Reserva() {
+    }
+    return Reserva;
+}());
+
+var ReservaRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ReservaRespuesta, _super);
+    function ReservaRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ReservaRespuesta;
+}(Respuesta));
+
+var TurnoRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](TurnoRespuesta, _super);
+    function TurnoRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TurnoRespuesta;
+}(Respuesta));
+
+var Contexto = /** @class */ (function () {
+    function Contexto() {
+    }
+    return Contexto;
+}());
+
+var Formulario = /** @class */ (function () {
+    function Formulario() {
+    }
+    return Formulario;
+}());
+
+var Calendario = /** @class */ (function () {
+    function Calendario() {
+    }
+    return Calendario;
+}());
+
+var ReservaFormulario = /** @class */ (function () {
+    function ReservaFormulario() {
+    }
+    return ReservaFormulario;
+}());
+
+var Paciente = /** @class */ (function () {
+    function Paciente() {
+    }
+    return Paciente;
+}());
+
+var DatosReserva = /** @class */ (function () {
+    function DatosReserva() {
+    }
+    return DatosReserva;
+}());
+
+var Login = /** @class */ (function () {
+    function Login() {
+    }
+    return Login;
+}());
+
+var loginRespuesta = /** @class */ (function () {
+    function loginRespuesta() {
+    }
+    return loginRespuesta;
 }());
 
 

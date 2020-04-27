@@ -25468,7 +25468,7 @@ var FormularioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZ3JpbGxhLXR1cm5vcy9ncmlsbGEtdHVybm9zLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0NBQ2Y7O0FBRUQsZUFBZTs7QUFFZjtJQUNJLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixrQkFBa0I7SUFDbEIsZUFBZTtDQUNsQjs7QUFFRDtJQUNJLFlBQVk7Q0FDZjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixPQUFPO0lBQ1AsUUFBUTtJQUNSLGFBQWE7SUFDYixTQUFTO0lBQ1QsZ0NBQWdDO0lBQ2hDLFdBQVc7SUFDWCxjQUFjO0lBQ2Qsb0JBQW9CO0lBQ3BCLHdCQUF3QjtDQUMzQjs7QUFFRDtJQUNJLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsbUJBQW1CO0NBQ3RCOztBQUVELG1CQUFtQjs7QUFFbkI7SUFDSSxnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2hvbWUvY29tcG9uZW50cy9ncmlsbGEtdHVybm9zL2dyaWxsYS10dXJub3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLyogU3RydWN0dXJlICovXG5cbi5leGFtcGxlLWNvbnRhaW5lciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4uZXhhbXBsZS10YWJsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiA0MDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cblxudGFibGUge1xuICAgIHdpZHRoOiAxMDAlO1xufVxuXG4uZXhhbXBsZS1sb2FkaW5nLXNoYWRlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIGxlZnQ6IDA7XG4gICAgYm90dG9tOiA1NnB4O1xuICAgIHJpZ2h0OiAwO1xuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4xNSk7XG4gICAgei1pbmRleDogMTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbi5leGFtcGxlLXJhdGUtbGltaXQtcmVhY2hlZCB7XG4gICAgY29sb3I6ICM5ODAwMDA7XG4gICAgbWF4LXdpZHRoOiAzNjBweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi8qIENvbHVtbiBXaWR0aHMgKi9cblxuLm1hdC1jb2x1bW4tbnVtYmVyLCAubWF0LWNvbHVtbi1zdGF0ZSB7XG4gICAgbWF4LXdpZHRoOiA2NHB4O1xufVxuXG4ubWF0LWNvbHVtbi1jcmVhdGVkIHtcbiAgICBtYXgtd2lkdGg6IDEyNHB4O1xufSJdfQ== */"
+module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n\n.material-icons{\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZ3JpbGxhLXR1cm5vcy9ncmlsbGEtdHVybm9zLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0NBQ2Y7O0FBRUQsZUFBZTs7QUFFZjtJQUNJLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixrQkFBa0I7SUFDbEIsZUFBZTtDQUNsQjs7QUFFRDtJQUNJLFlBQVk7Q0FDZjs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixPQUFPO0lBQ1AsUUFBUTtJQUNSLGFBQWE7SUFDYixTQUFTO0lBQ1QsZ0NBQWdDO0lBQ2hDLFdBQVc7SUFDWCxjQUFjO0lBQ2Qsb0JBQW9CO0lBQ3BCLHdCQUF3QjtDQUMzQjs7QUFFRDtJQUNJLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsbUJBQW1CO0NBQ3RCOztBQUVELG1CQUFtQjs7QUFFbkI7SUFDSSxnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxpQkFBaUI7Q0FDcEI7O0FBRUQ7SUFDSSwwQkFBMEI7Q0FDN0I7O0FBRUQ7SUFDSSxpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2hvbWUvY29tcG9uZW50cy9ncmlsbGEtdHVybm9zL2dyaWxsYS10dXJub3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLyogU3RydWN0dXJlICovXG5cbi5leGFtcGxlLWNvbnRhaW5lciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG4uZXhhbXBsZS10YWJsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiA0MDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cblxudGFibGUge1xuICAgIHdpZHRoOiAxMDAlO1xufVxuXG4uZXhhbXBsZS1sb2FkaW5nLXNoYWRlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIGxlZnQ6IDA7XG4gICAgYm90dG9tOiA1NnB4O1xuICAgIHJpZ2h0OiAwO1xuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4xNSk7XG4gICAgei1pbmRleDogMTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbi5leGFtcGxlLXJhdGUtbGltaXQtcmVhY2hlZCB7XG4gICAgY29sb3I6ICM5ODAwMDA7XG4gICAgbWF4LXdpZHRoOiAzNjBweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi8qIENvbHVtbiBXaWR0aHMgKi9cblxuLm1hdC1jb2x1bW4tbnVtYmVyLCAubWF0LWNvbHVtbi1zdGF0ZSB7XG4gICAgbWF4LXdpZHRoOiA2NHB4O1xufVxuXG4ubWF0LWNvbHVtbi1jcmVhdGVkIHtcbiAgICBtYXgtd2lkdGg6IDEyNHB4O1xufVxuXG4ubWF0ZXJpYWwtaWNvbnN7XG4gICAgY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDtcbn1cblxuLnRleHRvIHtcbiAgICBsaW5lLWhlaWdodDoyNnB4O1xufVxuXG4iXX0= */"
 
 /***/ }),
 
@@ -25479,7 +25479,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" \n  [hidden]=\"!(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"datasource\" matSort>\n\n        <ng-container matColumnDef=\"nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\" mat-sort-header>Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoM\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoM | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoT\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoT | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Observaciones</th>\n          <td mat-cell *matCellDef=\"let row\">\n            {{row.profesional.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"cuadro-formulario\" \n  [hidden]=\"!(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o sobre el turno que desee reservar.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"datasource\" matSort>\n\n        <ng-container matColumnDef=\"nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\" mat-sort-header>Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoM\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno M</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\">\n              {{row.turnoM | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoT\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno T</th>\n          <td mat-cell *matCellDef=\"let row\" title=\"Seleccionar turno\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\">\n              {{row.turnoT | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef></th>\n          <td mat-cell *matCellDef=\"let row\">\n            <span *ngIf=\"row.profesional.observaciones\">\n              <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.profesional.observaciones }}\" \n                matTooltipPosition=\"left\">notification_important </mat-icon>\n            </span>\n          </td>\n        </ng-container>\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\">\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        VER TODOS\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
@@ -25514,13 +25514,16 @@ var GrillaTurnosComponent = /** @class */ (function () {
         var _this = this;
         this.store = store;
         this.displayedColumns = [
-            'nombreApellido', 'turnoM', 'turnoT',
+            'nombreApellido', 'turnoM', 'turnoT', 'profesional.observaciones'
+            // 'profesional.observaciones' // EN MOBILE NO SE VE BIEN (LO SACAMOS SOLO EN MOBILE?)
+            // FIXME: es una columna importante pq sirve, por ej, para saber si atiende por obra social o solo particular
+            // vamos a consultar si puede ser alguna otra alternativa de como mostrarlo: icono de alerta q muestra la observacion en el hover
         ];
         this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
         this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__["getEstado"]);
         store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]).subscribe(function (disponibilidades) {
             _this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](disponibilidades
-                .map(function (x) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, x, { nombreApellido: x.profesional.nombreApellido, turnoM: x.turnoManiana.fecha, turnoT: x.turnoTarde.fecha })); }));
+                .map(function (x) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, x, { nombreApellido: x.profesional.nombreApellido, turnoM: x.turnoManiana != null ? x.turnoManiana.fecha : "", turnoT: x.turnoTarde != null ? x.turnoTarde.fecha : "" })); }));
             _this.datasource.sort = _this.sort;
         });
         this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponiblesLength"]);
@@ -25781,9 +25784,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
 /* harmony import */ var _core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/reservacion.selectors */ "./src/app/core/store/selectors/reservacion.selectors.ts");
 /* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
-/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../core/store/selectors/error.selectors */ "./src/app/core/store/selectors/error.selectors.ts");
+/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
+/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
 
 
 
@@ -25814,11 +25819,12 @@ var ReservaComponent = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$')]);
         this.sexo$ = ['Femenino', 'Masculino'];
         this.loading = false;
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_11__["getEstado"]);
+        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_12__["getEstado"]);
         this.turnoSelected$ = store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_9__["getTurnoSelected"]);
         this.obraSocialSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectObraSocialSelected"]);
         this.planSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectPlanSelected"]);
         this.fechaNacimientoSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_7__["selectFechaNacimiento"]);
+        this.errorBackend$ = store.select(_core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_10__["getCountError"]);
     }
     ReservaComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -25828,13 +25834,16 @@ var ReservaComponent = /** @class */ (function () {
                 _this.router.navigate(['/home']);
             }
         });
+        this.errorBackend$.subscribe(function () {
+            _this.loading = false;
+        });
     };
     ReservaComponent.prototype.reservar = function () {
         var _this = this;
         this.obraSocialSelected$.subscribe(function (obraSocial) { return _this.obraSocialSelected = obraSocial; });
         this.planSelected$.subscribe(function (plan) { return _this.planSelected = plan; });
         this.fechaNacimientoSelected$.subscribe(function (fechaNacimiento) { return _this.fechaNacimientoSelected = fechaNacimiento; });
-        var paciente = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_10__["Paciente"]();
+        var paciente = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_11__["Paciente"]();
         paciente.dni = this.dni.value;
         paciente.sexo = this.sexo.value === 'Femenino' ? 'F' : 'M';
         paciente.nombreApellido = this.nombreApellido.value;
@@ -25859,7 +25868,7 @@ var ReservaComponent = /** @class */ (function () {
                 }
             })
                 .unsubscribe();
-            this.store.select(_core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_8__["getReserva"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_12__["filter"])(function (reserva) { return reserva != undefined && reserva.codigo != undefined; })).subscribe(function () {
+            this.store.select(_core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_8__["getReserva"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_13__["filter"])(function (reserva) { return reserva != undefined && reserva.codigo != undefined; })).subscribe(function () {
                 _this.loading = false;
             });
         }
@@ -26136,7 +26145,7 @@ var SchedulerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2VsZWNjaW9uLWhvcmFyaW8vc2VsZWNjaW9uLWhvcmFyaW8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZjs7QUFFRCxlQUFlOztBQUVmO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtJQUNsQixlQUFlO0NBQ2xCOztBQUVEO0lBQ0ksWUFBWTtDQUNmOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLE9BQU87SUFDUCxRQUFRO0lBQ1IsYUFBYTtJQUNiLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsV0FBVztJQUNYLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0NBQzNCOztBQUVEO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixtQkFBbUI7Q0FDdEI7O0FBRUQsbUJBQW1COztBQUVuQjtJQUNJLGdCQUFnQjtDQUNuQjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NlbGVjY2lvbi1ob3JhcmlvL3NlbGVjY2lvbi1ob3JhcmlvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi8qIFN0cnVjdHVyZSAqL1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmV4YW1wbGUtdGFibGUtY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNDAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbnRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLmV4YW1wbGUtbG9hZGluZy1zaGFkZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAwO1xuICAgIGJvdHRvbTogNTZweDtcbiAgICByaWdodDogMDtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMTUpO1xuICAgIHotaW5kZXg6IDE7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uZXhhbXBsZS1yYXRlLWxpbWl0LXJlYWNoZWQge1xuICAgIGNvbG9yOiAjOTgwMDAwO1xuICAgIG1heC13aWR0aDogMzYwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBDb2x1bW4gV2lkdGhzICovXG5cbi5tYXQtY29sdW1uLW51bWJlciwgLm1hdC1jb2x1bW4tc3RhdGUge1xuICAgIG1heC13aWR0aDogNjRweDtcbn1cblxuLm1hdC1jb2x1bW4tY3JlYXRlZCB7XG4gICAgbWF4LXdpZHRoOiAxMjRweDtcbn0iXX0= */"
+module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n\n.material-icons{\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2VsZWNjaW9uLWhvcmFyaW8vc2VsZWNjaW9uLWhvcmFyaW8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZjs7QUFFRCxlQUFlOztBQUVmO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtJQUNsQixlQUFlO0NBQ2xCOztBQUVEO0lBQ0ksWUFBWTtDQUNmOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLE9BQU87SUFDUCxRQUFRO0lBQ1IsYUFBYTtJQUNiLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsV0FBVztJQUNYLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0NBQzNCOztBQUVEO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixtQkFBbUI7Q0FDdEI7O0FBRUQsbUJBQW1COztBQUVuQjtJQUNJLGdCQUFnQjtDQUNuQjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NlbGVjY2lvbi1ob3JhcmlvL3NlbGVjY2lvbi1ob3JhcmlvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi8qIFN0cnVjdHVyZSAqL1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmV4YW1wbGUtdGFibGUtY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNDAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbnRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLmV4YW1wbGUtbG9hZGluZy1zaGFkZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAwO1xuICAgIGJvdHRvbTogNTZweDtcbiAgICByaWdodDogMDtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMTUpO1xuICAgIHotaW5kZXg6IDE7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uZXhhbXBsZS1yYXRlLWxpbWl0LXJlYWNoZWQge1xuICAgIGNvbG9yOiAjOTgwMDAwO1xuICAgIG1heC13aWR0aDogMzYwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBDb2x1bW4gV2lkdGhzICovXG5cbi5tYXQtY29sdW1uLW51bWJlciwgLm1hdC1jb2x1bW4tc3RhdGUge1xuICAgIG1heC13aWR0aDogNjRweDtcbn1cblxuLm1hdC1jb2x1bW4tY3JlYXRlZCB7XG4gICAgbWF4LXdpZHRoOiAxMjRweDtcbn1cblxuLm1hdGVyaWFsLWljb25ze1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -26147,7 +26156,7 @@ module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((horariosLength$ | async) > 0) && ((estado$ | async) >=4))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef>Fecha</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno - Profesional {{row.profesional.nombreApellido}}\">\n            {{row.fecha | date: 'dd/MM/yyyy'}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"hora\">\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno - Profesional {{row.profesional.nombreApellido}}\">\n            {{row.hora}} \n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"observaciones\">\n          <th mat-header-cell *matHeaderCellDef>Obs</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno - Profesional {{row.profesional.nombreApellido}}\">\n            {{row.observaciones}} \n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n  </div>\n</div>"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((horariosLength$ | async) > 0) && ((estado$ | async) >=4))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef>Fecha</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno - Profesional {{row.profesional.nombreApellido}}\">\n            {{row.fecha | date: 'dd/MM/yyyy'}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"hora\">\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno - Profesional {{row.profesional.nombreApellido}}\">\n            {{row.hora}} \n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"observaciones\">\n          <th mat-header-cell *matHeaderCellDef></th>\n          <td mat-cell *matCellDef=\"let row\">\n              <span *ngIf=\"row.observaciones\">\n                <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.observaciones }}\" \n                  matTooltipPosition=\"left\">notification_important </mat-icon>\n              </span>\n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -26379,6 +26388,8 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginatorModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatAutocompleteModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTooltipModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
             ],
             declarations: [],
         })
@@ -26496,255 +26507,6 @@ var ReservaPageComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], ReservaPageComponent);
     return ReservaPageComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/shared/models/datos.models.ts":
-/*!***********************************************!*\
-  !*** ./src/app/shared/models/datos.models.ts ***!
-  \***********************************************/
-/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, DatosReserva, Login, loginRespuesta */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodigoNombre", function() { return CodigoNombre; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RespuestaDTO", function() { return RespuestaDTO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Respuesta", function() { return Respuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObraSocialRespuesta", function() { return ObraSocialRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObraSocial", function() { return ObraSocial; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plan", function() { return Plan; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Especialidad", function() { return Especialidad; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EspecialidadRespuesta", function() { return EspecialidadRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencion", function() { return CentroAtencion; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencionRespuesta", function() { return CentroAtencionRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Profesional", function() { return Profesional; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disponibilidad", function() { return Disponibilidad; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoLight", function() { return TurnoLight; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadRespuesta", function() { return DisponibilidadRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Turno", function() { return Turno; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDias", function() { return DisponibilidadDias; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDiasRespuesta", function() { return DisponibilidadDiasRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HorariosRespuesta", function() { return HorariosRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadDiasStore", function() { return DisponibilidadDiasStore; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reserva", function() { return Reserva; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaRespuesta", function() { return ReservaRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoRespuesta", function() { return TurnoRespuesta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Contexto", function() { return Contexto; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Formulario", function() { return Formulario; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Calendario", function() { return Calendario; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaFormulario", function() { return ReservaFormulario; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Paciente", function() { return Paciente; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatosReserva", function() { return DatosReserva; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginRespuesta", function() { return loginRespuesta; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-var CodigoNombre = /** @class */ (function () {
-    function CodigoNombre() {
-    }
-    return CodigoNombre;
-}());
-
-var RespuestaDTO = /** @class */ (function () {
-    function RespuestaDTO() {
-    }
-    return RespuestaDTO;
-}());
-
-var Respuesta = /** @class */ (function () {
-    function Respuesta() {
-    }
-    return Respuesta;
-}());
-
-var ObraSocialRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ObraSocialRespuesta, _super);
-    function ObraSocialRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ObraSocialRespuesta;
-}(Respuesta));
-
-var ObraSocial = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ObraSocial, _super);
-    function ObraSocial() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ObraSocial;
-}(CodigoNombre));
-
-var Plan = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Plan, _super);
-    function Plan() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Plan;
-}(CodigoNombre));
-
-var Especialidad = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Especialidad, _super);
-    function Especialidad() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Especialidad;
-}(CodigoNombre));
-
-var EspecialidadRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](EspecialidadRespuesta, _super);
-    function EspecialidadRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return EspecialidadRespuesta;
-}(Respuesta));
-
-var CentroAtencion = /** @class */ (function () {
-    function CentroAtencion() {
-    }
-    return CentroAtencion;
-}());
-
-var CentroAtencionRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](CentroAtencionRespuesta, _super);
-    function CentroAtencionRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return CentroAtencionRespuesta;
-}(Respuesta));
-
-var Profesional = /** @class */ (function () {
-    function Profesional() {
-    }
-    return Profesional;
-}());
-
-var Disponibilidad = /** @class */ (function () {
-    function Disponibilidad() {
-    }
-    return Disponibilidad;
-}());
-
-var TurnoLight = /** @class */ (function () {
-    function TurnoLight() {
-    }
-    return TurnoLight;
-}());
-
-var DisponibilidadRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](DisponibilidadRespuesta, _super);
-    function DisponibilidadRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return DisponibilidadRespuesta;
-}(Respuesta));
-
-var Turno = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](Turno, _super);
-    function Turno() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Turno;
-}(TurnoLight));
-
-var DisponibilidadDias = /** @class */ (function () {
-    function DisponibilidadDias() {
-    }
-    return DisponibilidadDias;
-}());
-
-var DisponibilidadDiasRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](DisponibilidadDiasRespuesta, _super);
-    function DisponibilidadDiasRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return DisponibilidadDiasRespuesta;
-}(Respuesta));
-
-var HorariosRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](HorariosRespuesta, _super);
-    function HorariosRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return HorariosRespuesta;
-}(Respuesta));
-
-var DisponibilidadDiasStore = /** @class */ (function () {
-    function DisponibilidadDiasStore() {
-    }
-    return DisponibilidadDiasStore;
-}());
-
-var Reserva = /** @class */ (function () {
-    function Reserva() {
-    }
-    return Reserva;
-}());
-
-var ReservaRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ReservaRespuesta, _super);
-    function ReservaRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ReservaRespuesta;
-}(Respuesta));
-
-var TurnoRespuesta = /** @class */ (function (_super) {
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](TurnoRespuesta, _super);
-    function TurnoRespuesta() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return TurnoRespuesta;
-}(Respuesta));
-
-var Contexto = /** @class */ (function () {
-    function Contexto() {
-    }
-    return Contexto;
-}());
-
-var Formulario = /** @class */ (function () {
-    function Formulario() {
-    }
-    return Formulario;
-}());
-
-var Calendario = /** @class */ (function () {
-    function Calendario() {
-    }
-    return Calendario;
-}());
-
-var ReservaFormulario = /** @class */ (function () {
-    function ReservaFormulario() {
-    }
-    return ReservaFormulario;
-}());
-
-var Paciente = /** @class */ (function () {
-    function Paciente() {
-    }
-    return Paciente;
-}());
-
-var DatosReserva = /** @class */ (function () {
-    function DatosReserva() {
-    }
-    return DatosReserva;
-}());
-
-var Login = /** @class */ (function () {
-    function Login() {
-    }
-    return Login;
-}());
-
-var loginRespuesta = /** @class */ (function () {
-    function loginRespuesta() {
-    }
-    return loginRespuesta;
 }());
 
 
