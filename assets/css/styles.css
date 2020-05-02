@@ -1,0 +1,157 @@
+:root {
+    --azul: #1061a7;
+    --background: #F7F7F2;
+    --bordes: #EEEEEE;
+    --font: #333333;
+    --footer-background: #131211;
+    --footer-font: #F7F7F2;
+    --info-font: rgba(0, 0, 0, 0.12);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--font);
+}
+
+.body {
+    /* se le resta alto de header y footer */
+    min-height: calc(100% - 152px); 
+}
+
+.content {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 100%;
+    display: inline-block;
+}
+
+@media(max-width: 1000px) {
+    .content {
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+}
+
+.cuadro-formulario {
+    background-color: white;
+    border: 1px solid transparent;
+    padding: 0.5vw;
+    border-color: var(--bordes);
+    margin-top: 1vw;
+}
+
+.header {
+    background-color: white;
+    text-align: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 102px; /* Por la img que tiene */
+    border: 1px solid transparent;
+    border-color: var(--bordes);
+}
+
+.footer {
+    background-color: var(--footer-background);
+    color: var(--footer-font);
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    padding: 1vw;
+}
+
+.my-col-20 {
+    width: 20%;
+    padding: 0.5vw;
+    float: left;
+}
+
+.my-col-30 {
+    width: 30%;
+    padding: 0.5vw;
+    float: left;
+}
+
+.my-col-40 {
+    width: 40%;
+    padding: 0.5vw;
+    float: left;
+}
+
+.my-col-50 {
+    width: 50%;
+    padding: 0.5vw;
+    float: left;
+}
+
+.my-col-60 {
+    width: 60%;
+    padding: 0.5vw;
+    float: left;
+}
+
+@media(max-width: 1000px) {
+    .my-col-20 {
+        width: 40%;
+    }
+    .my-col-30 {
+        width: 40%;
+    }
+    .my-col-40 {
+        width: 100%;
+    }
+    .my-col-50 {
+        width: 100%;
+    }
+    .my-col-60 {
+        width: 100%;
+    }
+}
+
+@media(max-width: 800px) {
+    .no-visible-menos-800px {
+        display: none;
+    }
+}
+
+@media(min-width: 799px) {
+    .solo-visible-mas-800px {
+        display: none;
+    }
+}
+
+.row {
+    margin: 2% !important;
+}
+
+.button {
+    background-color: var(--azul);
+    color: white;
+}
+
+.button-default {
+    background-color: #f2f2f2;
+    color: var(--font);
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.overlay{
+    height:100vh;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.286);
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed;
+  }

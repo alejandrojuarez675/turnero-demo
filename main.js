@@ -92,7 +92,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\n\n<div class=\"body\">\n    <router-outlet></router-outlet>\n    <app-error-control></app-error-control>\n</div>\n\n<app-footer></app-footer>"
+module.exports = "<app-header></app-header>\r\n\r\n<div class=\"body\">\r\n    <router-outlet></router-outlet>\r\n    <app-error-control></app-error-control>\r\n</div>\r\n\r\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -381,7 +381,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer\">\n    <p>\n        Plataforma de reserva de turnos del Hospital Español.\n    </p>\n</div>"
+module.exports = "<div class=\"footer\">\r\n    <p>\r\n        Plataforma de reserva de turnos del Hospital Español.\r\n    </p>\r\n</div>"
 
 /***/ }),
 
@@ -437,7 +437,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n  <a href=\"home\">\n    <img src=\"./assets/img/LogoHE200.png\" alt=\"logo\">\n  </a>\n</div>\n"
+module.exports = "<div class=\"header\">\r\n  <a href=\"home\">\r\n    <img src=\"./assets/img/LogoHE200.png\" alt=\"logo\">\r\n  </a>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2025,7 +2025,7 @@ function throwErrorIfBadCode(res) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".material-icons{\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuXG4iXX0= */"
+module.exports = ".material-icons{\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n}\r\n\r\n.texto {\r\n    line-height:26px;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi50ZXh0byB7XHJcbiAgICBsaW5lLWhlaWdodDoyNnB4O1xyXG59XHJcblxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -2036,7 +2036,7 @@ module.exports = ".material-icons{\n    display: inline-flex;\n    vertical-alig
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\n    <div class=\"my-col-60\">\n        <div class=\"cuadro-formulario\" >\n            <div class=\"center\">\n                <mat-spinner *ngIf=\"loading\"></mat-spinner> \n            </div>\n            <div *ngIf=\"turno != undefined\">\n                <div class=\"row clearfix info\">\n                    <span class=\"material-icons icon-image-preview\">done</span>\n                    <p class=\"texto\">Se ha confirmado la reserva del turno:</p>\n                </div>\n                <div class=\"row clearfix\">\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">calendar_today</span>\n                        Fecha y hora:  {{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">local_hospital</span>\n                        Centro Médico: {{ turno.centroAtencion.nombre }}\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">person</span>\n                        Profesional: {{ turno.profesional?.nombreApellido }}\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">work</span>\n                        Especialidad: {{ turno.profesional?.especialidad?.nombre }}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"content\">\r\n    <div class=\"my-col-60\">\r\n        <div class=\"cuadro-formulario\" >\r\n            <div class=\"center\">\r\n                <mat-spinner *ngIf=\"loading\"></mat-spinner> \r\n            </div>\r\n            <div *ngIf=\"turno != undefined\">\r\n                <div class=\"row clearfix info\">\r\n                    <span class=\"material-icons icon-image-preview\">done</span>\r\n                    <p class=\"texto\">Se ha confirmado la reserva del turno:</p>\r\n                </div>\r\n                <div class=\"row clearfix\">\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">calendar_today</span>\r\n                        Fecha y hora:  {{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">local_hospital</span>\r\n                        Centro Médico: {{ turno.centroAtencion.nombre }}\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">person</span>\r\n                        Profesional: {{ turno.profesional?.nombreApellido }}\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">work</span>\r\n                        Especialidad: {{ turno.profesional?.especialidad?.nombre }}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -2088,12 +2088,14 @@ var ConfirmationReservaComponent = /** @class */ (function () {
         this.loading = true;
         this.subscription = this.route.queryParams.subscribe(function (params) {
             _this.codigoReserva = params['reserva'];
+            _this.codigoTurno = params['turno'];
         });
         this.errorBackend$.subscribe(function () {
             _this.loading = false;
         });
         var reserva = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_10__["ConfirmacionTurnoRequest"];
-        reserva.codigoReserva = this.codigoReserva;
+        reserva.codigoReserva = Number(this.codigoReserva);
+        reserva.codigoTurno = Number(this.codigoTurno);
         var login = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_9__["Login"]();
         login.username = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].username;
         login.password = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].password;
@@ -2196,7 +2198,7 @@ var ErrorControlComponent = /** @class */ (function () {
 /*!***********************************************!*\
   !*** ./src/app/shared/models/datos.models.ts ***!
   \***********************************************/
-/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, DatosReserva, Login, loginRespuesta */
+/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, Telefono, DatosReserva, Login, loginRespuesta */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2228,6 +2230,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Calendario", function() { return Calendario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaFormulario", function() { return ReservaFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Paciente", function() { return Paciente; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Telefono", function() { return Telefono; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatosReserva", function() { return DatosReserva; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginRespuesta", function() { return loginRespuesta; });
@@ -2417,6 +2420,12 @@ var Paciente = /** @class */ (function () {
     function Paciente() {
     }
     return Paciente;
+}());
+
+var Telefono = /** @class */ (function () {
+    function Telefono() {
+    }
+    return Telefono;
 }());
 
 var DatosReserva = /** @class */ (function () {
@@ -2619,7 +2628,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/alejandro/Proyectos/personal/turnero-hospital-espaniol/turnero-hospital-espaniol/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Fernando\Desarrollo\HospitalEspanol\turnero\turnero-hospital-espaniol\src\main.ts */"./src/main.ts");
 
 
 /***/ })
