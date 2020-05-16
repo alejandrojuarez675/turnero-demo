@@ -714,7 +714,7 @@ var diasDisponibles = function () {
     var response = [];
     _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 9).forEach(function (day, index) {
         response.push({
-            fecha: '2020-04-0' + index,
+            fecha: '2020-05-0' + index,
             conDisponibilidad: index % 2 === 0
         });
     });
