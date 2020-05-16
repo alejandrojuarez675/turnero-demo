@@ -676,7 +676,7 @@ var turno1 = {
 var turno2 = {
     codigo: 348,
     centroAtencion: centroAtencionMock,
-    fecha: new Date('2020/03/30'),
+    fecha: new Date('2020/03/26'),
     hora: '20:15',
     observaciones: 'Solo particular'
 };
@@ -697,12 +697,14 @@ var turno4 = {
 var disponibilidad = {
     profesional: profesional1,
     turnoManiana: turno1,
-    turnoTarde: turno2
+    turnoTarde: turno2,
+    turno: turno1
 };
 var disponibilidad2 = {
     profesional: profesional2,
     turnoManiana: turno3,
-    turnoTarde: turno4
+    turnoTarde: turno4,
+    turno: turno3
 };
 var profesionalesMocks = [
     disponibilidad, disponibilidad2,
@@ -864,6 +866,19 @@ var ServiceService = /** @class */ (function () {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 if (res.disponibilidad == undefined || res.disponibilidad.length == 0) {
                     Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])("No se encontraron coincidencias para los criterios ingresados.");
+                }
+                else {
+                    res.disponibilidad.forEach(function (element) {
+                        if (element.turnoManiana == undefined || element.turnoManiana.fecha == undefined) {
+                            element.turno = element.turnoTarde;
+                        }
+                        else if (element.turnoTarde == undefined || element.turnoTarde.fecha == undefined) {
+                            element.turno = element.turnoManiana;
+                        }
+                        else {
+                            element.turno = element.turnoManiana.fecha <= element.turnoTarde.fecha ? element.turnoManiana : element.turnoTarde;
+                        }
+                    });
                 }
                 return res.disponibilidad;
             }));
