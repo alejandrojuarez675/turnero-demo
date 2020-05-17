@@ -2672,7 +2672,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     endpoint: 'http://localhost:8080',
-    mockups: false,
+    mockups: true,
     username: 'Test',
     password: 'password',
 };

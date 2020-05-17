@@ -25044,7 +25044,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.turno\">\r\n    Usted ha seleccionado un turno con el/la Dr./a. \r\n    {{ data.turno.profesional.nombreApellido}} para el\r\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \r\n    {{ data.turno.centroAtencion.nombre }}.\r\n  </p>\r\n\r\n  <p>¿Está seguro que desea reservar este turno?</p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>Si</button>\r\n  <button mat-button (click)=\"onNoClick()\">No</button>  \r\n</div>"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.turno\">\r\n    Usted ha seleccionado un turno con el/la Dr./a. \r\n    {{ data.turno.profesional.nombreApellido}} para el\r\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \r\n    {{ data.turno.centroAtencion.nombre }}.\r\n  </p>\r\n\r\n  <p>¿Está seguro que desea reservar este turno?</p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-flat-button class=\"button-default\" (click)=\"onNoClick()\">NO</button>  \r\n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>SI</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -25522,7 +25522,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.datosReserva?.paciente\">\r\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}} con un enlace para completar el proceso de solicitud de turno.\r\n  </p>\r\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\r\n    Tiene tiempo hasta el día \r\n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\r\n    para confirmarlo.\r\n  </p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-button [mat-dialog-close]=\"true\" cdkFocusInitial>ACEPTAR</button>\r\n</div>"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.datosReserva?.paciente\">\r\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}} con un enlace para completar el proceso de solicitud de turno.\r\n  </p>\r\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\r\n    Tiene tiempo hasta el día \r\n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\r\n    para confirmarlo.\r\n  </p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>ACEPTAR</button>\r\n</div>\r\n"
 
 /***/ }),
 
