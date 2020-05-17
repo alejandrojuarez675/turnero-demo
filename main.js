@@ -167,6 +167,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_interceptor_token_interceptor__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./core/interceptor/token.interceptor */ "./src/app/core/interceptor/token.interceptor.ts");
 /* harmony import */ var _core_interceptor_error_interceptor__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./core/interceptor/error.interceptor */ "./src/app/core/interceptor/error.interceptor.ts");
 /* harmony import */ var _core_store_effects_context_effects__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./core/store/effects/context.effects */ "./src/app/core/store/effects/context.effects.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common/locales/es-AR */ "./node_modules/@angular/common/locales/es-AR.js");
+/* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30__);
+/* harmony import */ var _shared_adapters_common__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./shared/adapters/common */ "./src/app/shared/adapters/common.ts");
 
 
 
@@ -196,6 +200,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_29__["registerLocaleData"])(_angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30___default.a);
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -249,7 +257,9 @@ var AppModule = /** @class */ (function () {
                     useClass: _core_interceptor_error_interceptor__WEBPACK_IMPORTED_MODULE_27__["HttpErrorInterceptor"],
                     multi: true
                 },
-                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_24__["MAT_DATE_LOCALE"], useValue: 'es-AR' }
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_24__["MAT_DATE_LOCALE"], useValue: 'es-AR' },
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_24__["DateAdapter"], useClass: _shared_adapters_common__WEBPACK_IMPORTED_MODULE_31__["CustomDateAdapter"] },
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_24__["MAT_DATE_FORMATS"], useValue: _shared_adapters_common__WEBPACK_IMPORTED_MODULE_31__["MY_DATE_FORMATS"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
         })
@@ -2147,6 +2157,70 @@ var ConfirmationReservaComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/adapters/common.ts":
+/*!*******************************************!*\
+  !*** ./src/app/shared/adapters/common.ts ***!
+  \*******************************************/
+/*! exports provided: MY_DATE_FORMATS, CustomDateAdapter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MY_DATE_FORMATS", function() { return MY_DATE_FORMATS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomDateAdapter", function() { return CustomDateAdapter; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
+var MY_DATE_FORMATS = {
+    parse: {
+        dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+    },
+    display: {
+        dateInput: 'input',
+        monthYearLabel: { month: 'numeric', year: 'numeric', },
+        dateA11yLabel: { day: 'numeric', month: 'long', year: 'numeric' },
+        monthYearA11yLabel: { month: 'long', year: 'numeric' },
+    },
+};
+var CustomDateAdapter = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](CustomDateAdapter, _super);
+    function CustomDateAdapter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomDateAdapter.prototype.parse = function (value) {
+        if ((typeof value === 'string') && (value.indexOf('/') > -1)) {
+            var str = value.split('/');
+            var year = Number(str[2]);
+            var month = Number(str[1]) - 1;
+            var date = Number(str[0]);
+            if (month >= 0 && month < 12 && date > 0 && date <= 31 &&
+                (month != 1 || date <= 28 ||
+                    (month == 1 && date == 29 &&
+                        (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))) &&
+                ((month != 3 && month != 3 && month != 5 && month != 8 && month != 10) || date <= 30)) {
+                return new Date(year, month, date);
+            }
+        }
+        // const timestamp = typeof value === 'number' ? value : Date.parse(value);
+        return null;
+    };
+    CustomDateAdapter.prototype.format = function (date, displayFormat) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return this._to2digit(day) + '/' + this._to2digit(month) + '/' + year;
+    };
+    CustomDateAdapter.prototype._to2digit = function (n) {
+        return ('00' + n).slice(-2);
+    };
+    return CustomDateAdapter;
+}(_angular_material__WEBPACK_IMPORTED_MODULE_1__["NativeDateAdapter"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/components/errors/error-control/error-control.component.html":
 /*!*************************************************************************************!*\
   !*** ./src/app/shared/components/errors/error-control/error-control.component.html ***!
@@ -2542,6 +2616,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/core.module */ "./src/app/core/core.module.ts");
 /* harmony import */ var _components_errors_error_control_error_control_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/errors/error-control/error-control.component */ "./src/app/shared/components/errors/error-control/error-control.component.ts");
+/* harmony import */ var _adapters_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./adapters/common */ "./src/app/shared/adapters/common.ts");
+
 
 
 
@@ -2565,7 +2641,12 @@ var SharedModule = /** @class */ (function () {
                 _components_errors_error_control_error_control_component__WEBPACK_IMPORTED_MODULE_5__["ErrorControlComponent"],
                 _core_core_module__WEBPACK_IMPORTED_MODULE_4__["CoreModule"],
             ],
-            entryComponents: []
+            entryComponents: [],
+            providers: [
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DATE_LOCALE"], useValue: 'es-AR' },
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_3__["DateAdapter"], useClass: _adapters_common__WEBPACK_IMPORTED_MODULE_6__["CustomDateAdapter"] },
+                { provide: _angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DATE_FORMATS"], useValue: _adapters_common__WEBPACK_IMPORTED_MODULE_6__["MY_DATE_FORMATS"] },
+            ]
         })
     ], SharedModule);
     return SharedModule;
@@ -2591,7 +2672,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     endpoint: 'http://localhost:8080',
-    mockups: true,
+    mockups: false,
     username: 'Test',
     password: 'password',
 };
