@@ -92,7 +92,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n\r\n<div class=\"body\">\r\n    <router-outlet></router-outlet>\r\n    <app-error-control></app-error-control>\r\n</div>\r\n\r\n<app-footer></app-footer>"
+module.exports = "<app-header></app-header>\n\n<div class=\"body\">\n    <router-outlet></router-outlet>\n    <app-error-control></app-error-control>\n</div>\n\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -171,6 +171,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/common/locales/es-AR */ "./node_modules/@angular/common/locales/es-AR.js");
 /* harmony import */ var _angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_es_AR__WEBPACK_IMPORTED_MODULE_30__);
 /* harmony import */ var _shared_adapters_common__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./shared/adapters/common */ "./src/app/shared/adapters/common.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
 
 
 
@@ -215,7 +217,16 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatButtonToggleModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_32__["FormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatFormFieldModule"],
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_17__["SharedModule"],
                 _ngrx_store__WEBPACK_IMPORTED_MODULE_6__["StoreModule"].forRoot({
                     // router: routerReducer,
@@ -239,12 +250,13 @@ var AppModule = /** @class */ (function () {
                     _core_store_effects_context_effects__WEBPACK_IMPORTED_MODULE_28__["ContextEffects"],
                 ]),
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatProgressSpinnerModule"]
             ],
             exports: [
                 _core_core_module__WEBPACK_IMPORTED_MODULE_13__["CoreModule"],
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_17__["SharedModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_24__["MatRadioModule"]
             ],
             providers: [
                 {
@@ -391,7 +403,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer\">\r\n    <p>\r\n        Plataforma de reserva de turnos del Hospital Español.\r\n    </p>\r\n</div>"
+module.exports = "<div class=\"footer\">\n    <p>\n        Plataforma de reserva de turnos del Hospital Español.\n    </p>\n</div>"
 
 /***/ }),
 
@@ -447,7 +459,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\r\n  <a href=\"home\">\r\n    <img src=\"./assets/img/LogoHE200.png\" alt=\"logo\">\r\n  </a>\r\n</div>\r\n"
+module.exports = "<div class=\"header\">\n  <a href=\"home\">\n    <img src=\"./assets/img/LogoHE200.png\" alt=\"logo\">\n  </a>\n</div>\n"
 
 /***/ }),
 
@@ -518,19 +530,19 @@ var HttpErrorInterceptor = /** @class */ (function () {
             if (error instanceof ErrorEvent) {
                 // client-side error
                 //errorMessage = `Client-side error: ${error.error.message}`;
-                console.log("Client-side error: " + error.error.message);
+                //console.log(`Client-side error: ${error.error.message}`);
                 errorMessage = "Se ha producido un error. Por favor reintente m\u00E1s tarde";
             }
             else {
                 // backend error
                 if (error.error != undefined && error.error.mensaje) {
                     errorMessage = "" + error.error.mensaje;
-                    console.log("Server-side error: " + error.error.codigo + " " + error.error.mensaje);
+                    //console.log(`Server-side error: ${error.error.codigo} ${error.error.mensaje}`);
                 }
                 else {
                     //errorMessage = `Error ${error.status}: ${error.message}`;
                     errorMessage = "Se ha producido un error. Por favor reintente m\u00E1s tarde";
-                    console.log("Error " + error.status + ": " + error.message);
+                    //console.log(`Error ${error.status}: ${error.message}`);
                 }
             }
             Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])(errorMessage);
@@ -593,7 +605,7 @@ var TokenInterceptor = /** @class */ (function () {
 /*!*************************************!*\
   !*** ./src/app/core/mocks/mocks.ts ***!
   \*************************************/
-/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesMocks, diasDisponiblesMock, horariosMock, reservaTurnoMock, turnoMock, tokenMock */
+/*! exports provided: planMock1, planMock2, planMock3, planMock4, obraSocialMock1, obraSocialMock2, obrasSocialesMocks, especialidadesMocks, centroAtencionMock, centroAtencionesMocks, profesionalesDisponibilidadMocks, profesionalesMocks, diasDisponiblesMock, horariosMock, horariosMock2, reservaTurnoMock, turnoMock, tokenMock */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -608,9 +620,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "especialidadesMocks", function() { return especialidadesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "centroAtencionMock", function() { return centroAtencionMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "centroAtencionesMocks", function() { return centroAtencionesMocks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profesionalesDisponibilidadMocks", function() { return profesionalesDisponibilidadMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profesionalesMocks", function() { return profesionalesMocks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diasDisponiblesMock", function() { return diasDisponiblesMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "horariosMock", function() { return horariosMock; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "horariosMock2", function() { return horariosMock2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reservaTurnoMock", function() { return reservaTurnoMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "turnoMock", function() { return turnoMock; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokenMock", function() { return tokenMock; });
@@ -665,16 +679,28 @@ var centroAtencionMock = {
 };
 var centroAtencionesMocks = [centroAtencionMock];
 var profesional1 = {
+    nombreApellido: 'Perez, Juan',
+    especialidad: especialidadesMocks,
+    codigoProfesion: 1,
+    matriculaProfesional: "123"
+};
+var profesional2 = {
+    nombreApellido: 'Riquelme, Roman',
+    especialidad: especialidadesMocks,
+    codigoProfesion: 1,
+    matriculaProfesional: "456",
+};
+var profesionalE1 = {
     codigo: 1,
     nombreApellido: 'Perez, Juan',
     observaciones: '',
-    especialidad: especialidadesMocks[0]
+    especialidad: especialidadesMocks[0],
 };
-var profesional2 = {
+var profesionalE2 = {
     codigo: 2,
     nombreApellido: 'Riquelme, Roman',
     observaciones: 'Solo particular',
-    especialidad: especialidadesMocks[0]
+    especialidad: especialidadesMocks[0],
 };
 var turno1 = {
     codigo: 148,
@@ -688,6 +714,20 @@ var turno2 = {
     centroAtencion: centroAtencionMock,
     fecha: new Date('2020/03/26'),
     hora: '20:15',
+    observaciones: 'Solo particular'
+};
+var turno5 = {
+    codigo: 148,
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/03/28'),
+    hora: '10:00 a.m.',
+    observaciones: ''
+};
+var turno6 = {
+    codigo: 348,
+    centroAtencion: centroAtencionMock,
+    fecha: new Date('2020/03/26'),
+    hora: '08:15 p.m.',
     observaciones: 'Solo particular'
 };
 var turno3 = {
@@ -705,43 +745,51 @@ var turno4 = {
     observaciones: ''
 };
 var disponibilidad = {
-    profesional: profesional1,
+    profesional: profesionalE1,
     turnoManiana: turno1,
     turnoTarde: turno2,
     turno: turno1
 };
 var disponibilidad2 = {
-    profesional: profesional2,
+    profesional: profesionalE2,
     turnoManiana: turno3,
     turnoTarde: turno4,
     turno: turno3
 };
-var profesionalesMocks = [
+var profesionalesDisponibilidadMocks = [
     disponibilidad, disponibilidad2,
     disponibilidad, disponibilidad2,
     disponibilidad, disponibilidad2,
     disponibilidad, disponibilidad2,
 ];
+var profesionalesMocks = [
+    profesional1, profesional2,
+];
 var diasDisponibles = function () {
     var response = [];
     _utils_date_utils__WEBPACK_IMPORTED_MODULE_1__["DateUtils"].getDaysArray(new Date(), 9).forEach(function (day, index) {
         response.push({
-            fecha: '2020-05-0' + index,
-            conDisponibilidad: index % 2 === 0
+            fecha: '2020-07-0' + index,
+            conDisponibilidadTM: index % 2 === 0,
+            conDisponibilidadTT: index % 3 === 0
         });
     });
     return response;
 };
 var diasDisponiblesMock = diasDisponibles();
 var horariosMock = [
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1 }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesional1 })
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesionalE1 }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno2, { profesional: profesionalE1 })
+];
+var horariosMock2 = [
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno5, { profesional: profesionalE1 }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno6, { profesional: profesionalE1 })
 ];
 var reservaTurnoMock = {
     codigo: 123,
     vencimiento: new Date('2020/03/30')
 };
-var turnoMock = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesional1 });
+var turnoMock = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, turno1, { profesional: profesionalE1 });
 // tslint:disable-next-line: max-line-length
 var tokenMock = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VybmFtZSI6IlNPUE9SVEVJVCIsIlNlc3Npb25JZCI6IjExYTEzYTljLTc3NmQtNGM3Ni05YjUwLThjZDM0YWIwZThiNCIsImV4cCI6MTU4NzkwMDMxOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNzMvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNzMvIn0.n5SJmebQ5BzAwRrWt0JCDoD5qW7rVr7aXVGcGJSk7eY';
 
@@ -783,6 +831,7 @@ var ServiceService = /** @class */ (function () {
         this.endpoint_login = this.endpointA + '/Login';
         this.endpoint_obraSocial = this.endpointC + '/getObraSocial';
         this.endpoint_especialidad = this.endpointC + '/getEspecialidad';
+        this.endpoint_profesional = this.endpointC + '/getProfesionales';
         this.endpoint_centroAtencion = this.endpointG + '/getCentroAtencion';
         this.endpoint_busquedaProfesionales = this.endpointC + '/busquedaProfesionales';
         this.endpoint_busquedaDiasDisponibles = this.endpointC + '/busquedaDiasDisponibles';
@@ -806,13 +855,17 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.getObraSociales = function () {
         if (this.useMockups) {
-            console.log('Run mock for: getObraSociales()');
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["obrasSocialesMocks"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_obraSocial);
             return this.http.get(this.endpoint_obraSocial)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
+                res.obraSocial.forEach(function (element) {
+                    element.nombre = element.nombre.trim();
+                    element.plan.forEach(function (elementp) {
+                        elementp.nombre = elementp.nombre.trim();
+                    });
+                });
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
                 return res.obraSocial.sort(function (a, b) {
                     if (a.nombre > b.nombre)
@@ -826,14 +879,15 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.getEspecialidades = function () {
         if (this.useMockups) {
-            console.log('Run mock for: getEspecialidades()');
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["especialidadesMocks"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_especialidad);
             return this.http.get(this.endpoint_especialidad)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                res.especialidad.forEach(function (element) {
+                    element.nombre = element.nombre.trim();
+                });
                 return res.especialidad.sort(function (a, b) {
                     if (a.nombre > b.nombre)
                         return 1;
@@ -844,13 +898,32 @@ var ServiceService = /** @class */ (function () {
             }));
         }
     };
+    ServiceService.prototype.getProfesionales = function () {
+        if (this.useMockups) {
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["profesionalesMocks"]);
+        }
+        else {
+            return this.http.get(this.endpoint_profesional)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                res.profesionales.forEach(function (element) {
+                    element.nombreApellido = element.nombreApellido.trim();
+                });
+                return res.profesionales.sort(function (a, b) {
+                    if (a.nombreApellido > b.nombreApellido)
+                        return 1;
+                    if (a.nombreApellido < b.nombreApellido)
+                        return -1;
+                    return 0;
+                });
+            }));
+        }
+    };
     ServiceService.prototype.getCentrosDeAtencion = function () {
         if (this.useMockups) {
-            console.log('Run mock for: getCentrosDeAtencion()');
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["centroAtencionesMocks"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_centroAtencion);
             return this.http.get(this.endpoint_centroAtencion)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
@@ -866,11 +939,9 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.busquedaProfesionales = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: busquedaProfesionales() - filter', filter);
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["profesionalesMocks"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["profesionalesDisponibilidadMocks"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_busquedaProfesionales);
             return this.http.post(this.endpoint_busquedaProfesionales, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
@@ -879,6 +950,16 @@ var ServiceService = /** @class */ (function () {
                 }
                 else {
                     res.disponibilidad.forEach(function (element) {
+                        if (element.turnoManiana != undefined && element.turnoManiana.fecha != undefined) {
+                            var t = element.turnoManiana.fecha.toString().split(/[- T :]/);
+                            var fd = new Date(Number(t[0]), Number(t[1]) - 1, Number(t[2]), Number(element.turnoManiana.hora.substring(0, 2)), Number(element.turnoManiana.hora.substring(3, 5)));
+                            element.turnoManiana.fecha = fd;
+                        }
+                        if (element.turnoTarde != undefined && element.turnoTarde.fecha != undefined) {
+                            var t = element.turnoTarde.fecha.toString().split(/[- T :]/);
+                            var fd = new Date(Number(t[0]), Number(t[1]) - 1, Number(t[2]), Number(element.turnoTarde.hora.substring(0, 2)), Number(element.turnoTarde.hora.substring(3, 5)));
+                            element.turnoTarde.fecha = fd;
+                        }
                         if (element.turnoManiana == undefined || element.turnoManiana.fecha == undefined) {
                             element.turno = element.turnoTarde;
                         }
@@ -896,41 +977,27 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.busquedaDiasDisponibles = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: busquedaDiasDisponibles() - filter', filter);
-            // MOCK SIN ERROR
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["diasDisponiblesMock"]);
-            // PARA PROBAR ERRORES CON MOCK
-            // const mock: DisponibilidadDiasRespuesta = {
-            //   dia: Mock.diasDisponiblesMock,
-            //   respuesta: {
-            //     codigo: 300,
-            //     mensaje: 'prueba error'
-            //   }
-            // };
-            // return getWsFromMock(mock)
-            //   .pipe(map(
-            //       (res: DisponibilidadDiasRespuesta) => {
-            //         throwErrorIfBadCode(res);
-            //         return res.dia;
-            //       }
-            //   ));
         }
         else {
-            console.log('Run to server ' + this.endpoint_busquedaDiasDisponibles);
             return this.http.post(this.endpoint_busquedaDiasDisponibles, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
-                return res.dia;
+                Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
+                if (res.dia == undefined || res.dia.length == 0) {
+                    Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorToUser"])("No se encontraron coincidencias para los criterios ingresados.");
+                }
+                else {
+                    return res.dia;
+                }
             }));
         }
     };
     ServiceService.prototype.busquedaHorarios = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: busquedaHorarios() - filter', filter);
-            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["horariosMock"]);
+            return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["horariosMock2"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_busquedaHorarios);
             return this.http.post(this.endpoint_busquedaHorarios, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
@@ -943,11 +1010,9 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.reservaTurno = function (filter) {
         if (this.useMockups) {
-            console.log('Run mock for: reservaTurno() - filter', filter);
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["reservaTurnoMock"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_reservaTurno);
             return this.http.post(this.endpoint_reservaTurno, filter)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
@@ -957,11 +1022,9 @@ var ServiceService = /** @class */ (function () {
     };
     ServiceService.prototype.retrieveTurno = function (reserva) {
         if (this.useMockups) {
-            console.log('Run mock for: retrieveTurno() - reserva', reserva);
             return Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["getWsFromMock"])(_mocks_mocks__WEBPACK_IMPORTED_MODULE_4__["turnoMock"]);
         }
         else {
-            console.log('Run to server ' + this.endpoint_confirmacionTurno);
             return this.http.post(this.endpoint_confirmacionTurno, reserva)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
                 Object(_utils_service_utils__WEBPACK_IMPORTED_MODULE_5__["throwErrorIfBadCode"])(res);
@@ -984,7 +1047,7 @@ var ServiceService = /** @class */ (function () {
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/calendar.actions.ts ***!
   \********************************************************/
-/*! exports provided: CLEAN_STORE, SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_TURNO_SELECTED, SET_PROFESIONAL_SELECTED, SET_FECHA_SELECTED, GET_HORARIOS_DISPONIBLES, SET_HORARIOS_DISPONIBLES, cleanStore, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected, setProfesionalSelected, setFechaSelected, getHorariosDisponibles, setHorariosDisponibles */
+/*! exports provided: CLEAN_STORE, SET_PROFESIONALES_DISPONIBLES, GET_DIAS_DISPONIBLES, SET_DIAS_DISPONIBLES, SET_FILTROHORA_SELECTED, SET_FILTROHORA2_SELECTED, SET_TURNO_SELECTED, SET_PROFESIONAL_SELECTED, SET_FECHA_SELECTED, GET_HORARIOS_DISPONIBLES, SET_HORARIOS_DISPONIBLES, cleanStore, setProfesionalesDisponibles, getDiasDisponibles, setDiasDisponibles, setTurnoSelected, setFiltroHora, setFiltroHora2, setProfesionalSelected, setFechaSelected, getHorariosDisponibles, setHorariosDisponibles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -993,6 +1056,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONALES_DISPONIBLES", function() { return SET_PROFESIONALES_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_DIAS_DISPONIBLES", function() { return GET_DIAS_DISPONIBLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DIAS_DISPONIBLES", function() { return SET_DIAS_DISPONIBLES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FILTROHORA_SELECTED", function() { return SET_FILTROHORA_SELECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FILTROHORA2_SELECTED", function() { return SET_FILTROHORA2_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TURNO_SELECTED", function() { return SET_TURNO_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONAL_SELECTED", function() { return SET_PROFESIONAL_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FECHA_SELECTED", function() { return SET_FECHA_SELECTED; });
@@ -1003,6 +1068,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDiasDisponibles", function() { return setDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTurnoSelected", function() { return setTurnoSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFiltroHora", function() { return setFiltroHora; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFiltroHora2", function() { return setFiltroHora2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalSelected", function() { return setProfesionalSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFechaSelected", function() { return setFechaSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHorariosDisponibles", function() { return getHorariosDisponibles; });
@@ -1013,6 +1080,8 @@ var CLEAN_STORE = '[Calendar] - cleanStore';
 var SET_PROFESIONALES_DISPONIBLES = '[Calendar] - setProfesionalesDisponibles';
 var GET_DIAS_DISPONIBLES = '[Calendar] - getDiasDisponibles';
 var SET_DIAS_DISPONIBLES = '[Calendar] - setDiasDisponibles';
+var SET_FILTROHORA_SELECTED = '[Calendar] - setFiltroHora';
+var SET_FILTROHORA2_SELECTED = '[Calendar] - setFiltroHora2';
 var SET_TURNO_SELECTED = '[Calendar] - setTurnoSelected';
 var SET_PROFESIONAL_SELECTED = '[Calendar] - setProfesionalSelected';
 var SET_FECHA_SELECTED = '[Calendar] - setFechaSelected';
@@ -1023,6 +1092,8 @@ var setProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0_
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_DIAS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setTurnoSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TURNO_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setFiltroHora = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_FILTROHORA_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setFiltroHora2 = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_FILTROHORA2_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONAL_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setFechaSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_FECHA_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_HORARIOS_DISPONIBLES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
@@ -1035,27 +1106,23 @@ var setHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["cr
 /*!********************************************************!*\
   !*** ./src/app/core/store/actions/contexto.actions.ts ***!
   \********************************************************/
-/*! exports provided: CLEAN_STORE, SET_ESTADO, GET_TOKEN, SET_TOKEN, cleanStore, setEstado, getToken, setToken */
+/*! exports provided: CLEAN_STORE, GET_TOKEN, SET_TOKEN, cleanStore, getToken, setToken */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAN_STORE", function() { return CLEAN_STORE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_ESTADO", function() { return SET_ESTADO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOKEN", function() { return GET_TOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TOKEN", function() { return SET_TOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cleanStore", function() { return cleanStore; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setEstado", function() { return setEstado; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setToken", function() { return setToken; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var CLEAN_STORE = '[Contexto] - cleanStore';
-var SET_ESTADO = '[Contexto] - setEstado';
 var GET_TOKEN = '[Contexto] - getToken';
 var SET_TOKEN = '[Contexto] - setToken';
 var cleanStore = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(CLEAN_STORE);
-var setEstado = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_ESTADO, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_TOKEN, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_TOKEN, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 
@@ -1089,32 +1156,38 @@ var cleanError = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"]
 /*!****************************************************!*\
   !*** ./src/app/core/store/actions/form.actions.ts ***!
   \****************************************************/
-/*! exports provided: GET_OBRA_SOCIALES, GET_ESPECIALIDADES, GET_CENTROS_DE_ATENCION, SET_OBRA_SOCIALES, SET_ESPECIALIDADES, SET_CENTROS_DE_ATENCION, SET_FECHA_NACIMIENTO, SET_OBRA_SOCIAL_SELECTED, SET_PLAN_SELECTED, SET_ESPECIALIDAD_SELECTED, SET_CENTRO_DE_ATENCION_SELECTED, GET_BUSQUEDA_PROFESIONALES, getObraSociales, getEspecialidades, getCentrosDeAtencion, setObraSociales, setEspecialidades, setCentrosDeAtencion, setFechaNacimiento, setObraSocialSelected, setPlanSelected, setEspecialidadSelected, setCentroDeAtencionSelected, getBusquedaProfesionales */
+/*! exports provided: GET_OBRA_SOCIALES, GET_ESPECIALIDADES, GET_PROFESIONALES, GET_CENTROS_DE_ATENCION, SET_OBRA_SOCIALES, SET_ESPECIALIDADES, SET_PROFESIONALES, SET_CENTROS_DE_ATENCION, SET_FECHA_NACIMIENTO, SET_OBRA_SOCIAL_SELECTED, SET_PLAN_SELECTED, SET_PROFESIONAL_SELECTED, SET_ESPECIALIDAD_SELECTED, SET_CENTRO_DE_ATENCION_SELECTED, GET_BUSQUEDA_PROFESIONALES, getObraSociales, getProfesionales, getEspecialidades, getCentrosDeAtencion, setObraSociales, setEspecialidades, setProfesionales, setCentrosDeAtencion, setFechaNacimiento, setObraSocialSelected, setPlanSelected, setProfesionalSelected, setEspecialidadSelected, setCentroDeAtencionSelected, getBusquedaProfesionales */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_OBRA_SOCIALES", function() { return GET_OBRA_SOCIALES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_ESPECIALIDADES", function() { return GET_ESPECIALIDADES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_PROFESIONALES", function() { return GET_PROFESIONALES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_CENTROS_DE_ATENCION", function() { return GET_CENTROS_DE_ATENCION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_OBRA_SOCIALES", function() { return SET_OBRA_SOCIALES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_ESPECIALIDADES", function() { return SET_ESPECIALIDADES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONALES", function() { return SET_PROFESIONALES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CENTROS_DE_ATENCION", function() { return SET_CENTROS_DE_ATENCION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_FECHA_NACIMIENTO", function() { return SET_FECHA_NACIMIENTO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_OBRA_SOCIAL_SELECTED", function() { return SET_OBRA_SOCIAL_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PLAN_SELECTED", function() { return SET_PLAN_SELECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PROFESIONAL_SELECTED", function() { return SET_PROFESIONAL_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_ESPECIALIDAD_SELECTED", function() { return SET_ESPECIALIDAD_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CENTRO_DE_ATENCION_SELECTED", function() { return SET_CENTRO_DE_ATENCION_SELECTED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_BUSQUEDA_PROFESIONALES", function() { return GET_BUSQUEDA_PROFESIONALES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getObraSociales", function() { return getObraSociales; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionales", function() { return getProfesionales; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEspecialidades", function() { return getEspecialidades; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCentrosDeAtencion", function() { return getCentrosDeAtencion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setObraSociales", function() { return setObraSociales; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setEspecialidades", function() { return setEspecialidades; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionales", function() { return setProfesionales; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCentrosDeAtencion", function() { return setCentrosDeAtencion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFechaNacimiento", function() { return setFechaNacimiento; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setObraSocialSelected", function() { return setObraSocialSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPlanSelected", function() { return setPlanSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProfesionalSelected", function() { return setProfesionalSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setEspecialidadSelected", function() { return setEspecialidadSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCentroDeAtencionSelected", function() { return setCentroDeAtencionSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBusquedaProfesionales", function() { return getBusquedaProfesionales; });
@@ -1122,25 +1195,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var GET_OBRA_SOCIALES = '[Form] - getObraSociales';
 var GET_ESPECIALIDADES = '[Form] - getEspecialidades';
+var GET_PROFESIONALES = '[Form] - getProfesionales';
 var GET_CENTROS_DE_ATENCION = '[Form] - getCentrosDeAtencion';
 var SET_OBRA_SOCIALES = '[API] - setObraSociales ';
 var SET_ESPECIALIDADES = '[API] - setEspecialidades';
+var SET_PROFESIONALES = '[API] - setProfesionales';
 var SET_CENTROS_DE_ATENCION = '[API] - setCentrosDeAtencion';
 var SET_FECHA_NACIMIENTO = '[Form] - setFechaNacimiento ';
 var SET_OBRA_SOCIAL_SELECTED = '[Form] - setObraSocialSelected ';
 var SET_PLAN_SELECTED = '[Form] - setPlanSelected ';
+var SET_PROFESIONAL_SELECTED = '[Form] - setProfesionalSelected ';
 var SET_ESPECIALIDAD_SELECTED = '[Form] - setEspecialidadSelected ';
 var SET_CENTRO_DE_ATENCION_SELECTED = '[Form] - setCentroDeAtencionSelected ';
 var GET_BUSQUEDA_PROFESIONALES = '[Form] - getBusquedaProfesionales ';
 var getObraSociales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_OBRA_SOCIALES);
+var getProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_PROFESIONALES);
 var getEspecialidades = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_ESPECIALIDADES);
 var getCentrosDeAtencion = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_CENTROS_DE_ATENCION);
 var setObraSociales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_OBRA_SOCIALES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setEspecialidades = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_ESPECIALIDADES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONALES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setCentrosDeAtencion = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_CENTROS_DE_ATENCION, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setFechaNacimiento = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_FECHA_NACIMIENTO, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setObraSocialSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_OBRA_SOCIAL_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setPlanSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PLAN_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
+var setProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_PROFESIONAL_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setEspecialidadSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_ESPECIALIDAD_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var setCentroDeAtencionSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(SET_CENTRO_DE_ATENCION_SELECTED, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
 var getBusquedaProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createAction"])(GET_BUSQUEDA_PROFESIONALES, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["props"])());
@@ -1402,6 +1481,11 @@ var FormEffects = /** @class */ (function () {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
             })); }));
         });
+        this.getProfesionales$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
+            return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_PROFESIONALES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getProfesionales().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (profesionales) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["SET_PROFESIONALES"], profesionales: profesionales }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
+            })); }));
+        });
         this.getEspecialidades$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
             return _this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["GET_ESPECIALIDADES"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(function () { return _this.formService.getEspecialidades().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (especialidades) { return ({ type: _actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["SET_ESPECIALIDADES"], especialidades: especialidades }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (error) {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({ type: _actions_error_actions__WEBPACK_IMPORTED_MODULE_6__["SHOW_ERROR"], error: error.message });
@@ -1509,6 +1593,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var initialState = {
+    filtroHora: undefined,
+    filtroHora2: undefined,
     profesionalesDisponibles: [],
     profesionalSelected: undefined,
     turnoSelected: undefined,
@@ -1528,8 +1614,9 @@ var _setDiasDisponibles = function (state, diasDisponibles) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.diasDisponibles = diasDisponibles.map(function (x) {
         return {
-            fecha: new Date(x.fecha.toString() + 'T00:00:00'),
-            conDisponibilidad: x.conDisponibilidad
+            fecha: new Date(Number(x.fecha.split(/[- T :]/)[0]), Number(x.fecha.split(/[- T :]/)[1]) - 1, Number(x.fecha.split(/[- T :]/)[2]), 0, 0, 0),
+            conDisponibilidadTM: x.conDisponibilidadTM,
+            conDisponibilidadTT: x.conDisponibilidadTT
         };
     }).slice();
     return stateNew;
@@ -1537,6 +1624,16 @@ var _setDiasDisponibles = function (state, diasDisponibles) {
 var _setTurnoSelected = function (state, turnoSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.turnoSelected = turnoSelected;
+    return stateNew;
+};
+var _setFiltroHora = function (state, filtroHora) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.filtroHora = filtroHora;
+    return stateNew;
+};
+var _setFiltroHora2 = function (state, filtroHora2) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.filtroHora2 = filtroHora2;
     return stateNew;
 };
 var _setProfesionalSelected = function (state, profesional) {
@@ -1563,6 +1660,12 @@ var _calendarReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createRe
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setTurnoSelected"], function (state, _a) {
     var turnoSelected = _a.turnoSelected;
     return _setTurnoSelected(state, turnoSelected);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setFiltroHora"], function (state, _a) {
+    var filtroHora = _a.filtroHora;
+    return _setFiltroHora(state, filtroHora);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setFiltroHora2"], function (state, _a) {
+    var filtroHora2 = _a.filtroHora2;
+    return _setFiltroHora2(state, filtroHora2);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalSelected"], function (state, _a) {
     var profesional = _a.profesional;
     return _setProfesionalSelected(state, profesional);
@@ -1598,23 +1701,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var initialState = {
-    estado: 1,
     token: undefined,
-};
-var _setEstado = function (state, newEstado) {
-    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
-    stateNew.estado = newEstado;
-    return stateNew;
 };
 var _setToken = function (state, newToken) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.token = newToken;
     return stateNew;
 };
-var _contextoReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_2__["setEstado"], function (state, _a) {
-    var newEstado = _a.newEstado;
-    return _setEstado(state, newEstado);
-}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_2__["setToken"], function (state, _a) {
+var _contextoReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReducer"])(initialState, Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_2__["setToken"], function (state, _a) {
     var token = _a.token;
     return _setToken(state, token);
 }));
@@ -1697,11 +1791,13 @@ __webpack_require__.r(__webpack_exports__);
 var initialState = {
     obrasSociales: [],
     especialidades: [],
+    profesionales: [],
     centrosDeAtencion: [],
     fechaNacimiento: undefined,
     obraSocialSelected: undefined,
     planSelected: undefined,
     especialidadSelected: undefined,
+    profesionalSelected: undefined,
     centroDeAtencionSelected: undefined,
 };
 var _setObraSociales = function (state, obraSociales) {
@@ -1725,6 +1821,11 @@ var _setFechaNacimiento = function (state, fechaNacimiento) {
     stateNew.fechaNacimiento = fechaNacimiento;
     return stateNew;
 };
+var _setProfesionales = function (state, profesionales) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.profesionales = profesionales;
+    return stateNew;
+};
 var _setEspecialidades = function (state, especialidades) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.especialidades = especialidades;
@@ -1740,6 +1841,11 @@ var _setEspecialidadSelected = function (state, especialidadSelected) {
     stateNew.especialidadSelected = especialidadSelected;
     return stateNew;
 };
+var _setProfesionalSelected = function (state, profesionalSelected) {
+    var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
+    stateNew.profesionalSelected = profesionalSelected;
+    return stateNew;
+};
 var _setCentroDeAtencionSelected = function (state, centroDeAtencionSelected) {
     var stateNew = tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state);
     stateNew.centroDeAtencionSelected = centroDeAtencionSelected;
@@ -1751,6 +1857,9 @@ var _formReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReduce
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setEspecialidades"], function (state, _a) {
     var especialidades = _a.especialidades;
     return _setEspecialidades(state, especialidades);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionales"], function (state, _a) {
+    var profesionales = _a.profesionales;
+    return _setProfesionales(state, profesionales);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setCentrosDeAtencion"], function (state, _a) {
     var centrosDeAtencion = _a.centrosDeAtencion;
     return _setCentrosDeAtencion(state, centrosDeAtencion);
@@ -1766,6 +1875,9 @@ var _formReducer = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["createReduce
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setEspecialidadSelected"], function (state, _a) {
     var especialidadSelected = _a.especialidadSelected;
     return _setEspecialidadSelected(state, especialidadSelected);
+}), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setProfesionalSelected"], function (state, _a) {
+    var profesionalSelected = _a.profesionalSelected;
+    return _setProfesionalSelected(state, profesionalSelected);
 }), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_1__["on"])(_actions_form_actions__WEBPACK_IMPORTED_MODULE_2__["setCentroDeAtencionSelected"], function (state, _a) {
     var centroDeAtencionSelected = _a.centroDeAtencionSelected;
     return _setCentroDeAtencionSelected(state, centroDeAtencionSelected);
@@ -1866,20 +1978,16 @@ function reservacionReducer(state, action) {
 /*!************************************************************!*\
   !*** ./src/app/core/store/selectors/contexto.selectors.ts ***!
   \************************************************************/
-/*! exports provided: selectContexto, getEstado, getToken */
+/*! exports provided: selectContexto, getToken */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectContexto", function() { return selectContexto; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEstado", function() { return getEstado; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getToken", function() { return getToken; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 
 var selectContexto = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('contexto');
-var getEstado = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectContexto, function (contexto) {
-    return contexto.estado;
-});
 var getToken = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectContexto, function (contexto) {
     return contexto.token;
 });
@@ -2050,7 +2158,7 @@ function throwErrorIfBadCode(res) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".material-icons{\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n}\r\n\r\n.texto {\r\n    line-height:26px;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi50ZXh0byB7XHJcbiAgICBsaW5lLWhlaWdodDoyNnB4O1xyXG59XHJcblxyXG5cclxuIl19 */"
+module.exports = ".material-icons{\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvY29uZmlybWF0aW9uLXJlc2VydmEvY29uZmlybWF0aW9uLXJlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuXG4iXX0= */"
 
 /***/ }),
 
@@ -2061,7 +2169,7 @@ module.exports = ".material-icons{\r\n    display: inline-flex;\r\n    vertical-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\r\n    <div class=\"my-col-60\">\r\n        <div class=\"cuadro-formulario\" >\r\n            <div class=\"center\">\r\n                <mat-spinner *ngIf=\"loading\"></mat-spinner> \r\n            </div>\r\n            <div *ngIf=\"turno != undefined\">\r\n                <div class=\"row clearfix info\">\r\n                    <span class=\"material-icons icon-image-preview\">done</span>\r\n                    <p class=\"texto\">Se ha confirmado la reserva del turno:</p>\r\n                </div>\r\n                <div class=\"row clearfix\">\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">calendar_today</span>\r\n                        Fecha y hora:  {{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">local_hospital</span>\r\n                        Centro Médico: {{ turno.centroAtencion.nombre }}\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">person</span>\r\n                        Profesional: {{ turno.profesional?.nombreApellido }}\r\n                    </div>\r\n                    <div class=\"col-md-6 texto\">\r\n                        <span class=\"material-icons icon-image-preview\">work</span>\r\n                        Especialidad: {{ turno.profesional?.especialidad?.nombre }}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"content\">\n    <div class=\"my-col-60\">\n        <div class=\"cuadro-formulario\" >\n            <div class=\"center\">\n                <mat-spinner *ngIf=\"loading\"></mat-spinner> \n            </div>\n            <div *ngIf=\"turno != undefined\">\n                <div class=\"row clearfix info\">\n                    <span class=\"material-icons icon-image-preview\">done</span>\n                    <p class=\"texto\">Se ha confirmado la reserva del turno:</p>\n                </div>\n                <div class=\"row clearfix\">\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">calendar_today</span>\n                        Fecha y hora:  {{ turno.fecha | date:'dd/MM/yyyy' }} - {{ turno.hora }} hs\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">local_hospital</span>\n                        Centro Médico: {{ turno.centroAtencion.nombre }}\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">person</span>\n                        Profesional: {{ turno.profesional?.nombreApellido }}\n                    </div>\n                    <div class=\"col-md-6 texto\">\n                        <span class=\"material-icons icon-image-preview\">work</span>\n                        Especialidad: {{ turno.profesional?.especialidad?.nombre }}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2287,7 +2395,7 @@ var ErrorControlComponent = /** @class */ (function () {
 /*!***********************************************!*\
   !*** ./src/app/shared/models/datos.models.ts ***!
   \***********************************************/
-/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, Telefono, DatosReserva, Login, loginRespuesta */
+/*! exports provided: CodigoNombre, RespuestaDTO, Respuesta, ObraSocialRespuesta, ObraSocial, Plan, Especialidad, EspecialidadRespuesta, ProfesionalRespuesta, CentroAtencion, CentroAtencionRespuesta, Profesional, ProfesionalEspecialidad, Disponibilidad, TurnoLight, DisponibilidadRespuesta, Turno, DisponibilidadDias, DisponibilidadDiasRespuesta, HorariosRespuesta, DisponibilidadDiasStore, Reserva, ReservaRespuesta, TurnoRespuesta, Contexto, Formulario, Calendario, ReservaFormulario, Paciente, Telefono, DatosReserva, Login, loginRespuesta */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2300,9 +2408,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plan", function() { return Plan; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Especialidad", function() { return Especialidad; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EspecialidadRespuesta", function() { return EspecialidadRespuesta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfesionalRespuesta", function() { return ProfesionalRespuesta; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencion", function() { return CentroAtencion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentroAtencionRespuesta", function() { return CentroAtencionRespuesta; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Profesional", function() { return Profesional; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfesionalEspecialidad", function() { return ProfesionalEspecialidad; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disponibilidad", function() { return Disponibilidad; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnoLight", function() { return TurnoLight; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisponibilidadRespuesta", function() { return DisponibilidadRespuesta; });
@@ -2383,6 +2493,14 @@ var EspecialidadRespuesta = /** @class */ (function (_super) {
     return EspecialidadRespuesta;
 }(Respuesta));
 
+var ProfesionalRespuesta = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ProfesionalRespuesta, _super);
+    function ProfesionalRespuesta() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ProfesionalRespuesta;
+}(Respuesta));
+
 var CentroAtencion = /** @class */ (function () {
     function CentroAtencion() {
     }
@@ -2401,6 +2519,12 @@ var Profesional = /** @class */ (function () {
     function Profesional() {
     }
     return Profesional;
+}());
+
+var ProfesionalEspecialidad = /** @class */ (function () {
+    function ProfesionalEspecialidad() {
+    }
+    return ProfesionalEspecialidad;
 }());
 
 var Disponibilidad = /** @class */ (function () {
@@ -2724,7 +2848,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Fernando\Desarrollo\HospitalEspanol\turnero\turnero-hospital-espaniol\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/alejandro/Proyectos/personal/turnero-hospital-espaniol/turnero-hospital-espaniol/src/main.ts */"./src/main.ts");
 
 
 /***/ })

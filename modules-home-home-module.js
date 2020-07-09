@@ -24878,7 +24878,7 @@ exports.string = string;
 /*!***********************************************************!*\
   !*** ./src/app/core/store/selectors/caledar.selectors.ts ***!
   \***********************************************************/
-/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getProfesionalSelected, getDiasTurnosDisponibles, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected, getFechaSelected, getBusquedaHorariosRequest, getHorariosDisponibles, getHorariosDisponiblesLength */
+/*! exports provided: selectCalendario, selectFormulario, getProfesionalesDisponibles, getProfesionalesDisponiblesLength, getProfesionalSelected, getFiltroHora, getFiltroHora2, getDiasTurnosDisponibles, getDiasDisponibles, getDiasDisponiblesLength, getBusquedaDiasDisponiblesRequest, getTurnoSelected, getFechaSelected, getBusquedaHorariosRequest, getHorariosDisponibles, getHorariosDisponiblesLength */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24888,6 +24888,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponibles", function() { return getProfesionalesDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalesDisponiblesLength", function() { return getProfesionalesDisponiblesLength; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfesionalSelected", function() { return getProfesionalSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFiltroHora", function() { return getFiltroHora; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFiltroHora2", function() { return getFiltroHora2; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasTurnosDisponibles", function() { return getDiasTurnosDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponibles", function() { return getDiasDisponibles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDiasDisponiblesLength", function() { return getDiasDisponiblesLength; });
@@ -24906,11 +24908,19 @@ var selectFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFe
 var getProfesionalesDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles; });
 var getProfesionalesDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalesDisponibles.length; });
 var getProfesionalSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.profesionalSelected; });
+var getFiltroHora = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.filtroHora; });
+var getFiltroHora2 = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectCalendario, function (calendario) { return calendario.filtroHora2; });
 var getDiasTurnosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
-    return calendario.diasDisponibles.filter(function (x) { return x.conDisponibilidad; });
+    return calendario.diasDisponibles.filter(function (x) { return ((calendario.filtroHora2 == undefined ||
+        (calendario.filtroHora2 != 'AM' && calendario.filtroHora2 != 'PM')) && (x.conDisponibilidadTM || x.conDisponibilidadTT)) ||
+        (calendario.filtroHora2 === 'AM' && x.conDisponibilidadTM) ||
+        (calendario.filtroHora2 === 'PM' && x.conDisponibilidadTT); });
 });
 var getDiasDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
-    return calendario.diasDisponibles;
+    return calendario.diasDisponibles.filter(function (x) { return ((calendario.filtroHora2 == undefined ||
+        (calendario.filtroHora2 != 'AM' && calendario.filtroHora2 != 'PM')) && (x.conDisponibilidadTM || x.conDisponibilidadTT)) ||
+        (calendario.filtroHora2 === 'AM' && x.conDisponibilidadTM) ||
+        (calendario.filtroHora2 === 'PM' && x.conDisponibilidadTT); });
 });
 var getDiasDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getProfesionalSelected, selectCalendario], function (_profesionalSelected, calendario) {
     return calendario.diasDisponibles.length;
@@ -24919,11 +24929,14 @@ var getBusquedaDiasDisponiblesRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MOD
     var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaDiasDisponiblesRequest"]();
     request.fechaNacimiento = formulario.fechaNacimiento;
     request.codigoObraSocial = formulario.obraSocialSelected.codigo;
-    request.codigoPlan = formulario.planSelected.codigo;
-    request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    request.codigoPlan = formulario.planSelected ? formulario.planSelected.codigo : null;
+    if (formulario.especialidadSelected != undefined) {
+        request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    }
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
     if (profesionalSelected != undefined) {
         request.codigoProfesional = profesionalSelected.codigo;
+        request.codigoEspecialidad = profesionalSelected.especialidad.codigo;
     }
     return request;
 });
@@ -24933,17 +24946,36 @@ var getBusquedaHorariosRequest = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__
     var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaHorariosRequest"]();
     request.fechaNacimiento = formulario.fechaNacimiento;
     request.codigoObraSocial = formulario.obraSocialSelected.codigo;
-    request.codigoPlan = formulario.planSelected.codigo;
-    request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    request.codigoPlan = formulario.planSelected ? formulario.planSelected.codigo : null;
+    if (formulario.especialidadSelected != undefined) {
+        request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    }
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
     if (profesionalSelected != undefined) {
         request.codigoProfesional = profesionalSelected.codigo;
+        request.codigoEspecialidad = profesionalSelected.especialidad.codigo;
     }
     request.fecha = fechaSelected;
     return request;
 });
-var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles; });
-var getHorariosDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) { return calendario.horariosDisponibles.length; });
+var getHorariosDisponibles = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) {
+    //        return calendario.horariosDisponibles
+    return calendario.horariosDisponibles.filter(function (x) { return ((calendario.filtroHora2 == undefined ||
+        (calendario.filtroHora2 != 'AM' && calendario.filtroHora2 != 'PM'))
+        ||
+            (calendario.filtroHora2 === 'AM' && x.hora.indexOf('a.m.') >= 0)
+        ||
+            (calendario.filtroHora2 === 'PM' && x.hora.indexOf('p.m.') >= 0)); });
+});
+var getHorariosDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])([getFechaSelected, selectCalendario], function (_fechaSelected, calendario) {
+    //        return calendario.horariosDisponibles.length
+    return calendario.horariosDisponibles.filter(function (x) { return ((calendario.filtroHora2 == undefined ||
+        (calendario.filtroHora2 != 'AM' && calendario.filtroHora2 != 'PM'))
+        ||
+            (calendario.filtroHora2 === 'AM' && x.hora.indexOf('a.m.') >= 0)
+        ||
+            (calendario.filtroHora2 === 'PM' && x.hora.indexOf('p.m.') >= 0)); }).length;
+});
 
 
 /***/ }),
@@ -24952,27 +24984,40 @@ var getHorariosDisponiblesLength = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0
 /*!********************************************************!*\
   !*** ./src/app/core/store/selectors/form.selectors.ts ***!
   \********************************************************/
-/*! exports provided: selectFormulario, selectAllObrasSociales, selectAllEspecialidades, selectAllCentrosDeAtencion, selectObraSocialSelected, selectPlanes, selectPlanSelected, selectFechaNacimiento, selectBusquedaProfesionales, selectDatosFormulario */
+/*! exports provided: selectFormulario, selectAllObrasSociales, selectAllProfesionales, selectAllEspecialidades, selectAllCentrosDeAtencion, selectObraSocialSelected, selectPlanes, selectPlanSelected, selectProfComboSelected, selectEspecialidadComboSelected, selectFechaNacimiento, selectBusquedaProfesionales, selectDatosFormulario */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectFormulario", function() { return selectFormulario; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllObrasSociales", function() { return selectAllObrasSociales; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllProfesionales", function() { return selectAllProfesionales; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllEspecialidades", function() { return selectAllEspecialidades; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllCentrosDeAtencion", function() { return selectAllCentrosDeAtencion; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectObraSocialSelected", function() { return selectObraSocialSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPlanes", function() { return selectPlanes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPlanSelected", function() { return selectPlanSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectProfComboSelected", function() { return selectProfComboSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectEspecialidadComboSelected", function() { return selectEspecialidadComboSelected; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectFechaNacimiento", function() { return selectFechaNacimiento; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectBusquedaProfesionales", function() { return selectBusquedaProfesionales; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectDatosFormulario", function() { return selectDatosFormulario; });
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
-/* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
+/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
+/* harmony import */ var _shared_models_request_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/models/request.models */ "./src/app/shared/models/request.models.ts");
+
 
 
 var selectFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createFeatureSelector"])('formulario');
 var selectAllObrasSociales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.obrasSociales; });
+var selectAllProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) {
+    if (formulario.especialidadSelected != undefined && formulario.especialidadSelected.codigo != undefined) {
+        return formulario.profesionales.filter(function (x) {
+            return x.especialidad.filter(function (esp) { return esp.codigo === formulario.especialidadSelected.codigo; }).length > 0;
+        });
+    }
+    return formulario.profesionales;
+});
 var selectAllEspecialidades = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.especialidades; });
 var selectAllCentrosDeAtencion = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.centrosDeAtencion; });
 var selectObraSocialSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.obraSocialSelected; });
@@ -24982,23 +25027,33 @@ var selectPlanes = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelect
     }
 });
 var selectPlanSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.planSelected; });
+var selectProfComboSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.profesionalSelected; });
+var selectEspecialidadComboSelected = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.especialidadSelected; });
 var selectFechaNacimiento = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) { return formulario.fechaNacimiento; });
 var selectBusquedaProfesionales = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) {
-    var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["BusquedaProfesionalesRequest"]();
+    var request = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_2__["BusquedaProfesionalesRequest"]();
     request.fechaNacimiento = formulario.fechaNacimiento;
     request.codigoObraSocial = formulario.obraSocialSelected.codigo;
-    request.codigoPlan = formulario.planSelected.codigo;
-    request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    request.codigoPlan = formulario.planSelected ? formulario.planSelected.codigo : null;
+    if (formulario.especialidadSelected != undefined) {
+        request.codigoEspecialidad = formulario.especialidadSelected.codigo;
+    }
     request.codigoCentroAtencion = formulario.centroDeAtencionSelected.codigo;
+    request.profesional = formulario.profesionalSelected;
+    if (request.profesional === undefined ||
+        request.profesional.nombreApellido === undefined) {
+        request.profesional = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_1__["Profesional"]();
+    }
     return request;
 });
 var selectDatosFormulario = Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(selectFormulario, function (formulario) {
-    var datos = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_1__["DatosFormulario"]();
+    var datos = new _shared_models_request_models__WEBPACK_IMPORTED_MODULE_2__["DatosFormulario"]();
     datos.fechaNacimiento = formulario.fechaNacimiento;
     datos.obraSocial = formulario.obraSocialSelected;
     datos.plan = formulario.planSelected;
     datos.especialidad = formulario.especialidadSelected;
     datos.centroAtencion = formulario.centroDeAtencionSelected;
+    datos.profesional = formulario.profesionalSelected;
     return datos;
 });
 
@@ -25044,7 +25099,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.turno\">\r\n    Usted ha seleccionado un turno con el/la Dr./a. \r\n    {{ data.turno.profesional.nombreApellido}} para el\r\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \r\n    {{ data.turno.centroAtencion.nombre }}.\r\n  </p>\r\n\r\n  <p>¿Está seguro que desea reservar este turno?</p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-flat-button class=\"button-default\" (click)=\"onNoClick()\">NO</button>  \r\n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>SI</button>\r\n</div>\r\n"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.turno\">\n    Usted ha seleccionado un turno con el/la Dr./a. \n    {{ data.turno.profesional.nombreApellido}} para el\n    día {{ fecha | date:'dd/MM/yyyy' }} a las {{ data.turno.hora }} en \n    {{ data.turno.centroAtencion.nombre }}.\n  </p>\n\n  <p *ngIf=\"data.turno.observaciones\">\n    Observaciones: {{ data.turno.observaciones }}\n  </p>\n\n  <p>¿Está seguro que desea reservar este turno?</p>\n</mat-dialog-content>\n\n<div mat-dialog-actions align=\"center\">\n  <button mat-flat-button class=\"button-default\" (click)=\"onNoClick()\">NO</button>  \n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>SI</button>\n</div>\n"
 
 /***/ }),
 
@@ -25132,10 +25187,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
 /* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/home/components/confirmation-dialog/confirmation-dialog.component.ts");
-
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/modules/home/components/confirmation-dialog/confirmation-dialog.component.ts");
 
 
 
@@ -25155,19 +25208,18 @@ var ConfirmationComponent = /** @class */ (function () {
     ConfirmationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.subscription =
-            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getTurnoSelected"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (x) { return x !== undefined; })).subscribe(function (x) { return _this.openDialog(x); });
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_8__["getTurnoSelected"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (x) { return x !== undefined; })).subscribe(function (x) { return _this.openDialog(x); });
     };
     ConfirmationComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
     };
     ConfirmationComponent.prototype.openDialog = function (turno) {
         var _this = this;
-        this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_10__["ConfirmationDialogComponent"], { data: { turno: turno } })
+        this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_9__["ConfirmationDialogComponent"], { data: { turno: turno } })
             .afterClosed().subscribe(function (result) {
             if (result) {
                 _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__["setTurnoSelected"]({ turnoSelected: turno }));
                 _this.router.navigate(['/home/reserva']);
-                _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_8__["setEstado"]({ newEstado: 5 }));
             }
             else {
                 _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setTurnoSelected"](undefined));
@@ -25199,7 +25251,7 @@ var ConfirmationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL2Zvcm11bGFyaW8vZm9ybXVsYXJpby5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".mat-option {\n    margin: 1rem 0;\n    overflow: visible;\n    line-height: initial;\n    word-wrap: break-word;\n    white-space: pre-wrap;\n    height: unset;\n  }\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZm9ybXVsYXJpby9mb3JtdWxhcmlvLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQixzQkFBc0I7SUFDdEIsc0JBQXNCO0lBQ3RCLGNBQWM7R0FDZiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL2Zvcm11bGFyaW8vZm9ybXVsYXJpby5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1vcHRpb24ge1xuICAgIG1hcmdpbjogMXJlbSAwO1xuICAgIG92ZXJmbG93OiB2aXNpYmxlO1xuICAgIGxpbmUtaGVpZ2h0OiBpbml0aWFsO1xuICAgIHdvcmQtd3JhcDogYnJlYWstd29yZDtcbiAgICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7XG4gICAgaGVpZ2h0OiB1bnNldDtcbiAgfVxuXG5cbiJdfQ== */"
 
 /***/ }),
 
@@ -25210,7 +25262,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\">\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n            <mat-label>Fecha de Nacimiento</mat-label>\r\n            <input matInput [matDatepicker]=\"picker\" [max]=\"maxDate\" (dateInput)=\"cambioFechaNacimiento($event)\"\r\n                [formControl]=\"fechaNacimiento\">\r\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n            <mat-datepicker touchUi #picker startView=\"multi-year\" [startAt]=\"startDate\"></mat-datepicker>\r\n            <mat-error *ngIf=\"fechaNacimiento.invalid\">Ingrese su Fecha de Nacimiento</mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\r\n            <mat-label>Obra Social</mat-label>\r\n            <mat-select (selectionChange)=\"cambioObraSocial($event); onEnterE($event, 'planField')\" [formControl]=\"obrasSocial\">\r\n                <mat-option *ngFor=\"let os of obrasSociales$ | async\" [value]=\"os\">\r\n                    {{os.nombre}}\r\n                </mat-option>\r\n            </mat-select>\r\n            <mat-error *ngIf=\"obrasSocial.invalid\">Ingrese su Obra Social</mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field style=\"width: 45%;\">\r\n            <mat-label>Plan</mat-label>\r\n            <mat-select (selectionChange)=\"cambioPlan($event); onEnterE($event, 'especialidadField')\" name=\"planField\" [formControl]=\"plan\">\r\n                <mat-option *ngFor=\"let p of planes$ | async\" [value]=\"p\">\r\n                    {{p.nombre}}\r\n                </mat-option>\r\n            </mat-select>\r\n            <mat-error *ngIf=\"plan.invalid\">Ingrese su Plan</mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n            <mat-label>Especialidad</mat-label>\r\n            <input type=\"text\" name=\"especialidadField\" placeholder=\"Elija una\" matInput [formControl]=\"especialidad\" \r\n                [matAutocomplete]=\"autoEsp\" (keyup.enter)=\"onEnterE($event, 'centroField')\" \r\n                (keyup)=\"onEnterE2($event, 'centroField')\">\r\n            <mat-autocomplete #autoEsp=\"matAutocomplete\" [displayWith]=\"displayFn\">\r\n                <mat-option *ngFor=\"let e of filteredEspecialidades$ | async\" [value]=\"e\"\r\n                    (selectionChange)=\"cambioEspecialidad($event); onEnterE($event, 'centroField')\" \r\n                    (click)=\"onEnterE($event, 'centroField')\">\r\n                    {{e.nombre}}\r\n                </mat-option>\r\n            </mat-autocomplete>\r\n          \r\n            <button mat-icon-button matSuffix (click)=\"clear()\" \r\n                *ngIf=\"especialidad.value != undefined && especialidad?.value !== ''\"><mat-icon>clear</mat-icon></button>\r\n            <mat-error *ngIf=\"especialidad.invalid\">Ingrese una Especialidad</mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n            <mat-label>Centro de Atención</mat-label>\r\n            <mat-select name=\"centroField\" (selectionChange)=\"cambioCentroDeAtencion($event)\" [formControl]=\"centroAtencion\">\r\n                <mat-option *ngFor=\"let ca of centrosDeAtencion$ | async\" [value]=\"ca\">\r\n                    {{ca.nombre}}\r\n                </mat-option>\r\n            </mat-select>\r\n            <mat-error *ngIf=\"centroAtencion.invalid\">Ingrese el Centro de Atención</mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"onSubmit()\">\r\n            BUSCAR\r\n        </button>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"cuadro-formulario\">\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Fecha de Nacimiento</mat-label>\n            <input matInput [matDatepicker]=\"picker\" [max]=\"maxDate\" (dateInput)=\"cambioFechaNacimiento($event)\"\n                [formControl]=\"fechaNacimiento\">\n            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n            <mat-datepicker touchUi #picker startView=\"multi-year\" [startAt]=\"startDate\"></mat-datepicker>\n            <mat-error *ngIf=\"fechaNacimiento.invalid\">Ingrese su Fecha de Nacimiento</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Obra Social</mat-label>\n            <input type=\"text\" placeholder=\"Seleccione una\" matInput [formControl]=\"obrasSocial\" [matAutocomplete]=\"autoOS\"\n                #autoObraComplete=\"matAutocompleteTrigger\"\n                (keyup.enter)=\"onEnterE($event, 'planField')\" (keyup)=\"onEnterE2($event, 'planField')\">\n            <mat-autocomplete #autoOS=\"matAutocomplete\" [displayWith]=\"displayFn\" \n                (selectedValueChange)=\"cambioObraSocial($event); onEnterE($event, 'planField')\">\n                <mat-option *ngFor=\"let os of filteredObrasSociales$ | async\" [value]=\"os\">\n                    {{os.nombre}}\n                </mat-option>\n            </mat-autocomplete>\n            <button mat-icon-button matSuffix (click)=\"clearOS()\" \n                *ngIf=\"obrasSocial.value != undefined && obrasSocial?.value !== ''\"><mat-icon>clear</mat-icon></button>\n            <mat-error *ngIf=\"obrasSocial.invalid\">Seleccione su Obra Social</mat-error>\n        </mat-form-field>\n     </div>   \n     <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">     \n            <mat-label>Plan</mat-label>\n            <mat-select (selectionChange)=\"cambioPlan($event); onEnterE($event, 'especialidadField')\" \n                name=\"planField\" [formControl]=\"plan\" panelClass=\"my-select-panel-class\">\n                <mat-option *ngFor=\"let p of planes$ | async\" [value]=\"p\"\n                    style=\"margin: 1rem 0 !important; overflow: visible !important;\n                        line-height: initial !important; word-wrap: break-word !important; white-space: pre-wrap !important; height: unset !important;\">\n                    {{p.nombre}}\n                </mat-option>\n            </mat-select>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\" >\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label name=\"labelEspecialidad\">Especialidad</mat-label>\n            <input matInput name=\"especialidadField\" type=\"text\"  placeholder=\"Todas\" \n                [formControl]=\"especialidad\"    #autoEspecComplete=\"matAutocompleteTrigger\"\n                [matAutocomplete]=\"autoEsp\" (keyup.enter)=\"onEnterE($event, 'profesionalField')\" \n                (keyup)=\"onEnterE2($event, 'profesionalField')\" >\n            <mat-autocomplete #autoEsp=\"matAutocomplete\" [displayWith]=\"displayFn\" >\n                <mat-option *ngFor=\"let e of filteredEspecialidades$ | async\" [value]=\"e\"\n                    (selectionChange)=\"cambioEspecialidad($event); onEnterE($event, 'profesionalField')\" \n                    (click)=\"onEnterE($event, 'profesionalField')\">\n                    {{e.nombre}}\n                </mat-option>\n            </mat-autocomplete>\n            <button mat-icon-button matSuffix (click)=\"clear()\" \n                *ngIf=\"especialidad.value != undefined && especialidad?.value !== ''\"><mat-icon>clear</mat-icon></button>\n            <mat-error *ngIf=\"especialidad.invalid\">Seleccione una Especialidad</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\" >\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label name=\"labelProfesional\">Profesional</mat-label>\n            <input matInput name=\"profesionalField\" type=\"text\"  placeholder=\"Todos\" \n                [formControl]=\"profesional\"    #autoProfComplete=\"matAutocompleteTrigger\"\n                [matAutocomplete]=\"autoProf\" (keyup.enter)=\"onEnterE($event, 'centroField')\" \n                (keyup)=\"onEnterE2($event, 'centroField')\" >\n            <mat-autocomplete #autoProf=\"matAutocomplete\" [displayWith]=\"displayFn2\" >\n                <mat-option [value]=\"undefined\" (click)=\"onEnterE($event, 'centroField')\">Todos</mat-option>\n                <mat-option *ngFor=\"let e of filteredProfesionales$ | async\" [value]=\"e\"\n                    (selectionChange)=\"cambioProfesional($event); onEnterE($event, 'centroField')\" \n                    (click)=\"onEnterE($event, 'centroField')\">\n                    {{e.nombreApellido}}\n                </mat-option>\n            </mat-autocomplete>\n            <button mat-icon-button matSuffix (click)=\"clearP()\" \n                *ngIf=\"profesional.value != undefined && profesional?.value !== ''\"><mat-icon>clear</mat-icon></button>\n            <mat-error *ngIf=\"profesional.invalid\">Seleccione un Profesional</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Centro de Atención</mat-label>\n            <mat-select name=\"centroField\" (selectionChange)=\"cambioCentroDeAtencion($event)\" [formControl]=\"centroAtencion\">\n                <mat-option *ngFor=\"let ca of centrosDeAtencion$ | async\" [value]=\"ca\">\n                    {{ca.nombre}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"centroAtencion.invalid\">Seleccione el Centro de Atención</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 100%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"onSubmit()\">\n            BUSCAR\n        </button>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -25253,12 +25305,14 @@ var FormularioComponent = /** @class */ (function () {
         this.store = store;
         this.fechaNacimiento = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
         this.obrasSocial = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.plan = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.especialidad = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
+        this.plan = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', []);
+        this.especialidad = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.profesional = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
         this.centroAtencion = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
         this.obrasSociales$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectAllObrasSociales"]);
         this.planes$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectPlanes"]);
         this.especialidades$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectAllEspecialidades"]);
+        this.profesionales$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectAllProfesionales"]);
         this.centrosDeAtencion$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_10__["selectAllCentrosDeAtencion"]);
         this.maxDate = new Date();
         this.startDate = new Date(1980, 0, 1);
@@ -25273,6 +25327,7 @@ var FormularioComponent = /** @class */ (function () {
             _this.store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_9__["getToken"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (token) { return (token !== undefined); })).subscribe(function () {
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getObraSociales"]());
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getEspecialidades"]());
+                _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getProfesionales"]());
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getCentrosDeAtencion"]());
             });
         });
@@ -25281,12 +25336,29 @@ var FormularioComponent = /** @class */ (function () {
                 _this.fechaNacimiento.setValue(datosFormulario.fechaNacimiento);
                 _this.obrasSocial.setValue(datosFormulario.obraSocial);
                 _this.plan.setValue(datosFormulario.plan);
+                _this.profesional.setValue(datosFormulario.profesional);
                 _this.especialidad.setValue(datosFormulario.especialidad);
                 _this.centroAtencion.setValue(datosFormulario.centroAtencion);
             }
         }).unsubscribe();
+        this.filteredObrasSociales$ = this.obrasSocial.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombre; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterOs(x); }));
         this.filteredEspecialidades$ = this.especialidad.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombre; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterEsp(x); }));
+        this.filteredProfesionales$ = this.profesional.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (value) { return value !== undefined; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return typeof value === 'string' ? value : value.nombreApellido; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (x) { return _this.filterProf(x); }));
+        this.obrasSocial.valueChanges.subscribe(function (value) { return _this.cambioObraSocial(value); });
         this.especialidad.valueChanges.subscribe(function (value) { return _this.cambioEspecialidad(value); });
+        this.profesional.valueChanges.subscribe(function (value) { return _this.cambioProfesional(value); });
+    };
+    FormularioComponent.prototype.filterProf = function (value) {
+        var filterValue = value.toLowerCase();
+        return this.profesionales$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (e) {
+            return e.filter(function (el) {
+                return el.nombreApellido.toLowerCase().indexOf(filterValue) !== -1;
+            });
+        }));
+    };
+    FormularioComponent.prototype.filterOs = function (value) {
+        var filterValue = value.toLowerCase();
+        return this.obrasSociales$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (os) { return os.filter(function (el) { return el.nombre.toLowerCase().indexOf(filterValue) !== -1; }); }));
     };
     FormularioComponent.prototype.filterEsp = function (value) {
         var filterValue = value.toLowerCase();
@@ -25295,26 +25367,52 @@ var FormularioComponent = /** @class */ (function () {
     FormularioComponent.prototype.displayFn = function (option) {
         return option ? option.nombre : undefined;
     };
+    FormularioComponent.prototype.displayFn2 = function (option) {
+        return option ? option.nombreApellido : undefined;
+    };
     FormularioComponent.prototype.cambioFechaNacimiento = function (event) {
         this.cleanResultadoDisponibilidad();
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setFechaNacimiento"]({ fechaNacimiento: event.value }));
     };
-    FormularioComponent.prototype.cambioObraSocial = function (event) {
+    FormularioComponent.prototype.cambioObraSocial = function (value) {
         this.cleanResultadoDisponibilidad();
-        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setObraSocialSelected"]({ obraSocialSelected: event.value }));
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setObraSocialSelected"]({ obraSocialSelected: value }));
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: undefined }));
         this.plan.setValue(undefined);
     };
     FormularioComponent.prototype.clear = function () {
+        var _this = this;
         this.especialidad.setValue('');
+        setTimeout(function () { _this.autoEspecComplete.openPanel(); });
+    };
+    FormularioComponent.prototype.clearOS = function () {
+        var _this = this;
+        this.obrasSocial.setValue('');
+        setTimeout(function () { _this.autoObraComplete.openPanel(); });
+    };
+    FormularioComponent.prototype.clearP = function () {
+        var _this = this;
+        this.profesional.setValue('');
+        setTimeout(function () { _this.autoProfComplete.openPanel(); });
     };
     FormularioComponent.prototype.cambioPlan = function (event) {
         this.cleanResultadoDisponibilidad();
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setPlanSelected"]({ planSelected: event.value }));
     };
+    FormularioComponent.prototype.cambioProfesional = function (value) {
+        this.cleanResultadoDisponibilidad();
+        this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setProfesionalSelected"]({ profesionalSelected: value }));
+    };
     FormularioComponent.prototype.cambioEspecialidad = function (value) {
         this.cleanResultadoDisponibilidad();
         this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["setEspecialidadSelected"]({ especialidadSelected: value }));
+        if (this.profesional != undefined && this.profesional.value != undefined &&
+            this.profesional.value.especialidad != undefined) {
+            if (value != undefined && value.codigo != undefined &&
+                this.profesional.value.especialidad.filter(function (e) { return e.codigo === value.codigo; }).length <= 0) {
+                this.profesional.setValue('');
+            }
+        }
     };
     FormularioComponent.prototype.onEnterE2 = function (evt, field) {
         if (evt && evt.key === "Enter") {
@@ -25322,7 +25420,9 @@ var FormularioComponent = /** @class */ (function () {
         }
     };
     FormularioComponent.prototype.onEnterE = function (evt, field) {
-        document.getElementsByName(field)[0].focus();
+        setTimeout(function () {
+            document.getElementsByName(field)[0].focus();
+        });
     };
     FormularioComponent.prototype.cambioCentroDeAtencion = function (event) {
         this.cleanResultadoDisponibilidad();
@@ -25330,8 +25430,11 @@ var FormularioComponent = /** @class */ (function () {
     };
     FormularioComponent.prototype.isValid = function () {
         var result = false;
-        if (this.fechaNacimiento.valid && this.obrasSocial.valid && this.plan.valid && this.plan.value != undefined
-            && this.especialidad.valid && this.centroAtencion.valid) {
+        if (this.fechaNacimiento.valid
+            && this.obrasSocial.valid
+            && ((this.especialidad.value != undefined && this.especialidad.value != '') ||
+                (this.profesional.value != undefined && this.profesional.value != ''))
+            && this.centroAtencion.valid) {
             result = true;
         }
         return result;
@@ -25343,7 +25446,6 @@ var FormularioComponent = /** @class */ (function () {
                 .subscribe(
             // tslint:disable-next-line: no-shadowed-variable
             function (filter) {
-                _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["setEstado"]({ newEstado: 2 })); // TODO: deberia cambiar con la vuelta
                 _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getBusquedaProfesionales"]({ filter: filter }));
             })
                 .unsubscribe();
@@ -25351,8 +25453,21 @@ var FormularioComponent = /** @class */ (function () {
     };
     FormularioComponent.prototype.cleanResultadoDisponibilidad = function () {
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setProfesionalesDisponibles"]({ profesionalesDisponibles: [] }));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["setEstado"]({ newEstado: 1 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setDiasDisponibles"]({ diasDisponibles: [] }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('autoEspecComplete'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], FormularioComponent.prototype, "autoEspecComplete", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('autoProfComplete'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], FormularioComponent.prototype, "autoProfComplete", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('autoObraComplete'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], FormularioComponent.prototype, "autoObraComplete", void 0);
     FormularioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-formulario',
@@ -25375,7 +25490,7 @@ var FormularioComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "section {\r\n    display: table;\r\n    margin: 8px;\r\n  }\r\n\r\ntable {\r\n    width: 100%;\r\n}\r\n\r\n/* Structure */\r\n\r\n.example-container {\r\n    position: relative;\r\n}\r\n\r\n.example-table-container {\r\n    position: relative;\r\n    max-height: 400px;\r\n    overflow: auto;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}\r\n\r\n.example-loading-shade {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    bottom: 56px;\r\n    right: 0;\r\n    background: rgba(0, 0, 0, 0.15);\r\n    z-index: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.example-rate-limit-reached {\r\n    color: #980000;\r\n    max-width: 360px;\r\n    text-align: center;\r\n}\r\n\r\n/* Column Widths */\r\n\r\n.mat-column-number, .mat-column-state {\r\n    max-width: 64px;\r\n}\r\n\r\n.mat-column-created {\r\n    max-width: 124px;\r\n}\r\n\r\n.material-icons{\r\n    color: #1061a7 !important;\r\n}\r\n\r\n.texto {\r\n    line-height:26px;\r\n}\r\n\r\n.mat-row.ng-star-inserted:hover {\r\n    background-color: #e2e2e2 !important;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZ3JpbGxhLXR1cm5vcy9ncmlsbGEtdHVybm9zLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtHQUNiOztBQUVIO0lBQ0ksWUFBWTtDQUNmOztBQUVELGVBQWU7O0FBRWY7SUFDSSxtQkFBbUI7Q0FDdEI7O0FBRUQ7SUFDSSxtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLGVBQWU7Q0FDbEI7O0FBRUQ7SUFDSSxZQUFZO0NBQ2Y7O0FBRUQ7SUFDSSxtQkFBbUI7SUFDbkIsT0FBTztJQUNQLFFBQVE7SUFDUixhQUFhO0lBQ2IsU0FBUztJQUNULGdDQUFnQztJQUNoQyxXQUFXO0lBQ1gsY0FBYztJQUNkLG9CQUFvQjtJQUNwQix3QkFBd0I7Q0FDM0I7O0FBRUQ7SUFDSSxlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLG1CQUFtQjtDQUN0Qjs7QUFFRCxtQkFBbUI7O0FBRW5CO0lBQ0ksZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0ksMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZ3JpbGxhLXR1cm5vcy9ncmlsbGEtdHVybm9zLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJzZWN0aW9uIHtcclxuICAgIGRpc3BsYXk6IHRhYmxlO1xyXG4gICAgbWFyZ2luOiA4cHg7XHJcbiAgfVxyXG5cclxudGFibGUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi8qIFN0cnVjdHVyZSAqL1xyXG5cclxuLmV4YW1wbGUtY29udGFpbmVyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLmV4YW1wbGUtdGFibGUtY29udGFpbmVyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1heC1oZWlnaHQ6IDQwMHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbnRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4uZXhhbXBsZS1sb2FkaW5nLXNoYWRlIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMDtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICBib3R0b206IDU2cHg7XHJcbiAgICByaWdodDogMDtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4xNSk7XHJcbiAgICB6LWluZGV4OiAxO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLmV4YW1wbGUtcmF0ZS1saW1pdC1yZWFjaGVkIHtcclxuICAgIGNvbG9yOiAjOTgwMDAwO1xyXG4gICAgbWF4LXdpZHRoOiAzNjBweDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLyogQ29sdW1uIFdpZHRocyAqL1xyXG5cclxuLm1hdC1jb2x1bW4tbnVtYmVyLCAubWF0LWNvbHVtbi1zdGF0ZSB7XHJcbiAgICBtYXgtd2lkdGg6IDY0cHg7XHJcbn1cclxuXHJcbi5tYXQtY29sdW1uLWNyZWF0ZWQge1xyXG4gICAgbWF4LXdpZHRoOiAxMjRweDtcclxufVxyXG5cclxuLm1hdGVyaWFsLWljb25ze1xyXG4gICAgY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDtcclxufVxyXG5cclxuLnRleHRvIHtcclxuICAgIGxpbmUtaGVpZ2h0OjI2cHg7XHJcbn1cclxuXHJcbi5tYXQtcm93Lm5nLXN0YXItaW5zZXJ0ZWQ6aG92ZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2UyZTJlMiAhaW1wb3J0YW50O1xyXG59XHJcbiJdfQ== */"
+module.exports = "section {\n    display: table;\n    margin: 8px;\n  }\n\ntable {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n\n.material-icons{\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n.mat-row.ng-star-inserted:hover {\n    background-color: #e2e2e2 !important;\n}\n\n.mat-radio-button {\n    margin-left: 10px;\n}\n\n::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {\n    opacity: 0.0 !important;     /*click effect color change*/\n    background-color: #1061a7 !important;\n}\n\n::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {\n    background-color: #1061a7 !important;   /*inner circle color change*/\n}\n\n::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {\n    border-color: #1061a7 !important; /*outer ring color change*/\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvZ3JpbGxhLXR1cm5vcy9ncmlsbGEtdHVybm9zLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtHQUNiOztBQUVIO0lBQ0ksWUFBWTtDQUNmOztBQUVELGVBQWU7O0FBRWY7SUFDSSxtQkFBbUI7Q0FDdEI7O0FBRUQ7SUFDSSxtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLGVBQWU7Q0FDbEI7O0FBRUQ7SUFDSSxZQUFZO0NBQ2Y7O0FBRUQ7SUFDSSxtQkFBbUI7SUFDbkIsT0FBTztJQUNQLFFBQVE7SUFDUixhQUFhO0lBQ2IsU0FBUztJQUNULGdDQUFnQztJQUNoQyxXQUFXO0lBQ1gsY0FBYztJQUNkLG9CQUFvQjtJQUNwQix3QkFBd0I7Q0FDM0I7O0FBRUQ7SUFDSSxlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLG1CQUFtQjtDQUN0Qjs7QUFFRCxtQkFBbUI7O0FBRW5CO0lBQ0ksZ0JBQWdCO0NBQ25COztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0ksMEJBQTBCO0NBQzdCOztBQUVEO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0kscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksd0JBQXdCLEtBQUssNkJBQTZCO0lBQzFELHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLHFDQUFxQyxHQUFHLDZCQUE2QjtDQUN4RTs7QUFFRDtJQUNJLGlDQUFpQyxDQUFDLDJCQUEyQjtDQUNoRSIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL2dyaWxsYS10dXJub3MvZ3JpbGxhLXR1cm5vcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsic2VjdGlvbiB7XG4gICAgZGlzcGxheTogdGFibGU7XG4gICAgbWFyZ2luOiA4cHg7XG4gIH1cblxudGFibGUge1xuICAgIHdpZHRoOiAxMDAlO1xufVxuXG4vKiBTdHJ1Y3R1cmUgKi9cblxuLmV4YW1wbGUtY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5leGFtcGxlLXRhYmxlLWNvbnRhaW5lciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC1oZWlnaHQ6IDQwMHB4O1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG50YWJsZSB7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi5leGFtcGxlLWxvYWRpbmctc2hhZGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG4gICAgbGVmdDogMDtcbiAgICBib3R0b206IDU2cHg7XG4gICAgcmlnaHQ6IDA7XG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjE1KTtcbiAgICB6LWluZGV4OiAxO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmV4YW1wbGUtcmF0ZS1saW1pdC1yZWFjaGVkIHtcbiAgICBjb2xvcjogIzk4MDAwMDtcbiAgICBtYXgtd2lkdGg6IDM2MHB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLyogQ29sdW1uIFdpZHRocyAqL1xuXG4ubWF0LWNvbHVtbi1udW1iZXIsIC5tYXQtY29sdW1uLXN0YXRlIHtcbiAgICBtYXgtd2lkdGg6IDY0cHg7XG59XG5cbi5tYXQtY29sdW1uLWNyZWF0ZWQge1xuICAgIG1heC13aWR0aDogMTI0cHg7XG59XG5cbi5tYXRlcmlhbC1pY29uc3tcbiAgICBjb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50O1xufVxuXG4udGV4dG8ge1xuICAgIGxpbmUtaGVpZ2h0OjI2cHg7XG59XG5cbi5tYXQtcm93Lm5nLXN0YXItaW5zZXJ0ZWQ6aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNlMmUyZTIgIWltcG9ydGFudDtcbn1cblxuLm1hdC1yYWRpby1idXR0b24ge1xuICAgIG1hcmdpbi1sZWZ0OiAxMHB4O1xufVxuXG46Om5nLWRlZXAgLm1hdC1yYWRpby1idXR0b24ubWF0LWFjY2VudCAubWF0LXJhZGlvLXJpcHBsZSAubWF0LXJpcHBsZS1lbGVtZW50IHtcbiAgICBvcGFjaXR5OiAwLjAgIWltcG9ydGFudDsgICAgIC8qY2xpY2sgZWZmZWN0IGNvbG9yIGNoYW5nZSovXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLm1hdC1yYWRpby1idXR0b24ubWF0LWFjY2VudCAubWF0LXJhZGlvLWlubmVyLWNpcmNsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50OyAgIC8qaW5uZXIgY2lyY2xlIGNvbG9yIGNoYW5nZSovXG59XG5cbjo6bmctZGVlcC5tYXQtcmFkaW8tYnV0dG9uLm1hdC1hY2NlbnQubWF0LXJhZGlvLWNoZWNrZWQgLm1hdC1yYWRpby1vdXRlci1jaXJjbGUge1xuICAgIGJvcmRlci1jb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50OyAvKm91dGVyIHJpbmcgY29sb3IgY2hhbmdlKi9cbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -25386,7 +25501,7 @@ module.exports = "section {\r\n    display: table;\r\n    margin: 8px;\r\n  }\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" \r\n  [hidden]=\"!(((profesionalesDisponiblesLenght$ | async) > 0)  && ((estado$ | async) >= 2))\">\r\n\r\n  <div class=\"row clearfix\">\r\n    <p>\r\n      Haga click sobre el profesional para ver todos los turnos disponibles o directamente sobre el turno que desee reservar.\r\n    </p>\r\n  </div>\r\n  <div class=\"row clearfix\">\r\n      <mat-form-field style=\"width: 55%; padding-right: 10%;\">\r\n          <mat-label>Visualizar</mat-label>\r\n          <mat-select (selectionChange)=\"cambiarColumna($event);\" [formControl]=\"turnoFilter\"> \r\n              <mat-option value=\"Todos\">\r\n                  Próximo turno libre\r\n              </mat-option>\r\n              <mat-option value=\"AM\">\r\n                  Próximo turno libre por la mañana\r\n              </mat-option>\r\n              <mat-option value=\"PM\">\r\n                  Próximo turno libre por la tarde\r\n              </mat-option>                    \r\n          </mat-select>\r\n      </mat-form-field>    \r\n  </div>\r\n\r\n  <div class=\"example-container\">\r\n    <div class=\"example-table-container\">\r\n      <table mat-table [dataSource]=\"datasource\" matSort >\r\n\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  \r\n        <ng-container matColumnDef=\"nombreApellido\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width: 40%;\" mat-sort-header>Profesional</th>\r\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 40%; cursor: pointer;\" \r\n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\r\n            {{row.nombreApellido}}\r\n          </td>\r\n        </ng-container>\r\n\r\n        <ng-container matColumnDef=\"turnoM\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno por la Mañana</th>\r\n          <td mat-cell *matCellDef=\"let row\">\r\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\r\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\r\n              {{row.turnoM | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\r\n            </span>\r\n          </td>\r\n        </ng-container>\r\n\r\n        <ng-container matColumnDef=\"turnoT\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno por la Tarde</th>\r\n          <td mat-cell *matCellDef=\"let row\">\r\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\r\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\r\n              {{row.turnoT | date: 'dd/MM/yyyy' }} {{row.turnoTarde.hora}} \r\n            </span>\r\n          </td>\r\n        </ng-container>\r\n\r\n        <ng-container matColumnDef=\"turnoP\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno Libre</th>\r\n            <td mat-cell *matCellDef=\"let row\">\r\n              <span *ngIf=\"row.turno != undefined && row.turno.fecha != undefined\"\r\n                (click)=\"onClickTurno(row, 'P')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\r\n                {{row.turnoP | date: 'dd/MM/yyyy'}} {{row.turno.hora}}\r\n              </span>\r\n            </td>\r\n          </ng-container>\r\n\r\n        <ng-container matColumnDef=\"profesional.observaciones\">\r\n          <th mat-header-cell *matHeaderCellDef>\r\n          </th>\r\n          <td mat-cell *matCellDef=\"let row\">\r\n            <span *ngIf=\"row.profesional.observaciones\">\r\n              <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.profesional.observaciones }}\" \r\n                matTooltipPosition=\"left\">notification_important </mat-icon>\r\n            </span>\r\n          </td>\r\n        </ng-container>\r\n\r\n      </table>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row clearfix\">\r\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\r\n        VER TODOS\r\n    </button>\r\n  </div>\r\n  \r\n</div>\r\n<app-confirmation></app-confirmation>"
+module.exports = "<div class=\"cuadro-formulario\" \n  [hidden]=\"!((profesionalesDisponiblesLenght$ | async) > 0)\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el profesional para ver todos los turnos disponibles o directamente sobre el turno que desee reservar.\n    </p>\n  </div>\n  <div class=\"row clearfix\">\n    <mat-label>Visualizar Próximo Turno</mat-label>\n    <mat-radio-group (change)=\"cambiarFiltro1($event);\"  [(ngModel)]=\"turnoFilter\"> \n        <mat-radio-button value=\"Todos\" checked=\"true\">\n            Mañana o tarde\n        </mat-radio-button>\n        <mat-radio-button value=\"AM\">\n            Mañana\n        </mat-radio-button>\n        <mat-radio-button value=\"PM\">\n            Tarde\n        </mat-radio-button>                \n    </mat-radio-group>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"datasource\" matSort >\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n  \n        <ng-container matColumnDef=\"nombreApellido\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 60%;\" mat-sort-header>\n            Profesional (Ir a Agenda)\n          </th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 60%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para este Profesional\">\n            {{row.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"especialidad\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 60%;\" mat-sort-header>Especialidad</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"width: 60%; cursor: pointer;\" \n            (click)=\"onClickProf(row.profesional)\" title=\"Buscar turnos para esta especialidad\">\n            {{row.especialidad}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoM\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno por la Mañana</th>\n          <td mat-cell *matCellDef=\"let row\">\n            <span *ngIf=\"row.turnoManiana != undefined && row.turnoManiana.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'M')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\n              {{row.turnoM | date: 'dd/MM/yyyy'}} {{row.turnoManiana.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoT\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno por la Tarde</th>\n          <td mat-cell *matCellDef=\"let row\">\n            <span *ngIf=\"row.turnoTarde != undefined && row.turnoTarde.fecha != undefined\"\n              (click)=\"onClickTurno(row, 'T')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\n              {{row.turnoT | date: 'dd/MM/yyyy'}} {{row.turnoTarde.hora}}\n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"turnoP\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>Próx. Turno Libre (Reservar)</th>\n            <td mat-cell *matCellDef=\"let row\">\n              <span *ngIf=\"row.turno != undefined && row.turno.fecha != undefined\"\n                (click)=\"onClickTurno(row, 'P')\" style=\"cursor: pointer;\" title=\"Seleccionar turno\">\n                {{row.turnoP | date: 'dd/MM/yyyy'}} {{row.turno.hora}}\n              </span>\n            </td>\n          </ng-container>\n\n        <ng-container matColumnDef=\"profesional.observaciones\">\n          <th mat-header-cell *matHeaderCellDef>\n          </th>\n          <td mat-cell *matCellDef=\"let row\">\n            <span *ngIf=\"row.profesional.observaciones\">\n              <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.profesional.observaciones }}\" \n                matTooltipPosition=\"left\">notification_important </mat-icon>\n            </span>\n          </td>\n        </ng-container>\n\n      </table>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\"  *ngIf=\"((profComboSelected$ | async) == undefined ||\n    (profComboSelected$ | async).nombreApellido == undefined)\" >\n    <button style=\"width: 100%;\" class=\"button\" mat-flat-button (click)=\"onClickTodos()\">\n        <!--VER TURNOS DE TODOS LOS PROFESIONALES-->\n        VER EN AGENDA TODOS LOS PROFESIONALES\n    </button>\n  </div>\n  \n</div>\n<app-confirmation></app-confirmation>"
 
 /***/ }),
 
@@ -25405,12 +25520,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
+/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
 /* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-
-
 
 
 
@@ -25422,45 +25533,80 @@ var GrillaTurnosComponent = /** @class */ (function () {
     function GrillaTurnosComponent(store) {
         var _this = this;
         this.store = store;
-        this.turnoFilter = new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormControl"]('Todos');
         this.displayedColumns = [
             'nombreApellido', 'turnoP', 'profesional.observaciones'
         ];
         this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]([]);
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_7__["getEstado"]);
+        this.filtroHora$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getFiltroHora"]);
+        this.profComboSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectProfComboSelected"]);
+        this.especComboSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_5__["selectEspecialidadComboSelected"]);
         store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponibles"]).subscribe(function (disponibilidades) {
-            _this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](disponibilidades
-                .map(function (x) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, x, { nombreApellido: x.profesional.nombreApellido, turnoM: x.turnoManiana != null ? x.turnoManiana.fecha : "", turnoT: x.turnoTarde != null ? x.turnoTarde.fecha : "", turnoP: x.turno != null ? x.turno.fecha : "" })); }));
-            _this.datasource.sort = _this.sort;
+            _this.disponibilidades = disponibilidades;
+            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora"]({ filtroHora: 'Todos' }));
+            _this.cambiarColumna('Todos');
         });
         this.profesionalesDisponiblesLenght$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getProfesionalesDisponiblesLength"]);
+        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getFiltroHora"]).subscribe(function (filtro) {
+            _this.cambiarColumna(filtro);
+        });
     }
-    GrillaTurnosComponent.prototype.cambiarColumna = function (event) {
-        if (event.value === "AM") {
-            this.displayedColumns = ['nombreApellido', 'turnoM', 'profesional.observaciones'];
-        }
-        else if (event.value === "PM") {
-            this.displayedColumns = ['nombreApellido', 'turnoT', 'profesional.observaciones'];
+    GrillaTurnosComponent.prototype.ngOnInit = function () {
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora"]({ filtroHora: 'Todos' }));
+    };
+    GrillaTurnosComponent.prototype.cambiarFiltro1 = function (event) {
+        if (event != undefined) {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora"]({ filtroHora: event.value }));
         }
         else {
-            this.displayedColumns = ['nombreApellido', 'turnoP', 'profesional.observaciones'];
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora"]({ filtroHora: 'Todos' }));
         }
+    };
+    GrillaTurnosComponent.prototype.cambiarColumna = function (filtro) {
+        this.turnoFilter = filtro;
+        var list = this.disponibilidades.map(function (x) { return (tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, x, { nombreApellido: x.profesional.nombreApellido, especialidad: x.profesional.especialidad.nombre, turnoM: x.turnoManiana != null ? x.turnoManiana.fecha : "", turnoT: x.turnoTarde != null ? x.turnoTarde.fecha : "", turnoP: x.turno != null ? x.turno.fecha : "" })); });
+        var firstCol = 'nombreApellido';
+        /*
+        this.especComboSelected$.subscribe(esp => {
+          if (esp == undefined || esp.codigo == undefined ) {
+            firstCol = 'especialidad';
+          }
+        });
+        */
+        if (filtro === "AM") {
+            this.displayedColumns = [firstCol, 'turnoM', 'profesional.observaciones'];
+            list = list.filter(function (x) { return x.turnoManiana != null; });
+        }
+        else if (filtro === "PM") {
+            this.displayedColumns = [firstCol, 'turnoT', 'profesional.observaciones'];
+            list = list.filter(function (x) { return x.turnoTarde != null; });
+        }
+        else {
+            this.displayedColumns = [firstCol, 'turnoP', 'profesional.observaciones'];
+        }
+        this.datasource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](list);
+        this.datasource.sort = this.sort;
     };
     GrillaTurnosComponent.prototype.onClickTodos = function () {
         var _this = this;
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setHorariosDisponibles"]({ horarios: [] }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setDiasDisponibles"]({ diasDisponibles: [] }));
         this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
             _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
         }).unsubscribe();
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora2"]({ filtroHora2: this.turnoFilter }));
     };
     GrillaTurnosComponent.prototype.onClickProf = function (profesional) {
         var _this = this;
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"]({ profesional: profesional }));
-        this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 3 }));
-        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
-            _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
-        }).unsubscribe();
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setHorariosDisponibles"]({ horarios: [] }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setDiasDisponibles"]({ diasDisponibles: [] }));
+        setTimeout(function () {
+            _this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_6__["getBusquedaDiasDisponiblesRequest"]).subscribe(function (request) {
+                _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["getDiasDisponibles"]({ filter: request }));
+            }).unsubscribe();
+        });
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setFiltroHora2"]({ filtroHora2: this.turnoFilter }));
     };
     GrillaTurnosComponent.prototype.onClickTurno = function (row, horario) {
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_4__["setProfesionalSelected"](undefined));
@@ -25514,7 +25660,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\r\n\r\n<mat-dialog-content class=\"mat-typography\">\r\n  <p *ngIf=\"data?.datosReserva?.paciente\">\r\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}} con un enlace para completar el proceso de solicitud de turno.\r\n  </p>\r\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\r\n    Tiene tiempo hasta el día \r\n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\r\n    para confirmarlo.\r\n  </p>\r\n</mat-dialog-content>\r\n\r\n<div mat-dialog-actions align=\"center\">\r\n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>ACEPTAR</button>\r\n</div>\r\n"
+module.exports = "<h1 mat-dialog-title>Reserva de turno</h1>\n\n<mat-dialog-content class=\"mat-typography\">\n  <p *ngIf=\"data?.datosReserva?.paciente\">\n    Se le ha enviado un mail a la dirección {{ data.datosReserva.paciente.email}} con un enlace para completar el proceso de solicitud de turno.\n  </p>\n  <p *ngIf=\"data?.datosReserva?.reserva?.vencimiento\">\n    <!--Tiene tiempo hasta el día \n    {{ data.datosReserva.reserva.vencimiento | date:'dd/MM/yyyy'}}\n    para confirmarlo.-->\n    Tiene el transcurso del día para confirmarlo.\n  </p>\n</mat-dialog-content>\n\n<div mat-dialog-actions align=\"center\">\n  <button mat-flat-button class=\"button\" [mat-dialog-close]=\"true\" cdkFocusInitial>ACEPTAR</button>\n</div>\n"
 
 /***/ }),
 
@@ -25637,7 +25783,6 @@ var ReservaEmailComponent = /** @class */ (function () {
         var _this = this;
         this.dialog.open(_reserva_email_dialog_reserva_email_dialog_component__WEBPACK_IMPORTED_MODULE_12__["ReservaEmailDialogComponent"], { data: { datosReserva: datosReserva } })
             .afterClosed().subscribe(function () {
-            _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["setEstado"]({ newEstado: 1 }));
             _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_5__["cleanStore"]());
             _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["cleanStore"]());
             _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_7__["cleanStore"]());
@@ -25667,7 +25812,7 @@ var ReservaEmailComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".material-icons{\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n}\r\n\r\n.texto {\r\n    line-height:26px;\r\n}\r\n\r\n.col-md-6 {\r\n    flex: 0 0 50.0%;\r\n    max-width: 50.0%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvcmVzZXJ2YS9yZXNlcnZhLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFHRDtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2hvbWUvY29tcG9uZW50cy9yZXNlcnZhL3Jlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi50ZXh0byB7XHJcbiAgICBsaW5lLWhlaWdodDoyNnB4O1xyXG59XHJcblxyXG5cclxuLmNvbC1tZC02IHtcclxuICAgIGZsZXg6IDAgMCA1MC4wJTtcclxuICAgIG1heC13aWR0aDogNTAuMCU7XHJcbn0iXX0= */"
+module.exports = ".material-icons{\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n.col-md-6 {\n    flex: 0 0 50.0%;\n    max-width: 50.0%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvcmVzZXJ2YS9yZXNlcnZhLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFHRDtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2hvbWUvY29tcG9uZW50cy9yZXNlcnZhL3Jlc2VydmEuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXRlcmlhbC1pY29uc3tcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuXG4uY29sLW1kLTYge1xuICAgIGZsZXg6IDAgMCA1MC4wJTtcbiAgICBtYXgtd2lkdGg6IDUwLjAlO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -25678,7 +25823,7 @@ module.exports = ".material-icons{\r\n    display: inline-flex;\r\n    vertical-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"\r\n    (((turnoSelected$ | async) != undefined) && ((estado$ | async) == 5))\">\r\n    <div class=\"overlay\" *ngIf=\"loading\">\r\n        <div class=\"center\" style=\"top: 40%\">\r\n            <mat-spinner ></mat-spinner>\r\n        </div>\r\n    </div>\r\n    <div class=\"row clearfix\">\r\n        <p>\r\n          Turno seleccionado:\r\n        </p>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <div class=\"col-md-6 texto\">\r\n            <span class=\"material-icons icon-image-preview\">calendar_today</span>\r\n            Fecha y hora: {{turnoSelected?.fecha | date: 'dd/MM/yyyy'}} {{turnoSelected?.hora}}\r\n        </div>\r\n        <div class=\"col-md-6 texto\">\r\n            <span class=\"material-icons icon-image-preview\">local_hospital</span>\r\n            Centro Médico: {{ turnoSelected?.centroAtencion.nombre }} \r\n        </div>\r\n        <div class=\"col-md-6 texto\">\r\n            <span class=\"material-icons icon-image-preview\">person</span>\r\n            Profesional: {{ turnoSelected?.profesional?.nombreApellido }}\r\n        </div>\r\n        <div class=\"col-md-6 texto\">\r\n            <span class=\"material-icons icon-image-preview\">work</span>\r\n            Especialidad: {{ turnoSelected?.profesional?.especialidad?.nombre }} \r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\"></div>\r\n    <div class=\"row clearfix\">\r\n        <p>\r\n            Ingrese los siguientes datos para finalizar la reserva del turno\r\n        </p>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\r\n            <mat-label>DNI</mat-label>\r\n            <input matInput [formControl]=\"dni\" \r\n                   placeholder=\"Ingrese su DNI\" (keyup.enter)=\"onEnterE($event, 'sexoSel')\"\r\n                   (keyup)=\"onEnterE2($event, 'sexoSel')\">\r\n            <mat-error *ngIf=\"dni.invalid\">\r\n                Ingrese su DNI\r\n            </mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field style=\"width: 45%;\">\r\n            <mat-label>Sexo</mat-label>\r\n            <mat-select [formControl]=\"sexo\" name=\"sexoSel\" (selectionChange)=\"onEnterE($event, 'nombreField')\">\r\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\r\n                    {{sexo}}\r\n                </mat-option>\r\n            </mat-select>\r\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n            <mat-label>Nombre y Apellido</mat-label>\r\n            <input matInput [formControl]=\"nombreApellido\" name=\"nombreField\"\r\n                   placeholder=\"Ingrese su nombre y apellido\" (keyup.enter)=\"onEnterE($event, 'areaCodeField')\"\r\n                   (keyup)=\"onEnterE2($event, 'areaCodeField')\">\r\n            <mat-error *ngIf=\"nombreApellido.invalid\">\r\n                Ingrese su nombre y apellido\r\n            </mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\r\n            <mat-label>Nro de Área sin 0</mat-label>\r\n            <input matInput [formControl]=\"telefonoArea\" name=\"areaCodeField\" (keyup.enter)=\"onEnterE($event, 'nroTelField')\" \r\n                (keyup)=\"onEnterE2($event, 'nroTelField')\" placeholder=\"Ingrese el Nro de Área sin el 0\">\r\n            <mat-error *ngIf=\"telefonoArea.invalid\">\r\n                Ingrese el Nro de Área sin el 0\r\n            </mat-error>\r\n        </mat-form-field>\r\n        <mat-form-field style=\"width: 45%;\">\r\n            <mat-label>Nro de Teléfono sin 15</mat-label>\r\n            <input matInput [formControl]=\"telefonoNumero\" name=\"nroTelField\" (keyup.enter)=\"onEnterE($event, 'mailField')\" \r\n                (keyup)=\"onEnterE2($event, 'mailField')\" placeholder=\"Ingrese su Teléfono sin el 15\">\r\n            <mat-error *ngIf=\"telefonoNumero.invalid\">\r\n                Ingrese su Teléfono sin el 15\r\n            </mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n    <div class=\"row clearfix\">\r\n        <mat-form-field style=\"width: 100%;\">\r\n            <mat-label>Mail</mat-label>\r\n            <input matInput [formControl]=\"mail\" \r\n                   placeholder=\"Ingrese su mail\" name=\"mailField\">\r\n            <mat-error *ngIf=\"mail.invalid\">\r\n                Ingrese un mail válido\r\n            </mat-error>\r\n        </mat-form-field>\r\n    </div>\r\n\r\n    <div class=\"row clearfix\">\r\n        <button style=\"width: 50%;\" class=\"button-default\" mat-flat-button (click)=\"volverASeleccionDeTurno()\">\r\n            VOLVER\r\n        </button>\r\n        <button style=\"width: 50%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\r\n            RESERVAR\r\n        </button>\r\n    </div>\r\n    <app-reserva-email></app-reserva-email>\r\n</div>\r\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(turnoSelected$ | async)\">\n    <div class=\"overlay\" *ngIf=\"loading\">\n        <div class=\"center\" style=\"top: 40%\">\n            <mat-spinner ></mat-spinner>\n        </div>\n    </div>\n    <div class=\"row clearfix\">\n        <p>\n          Turno seleccionado:\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">calendar_today</span>\n            Fecha y hora: {{turnoSelected?.fecha | date: 'dd/MM/yyyy'}} {{turnoSelected?.hora}}\n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">local_hospital</span>\n            Centro Médico: {{ turnoSelected?.centroAtencion.nombre }} \n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">person</span>\n            Profesional: {{ turnoSelected?.profesional?.nombreApellido }}\n        </div>\n        <div class=\"col-md-6 texto\">\n            <span class=\"material-icons icon-image-preview\">work</span>\n            Especialidad: {{ turnoSelected?.profesional?.especialidad?.nombre }} \n        </div>\n    </div>\n\n    <div class=\"row clearfix\" *ngIf=\"turnoSelected?.observaciones\">\n        <p>\n            Observaciones: {{ turnoSelected?.observaciones }}\n        </p>\n    </div>\n\n    <div class=\"row clearfix\"></div>\n    <div class=\"row clearfix\">\n        <p>\n            Ingrese los siguientes datos para finalizar la reserva del turno\n        </p>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 55%; padding-right: 10%;\">\n            <mat-label>DNI</mat-label>\n            <input matInput [formControl]=\"dni\" \n                   placeholder=\"Ingrese su DNI\" (keyup.enter)=\"onEnterE($event, 'sexoSel')\"\n                   (keyup)=\"onEnterE2($event, 'sexoSel')\">\n            <mat-error *ngIf=\"dni.invalid\">\n                Ingrese su DNI\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 45%;\">\n            <mat-label>Sexo</mat-label>\n            <mat-select [formControl]=\"sexo\" name=\"sexoSel\" (selectionChange)=\"onEnterE($event, 'nombreField')\">\n                <mat-option *ngFor=\"let sexo of sexo$\" [value]=\"sexo\">\n                    {{sexo}}\n                </mat-option>\n            </mat-select>\n            <mat-error *ngIf=\"sexo.invalid\">Ingrese su sexo</mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Nombre y Apellido</mat-label>\n            <input matInput [formControl]=\"nombreApellido\" name=\"nombreField\"\n                   placeholder=\"Ingrese su nombre y apellido\" (keyup.enter)=\"onEnterE($event, 'areaCodeField')\"\n                   (keyup)=\"onEnterE2($event, 'areaCodeField')\">\n            <mat-error *ngIf=\"nombreApellido.invalid\">\n                Ingrese su nombre y apellido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 35%; padding-right: 10%;\">\n            <mat-label>Nro Área</mat-label>\n            <span matPrefix>0 &nbsp;</span>\n            <input matInput [formControl]=\"telefonoArea\" name=\"areaCodeField\" (keyup.enter)=\"onEnterE($event, 'nroTelField')\" \n                (keyup)=\"onEnterE2($event, 'nroTelField')\" placeholder=\"Ingrese Nro de Área sin el 0\">\n            <mat-error *ngIf=\"telefonoArea.invalid\">\n                Ingrese Nro de Área sin el 0\n            </mat-error>\n        </mat-form-field>\n        <mat-form-field style=\"width: 65%;\">\n            <mat-label>Nro de Teléfono</mat-label>\n            <span matPrefix>15 &nbsp;</span>\n            <input matInput [formControl]=\"telefonoNumero\" name=\"nroTelField\" (keyup.enter)=\"onEnterE($event, 'mailField')\" \n                (keyup)=\"onEnterE2($event, 'mailField')\" placeholder=\"Ingrese su Teléfono sin el 15\">\n            <mat-error *ngIf=\"telefonoNumero.invalid\">\n                Ingrese su Teléfono sin el 15\n            </mat-error>\n        </mat-form-field>\n    </div>\n    <div class=\"row clearfix\">\n        <mat-form-field style=\"width: 100%;\">\n            <mat-label>Mail</mat-label>\n            <input matInput [formControl]=\"mail\" \n                   placeholder=\"Ingrese su mail\" name=\"mailField\">\n            <mat-error *ngIf=\"mail.invalid\">\n                Ingrese un mail válido\n            </mat-error>\n        </mat-form-field>\n    </div>\n\n    <div class=\"row clearfix\">\n        <button style=\"width: 50%;\" class=\"button-default\" mat-flat-button (click)=\"volverASeleccionDeTurno()\">\n            VOLVER\n        </button>\n        <button style=\"width: 50%;\" class=\"button\" mat-flat-button [disabled]=\"!isValid()\" (click)=\"reservar()\">\n            RESERVAR\n        </button>\n    </div>\n    <app-reserva-email></app-reserva-email>\n</div>\n"
 
 /***/ }),
 
@@ -25699,18 +25844,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
-/* harmony import */ var _core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
-/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-/* harmony import */ var _core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../core/store/selectors/error.selectors */ "./src/app/core/store/selectors/error.selectors.ts");
-/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
-/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
-/* harmony import */ var _core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../core/store/selectors/reservacion.selectors */ "./src/app/core/store/selectors/reservacion.selectors.ts");
-/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
-
-
+/* harmony import */ var _core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/form.actions */ "./src/app/core/store/actions/form.actions.ts");
+/* harmony import */ var _core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/actions/reserva.actions */ "./src/app/core/store/actions/reserva.actions.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../core/store/selectors/error.selectors */ "./src/app/core/store/selectors/error.selectors.ts");
+/* harmony import */ var _core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../core/store/selectors/form.selectors */ "./src/app/core/store/selectors/form.selectors.ts");
+/* harmony import */ var _core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../core/store/selectors/reserva.selectors */ "./src/app/core/store/selectors/reserva.selectors.ts");
+/* harmony import */ var _core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../core/store/selectors/reservacion.selectors */ "./src/app/core/store/selectors/reservacion.selectors.ts");
+/* harmony import */ var _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../shared/models/datos.models */ "./src/app/shared/models/datos.models.ts");
 
 
 
@@ -25732,7 +25873,7 @@ var ReservaComponent = /** @class */ (function () {
         this.store = store;
         this.router = router;
         this.dni = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6),
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(7),
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(10),
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(/^\d+$/)]);
         this.sexo = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
@@ -25747,12 +25888,11 @@ var ReservaComponent = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$')]);
         this.sexo$ = ['Femenino', 'Masculino'];
         this.loading = false;
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_11__["getEstado"]);
-        this.turnoSelected$ = store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_14__["getTurnoSelected"]);
-        this.obraSocialSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_13__["selectObraSocialSelected"]);
-        this.planSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_13__["selectPlanSelected"]);
-        this.fechaNacimientoSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_13__["selectFechaNacimiento"]);
-        this.errorBackend$ = store.select(_core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_12__["getCountError"]);
+        this.turnoSelected$ = store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_12__["getTurnoSelected"]);
+        this.obraSocialSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_11__["selectObraSocialSelected"]);
+        this.planSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_11__["selectPlanSelected"]);
+        this.fechaNacimientoSelected$ = store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_11__["selectFechaNacimiento"]);
+        this.errorBackend$ = store.select(_core_store_selectors_error_selectors__WEBPACK_IMPORTED_MODULE_10__["getCountError"]);
     }
     ReservaComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -25771,35 +25911,35 @@ var ReservaComponent = /** @class */ (function () {
         this.obraSocialSelected$.subscribe(function (obraSocial) { return _this.obraSocialSelected = obraSocial; });
         this.planSelected$.subscribe(function (plan) { return _this.planSelected = plan; });
         this.fechaNacimientoSelected$.subscribe(function (fechaNacimiento) { return _this.fechaNacimientoSelected = fechaNacimiento; });
-        var paciente = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_16__["Paciente"]();
+        var paciente = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_14__["Paciente"]();
         paciente.dni = this.dni.value;
         paciente.sexo = this.sexo.value === 'Femenino' ? 'F' : 'M';
         paciente.nombreApellido = this.nombreApellido.value;
-        var telefono = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_16__["Telefono"]();
+        var telefono = new _shared_models_datos_models__WEBPACK_IMPORTED_MODULE_14__["Telefono"]();
         telefono.area = this.telefonoArea.value;
         telefono.numero = this.telefonoNumero.value;
         paciente.telefono = telefono;
         paciente.email = this.mail.value;
         paciente.codigoObraSocial = this.obraSocialSelected.codigo;
-        paciente.codigoPlan = this.planSelected.codigo;
+        paciente.codigoPlan = this.planSelected ? this.planSelected.codigo : null;
         paciente.fechaNacimiento = this.fechaNacimientoSelected;
         paciente.codigoProfesional = this.turnoSelected.profesional.codigo;
         paciente.codigoEspecialidad = this.turnoSelected.profesional.especialidad.codigo;
-        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_9__["setPaciente"]({ paciente: paciente }));
+        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_8__["setPaciente"]({ paciente: paciente }));
         this.onSubmit();
     };
     ReservaComponent.prototype.onSubmit = function () {
         var _this = this;
         if (this.isValid) {
             this.loading = true;
-            this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_14__["reservarTurno"])
+            this.store.select(_core_store_selectors_reserva_selectors__WEBPACK_IMPORTED_MODULE_12__["reservarTurno"])
                 .subscribe(function (filter) {
                 if (filter) {
-                    _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_9__["reservaTurno"]({ filter: filter }));
+                    _this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_8__["reservaTurno"]({ filter: filter }));
                 }
             })
                 .unsubscribe();
-            this.store.select(_core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_15__["getReserva"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (reserva) { return reserva != undefined && reserva.codigo != undefined; })).subscribe(function () {
+            this.store.select(_core_store_selectors_reservacion_selectors__WEBPACK_IMPORTED_MODULE_13__["getReserva"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (reserva) { return reserva != undefined && reserva.codigo != undefined; })).subscribe(function () {
                 _this.loading = false;
             });
         }
@@ -25815,21 +25955,21 @@ var ReservaComponent = /** @class */ (function () {
     ReservaComponent.prototype.volverASeleccionDeTurno = function () {
         var _this = this;
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setTurnoSelected"]({ turnoSelected: undefined }));
-        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_9__["setTurnoSelected"]({ turnoSelected: undefined }));
-        this.horariosLength$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_10__["getHorariosDisponiblesLength"]);
-        this.horariosLength$.subscribe(function (horariosLength) { return _this.horariosLength = horariosLength; }).unsubscribe();
-        if (this.horariosLength === 0) {
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setProfesionalesDisponibles"]({ profesionalesDisponibles: [] }));
-            this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_13__["selectBusquedaProfesionales"])
-                .subscribe(function (filter) {
-                _this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_7__["setEstado"]({ newEstado: 2 })); // TODO: deberia cambiar con la vuelta
-                _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_8__["getBusquedaProfesionales"]({ filter: filter }));
-            })
-                .unsubscribe();
-        }
-        else {
+        this.store.dispatch(_core_store_actions_reserva_actions__WEBPACK_IMPORTED_MODULE_8__["setTurnoSelected"]({ turnoSelected: undefined }));
+        this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setProfesionalesDisponibles"]({ profesionalesDisponibles: [] }));
+        this.store.select(_core_store_selectors_form_selectors__WEBPACK_IMPORTED_MODULE_11__["selectBusquedaProfesionales"])
+            .subscribe(function (filter) {
+            _this.store.dispatch(_core_store_actions_form_actions__WEBPACK_IMPORTED_MODULE_7__["getBusquedaProfesionales"]({ filter: filter }));
+        }).unsubscribe();
+        this.horariosLength$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getHorariosDisponiblesLength"]);
+        this.horariosLength$.subscribe(function (hl) { return _this.horariosLength = hl; }).unsubscribe();
+        if (this.horariosLength > 0) {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setDiasDisponibles"]({ diasDisponibles: [] }));
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getBusquedaHorariosRequest"]).subscribe(function (filtro2) {
+                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getDiasDisponibles"]({ filter: filtro2 }));
+            }).unsubscribe();
             this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
-            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_10__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
                 return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getHorariosDisponibles"]({ filter: filtro }));
             }).unsubscribe();
         }
@@ -25931,7 +26071,7 @@ var colors = {
     },
 };
 var disponibilidadDiasToCalendarEvent = function (dia) {
-    if (dia.conDisponibilidad) {
+    if (dia.conDisponibilidadTM || dia.conDisponibilidadTT) { // TODO: pato
         return {
             start: dia.fecha,
             title: '',
@@ -26006,7 +26146,7 @@ var toMonthString = function (month) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".texto {\r\n    line-height:26px;\r\n}\r\n\r\n.rowRef {\r\n    margin: 0% !important;\r\n}\r\n\r\n.col-md-12 {\r\n    flex: 0 0 100.0%;\r\n    max-width: 100.0%;\r\n}\r\n\r\n.col-md-6 {\r\n    flex: 0 0 50.0%;\r\n    max-width: 50.0%;\r\n}\r\n\r\n.info {\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n    font-size: 27px;\r\n    padding-right: 5px;\r\n}\r\n\r\n.conturnos {\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n    font-size: 27px;\r\n    padding-right: 5px;\r\n}\r\n\r\n.conturnos {\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #1061a7 !important;\r\n    font-size: 27px;\r\n    padding-right: 5px;\r\n}\r\n\r\n.sinturnos {\r\n    display: inline-flex;\r\n    vertical-align: top;\r\n    color: #e2e2e2 !important;\r\n    font-size: 27px;\r\n    padding-right: 5px;\r\n}\r\n\r\nh3 {\r\n    margin: 0 0 10px;\r\n    font-size: 1.75rem;\r\n}\r\n\r\n.col-md-2 {\r\n    flex: 0 0 16.666667%;\r\n    max-width: 16.666667%;\r\n}\r\n\r\n.col-md-5 {\r\n    flex: 0 0 41.666667%;\r\n    max-width: 41.666667%;\r\n}\r\n\r\n.col-md-4 {\r\n    flex: 0 0 33.333333%;\r\n    max-width: 33.333333%;\r\n}\r\n\r\n.text-right {\r\n    text-align: right !important;\r\n }\r\n\r\n.text-left {\r\n   text-align: left !important;\r\n}\r\n\r\n.text-center {\r\n   text-align: center !important;\r\n}\r\n\r\n.cal-month-view .cal-events {\r\n    margin: 0px;\r\n    max-height: 0px;\r\n}\r\n\r\n.cal-month-view .cal-cell-top {\r\n    min-height: 80px !important;\r\n}\r\n\r\n.cal-month-view .cal-day-cell {\r\n    min-height: 80px !important;\r\n}\r\n\r\n.cal-month-view {\r\n    min-height: 80px !important;\r\n    font-weight: bold;\r\n}\r\n\r\n.lightskyblue {\r\n    min-height: 80px !important;\r\n    background-color: #1061a7 !important;\r\n}\r\n\r\n.lightskyblue:hover {\r\n    min-height: 80px !important;\r\n    background-color: #1061a780 !important;\r\n}\r\n\r\n.lightslategray {\r\n    min-height: 80px !important;\r\n    background-color: #e2e2e2 !important;\r\n}\r\n\r\n.lightslategray:hover {\r\n    min-height: 80px !important;\r\n    background-color: #e7e7e7 !important;\r\n}\r\n\r\n.cambio-mes{\r\n    margin: 0 0 10px;\r\n    font-size: 1.75rem;\r\n    padding-left: 2%;\r\n    padding-right: 2%;\r\n    padding-top: 1%;\r\n}\r\n\r\n.cambio-mes:hover {\r\n    cursor: pointer;\r\n}\r\n\r\n.cal-day-number {\r\n    color: black;\r\n    font-size: 20px !important;\r\n    font-weight: bold !important;\r\n}\r\n\r\n.cal-month-view .cal-day-number {\r\n    opacity: 0.8;\r\n}\r\n\r\n.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {\r\n    color:  #ff0000; \r\n    font-weight: bold;\r\n}\r\n\r\n.lightskyblue .cal-day-number {\r\n    color: white;\r\n    opacity: 1;\r\n}\r\n\r\n.lightskyblue .cal-weekend .cal-day-number {\r\n    color: white;\r\n    opacity: 1;\r\n}\r\n\r\n.lightskyblue:hover .cal-day-number {\r\n    color: black;\r\n    opacity: 0.8;\r\n}\r\n\r\n.lightskyblue:hover .cal-weekend .cal-day-number {\r\n    color: black;\r\n    opacity: 0.8;\r\n}\r\n\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0ksc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtDQUNyQjs7QUFFRDtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7Q0FDcEI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtJQUMxQixnQkFBZ0I7SUFDaEIsbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0kscUJBQXFCO0lBQ3JCLG9CQUFvQjtJQUNwQiwwQkFBMEI7SUFDMUIsZ0JBQWdCO0lBQ2hCLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixtQkFBbUI7Q0FDdEI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtJQUMxQixnQkFBZ0I7SUFDaEIsbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHFCQUFxQjtJQUNyQixzQkFBc0I7Q0FDekI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0kscUJBQXFCO0lBQ3JCLHNCQUFzQjtDQUN6Qjs7QUFFRDtJQUNJLDZCQUE2QjtFQUMvQjs7QUFFRjtHQUNHLDRCQUE0QjtDQUM5Qjs7QUFFRDtHQUNHLDhCQUE4QjtDQUNoQzs7QUFFRDtJQUNJLFlBQVk7SUFDWixnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSw0QkFBNEI7Q0FDL0I7O0FBQ0Q7SUFDSSw0QkFBNEI7Q0FDL0I7O0FBRUQ7SUFDSSw0QkFBNEI7SUFDNUIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksNEJBQTRCO0lBQzVCLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLDRCQUE0QjtJQUM1Qix1Q0FBdUM7Q0FDMUM7O0FBRUQ7SUFDSSw0QkFBNEI7SUFDNUIscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0ksNEJBQTRCO0lBQzVCLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxhQUFhO0lBQ2IsMkJBQTJCO0lBQzNCLDZCQUE2QjtDQUNoQzs7QUFFRDtJQUNJLGFBQWE7Q0FDaEI7O0FBRUQ7SUFDSSxnQkFBZ0I7SUFDaEIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksYUFBYTtJQUNiLFdBQVc7Q0FDZDs7QUFFRDtJQUNJLGFBQWE7SUFDYixXQUFXO0NBQ2Q7O0FBRUQ7SUFDSSxhQUFhO0lBQ2IsYUFBYTtDQUNoQjs7QUFFRDtJQUNJLGFBQWE7SUFDYixhQUFhO0NBQ2hCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRleHRvIHtcclxuICAgIGxpbmUtaGVpZ2h0OjI2cHg7XHJcbn1cclxuXHJcbi5yb3dSZWYge1xyXG4gICAgbWFyZ2luOiAwJSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uY29sLW1kLTEyIHtcclxuICAgIGZsZXg6IDAgMCAxMDAuMCU7XHJcbiAgICBtYXgtd2lkdGg6IDEwMC4wJTtcclxufVxyXG5cclxuLmNvbC1tZC02IHtcclxuICAgIGZsZXg6IDAgMCA1MC4wJTtcclxuICAgIG1heC13aWR0aDogNTAuMCU7XHJcbn1cclxuXHJcbi5pbmZvIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XHJcbiAgICBmb250LXNpemU6IDI3cHg7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XHJcbn1cclxuXHJcbi5jb250dXJub3Mge1xyXG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xyXG4gICAgY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDtcclxuICAgIGZvbnQtc2l6ZTogMjdweDtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcclxufVxyXG5cclxuLmNvbnR1cm5vcyB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XHJcbiAgICBjb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50O1xyXG4gICAgZm9udC1zaXplOiAyN3B4O1xyXG4gICAgcGFkZGluZy1yaWdodDogNXB4O1xyXG59XHJcblxyXG4uc2ludHVybm9zIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgIGNvbG9yOiAjZTJlMmUyICFpbXBvcnRhbnQ7XHJcbiAgICBmb250LXNpemU6IDI3cHg7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XHJcbn1cclxuXHJcbmgzIHtcclxuICAgIG1hcmdpbjogMCAwIDEwcHg7XHJcbiAgICBmb250LXNpemU6IDEuNzVyZW07XHJcbn0gIFxyXG5cclxuLmNvbC1tZC0yIHtcclxuICAgIGZsZXg6IDAgMCAxNi42NjY2NjclO1xyXG4gICAgbWF4LXdpZHRoOiAxNi42NjY2NjclO1xyXG59XHJcblxyXG4uY29sLW1kLTUge1xyXG4gICAgZmxleDogMCAwIDQxLjY2NjY2NyU7XHJcbiAgICBtYXgtd2lkdGg6IDQxLjY2NjY2NyU7XHJcbn1cclxuXHJcbi5jb2wtbWQtNCB7XHJcbiAgICBmbGV4OiAwIDAgMzMuMzMzMzMzJTtcclxuICAgIG1heC13aWR0aDogMzMuMzMzMzMzJTtcclxufVxyXG5cclxuLnRleHQtcmlnaHQge1xyXG4gICAgdGV4dC1hbGlnbjogcmlnaHQgIWltcG9ydGFudDtcclxuIH1cclxuXHJcbi50ZXh0LWxlZnQge1xyXG4gICB0ZXh0LWFsaWduOiBsZWZ0ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi50ZXh0LWNlbnRlciB7XHJcbiAgIHRleHQtYWxpZ246IGNlbnRlciAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uY2FsLW1vbnRoLXZpZXcgLmNhbC1ldmVudHMge1xyXG4gICAgbWFyZ2luOiAwcHg7XHJcbiAgICBtYXgtaGVpZ2h0OiAwcHg7XHJcbn1cclxuXHJcbi5jYWwtbW9udGgtdmlldyAuY2FsLWNlbGwtdG9wIHtcclxuICAgIG1pbi1oZWlnaHQ6IDgwcHggIWltcG9ydGFudDtcclxufVxyXG4uY2FsLW1vbnRoLXZpZXcgLmNhbC1kYXktY2VsbCB7XHJcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5jYWwtbW9udGgtdmlldyB7XHJcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG5cclxuLmxpZ2h0c2t5Ymx1ZSB7XHJcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5saWdodHNreWJsdWU6aG92ZXIge1xyXG4gICAgbWluLWhlaWdodDogODBweCAhaW1wb3J0YW50O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzEwNjFhNzgwICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5saWdodHNsYXRlZ3JheSB7XHJcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTJlMmUyICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5saWdodHNsYXRlZ3JheTpob3ZlciB7XHJcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdlN2U3ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5jYW1iaW8tbWVze1xyXG4gICAgbWFyZ2luOiAwIDAgMTBweDtcclxuICAgIGZvbnQtc2l6ZTogMS43NXJlbTtcclxuICAgIHBhZGRpbmctbGVmdDogMiU7XHJcbiAgICBwYWRkaW5nLXJpZ2h0OiAyJTtcclxuICAgIHBhZGRpbmctdG9wOiAxJTtcclxufVxyXG5cclxuLmNhbWJpby1tZXM6aG92ZXIge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4uY2FsLWRheS1udW1iZXIge1xyXG4gICAgY29sb3I6IGJsYWNrO1xyXG4gICAgZm9udC1zaXplOiAyMHB4ICFpbXBvcnRhbnQ7XHJcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uY2FsLW1vbnRoLXZpZXcgLmNhbC1kYXktbnVtYmVyIHtcclxuICAgIG9wYWNpdHk6IDAuODtcclxufVxyXG5cclxuLmNhbC1tb250aC12aWV3IC5jYWwtZGF5LWNlbGwuY2FsLXdlZWtlbmQgLmNhbC1kYXktbnVtYmVyIHtcclxuICAgIGNvbG9yOiAgI2ZmMDAwMDsgXHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG5cclxuLmxpZ2h0c2t5Ymx1ZSAuY2FsLWRheS1udW1iZXIge1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgb3BhY2l0eTogMTtcclxufVxyXG5cclxuLmxpZ2h0c2t5Ymx1ZSAuY2FsLXdlZWtlbmQgLmNhbC1kYXktbnVtYmVyIHtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIG9wYWNpdHk6IDE7XHJcbn1cclxuXHJcbi5saWdodHNreWJsdWU6aG92ZXIgLmNhbC1kYXktbnVtYmVyIHtcclxuICAgIGNvbG9yOiBibGFjaztcclxuICAgIG9wYWNpdHk6IDAuODtcclxufVxyXG5cclxuLmxpZ2h0c2t5Ymx1ZTpob3ZlciAuY2FsLXdlZWtlbmQgLmNhbC1kYXktbnVtYmVyIHtcclxuICAgIGNvbG9yOiBibGFjaztcclxuICAgIG9wYWNpdHk6IDAuODtcclxufVxyXG5cclxuXHJcblxyXG4iXX0= */"
+module.exports = ".texto {\n    line-height:26px;\n}\n\n.rowRef {\n    margin: 0% !important;\n}\n\n.col-md-12 {\n    flex: 0 0 100.0%;\n    max-width: 100.0%;\n}\n\n.col-md-6 {\n    flex: 0 0 50.0%;\n    max-width: 50.0%;\n}\n\n.info {\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n    font-size: 27px;\n    padding-right: 5px;\n}\n\n.conturnos {\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n    font-size: 27px;\n    padding-right: 5px;\n}\n\n.conturnos {\n    display: inline-flex;\n    vertical-align: top;\n    color: #1061a7 !important;\n    font-size: 27px;\n    padding-right: 5px;\n}\n\n.sinturnos {\n    display: inline-flex;\n    vertical-align: top;\n    color: #e2e2e2 !important;\n    font-size: 27px;\n    padding-right: 5px;\n}\n\nh3 {\n    margin: 0 0 10px;\n    font-size: 1.75rem;\n}\n\n.col-md-2 {\n    flex: 0 0 16.666667%;\n    max-width: 16.666667%;\n}\n\n.col-md-5 {\n    flex: 0 0 41.666667%;\n    max-width: 41.666667%;\n}\n\n.col-md-4 {\n    flex: 0 0 33.333333%;\n    max-width: 33.333333%;\n}\n\n.text-right {\n    text-align: right !important;\n }\n\n.text-left {\n   text-align: left !important;\n}\n\n.text-center {\n   text-align: center !important;\n}\n\n.cal-month-view .cal-events {\n    margin: 0px;\n    max-height: 0px;\n}\n\n.cal-month-view .cal-cell-top {\n    min-height: 80px !important;\n}\n\n.cal-month-view .cal-day-cell {\n    min-height: 80px !important;\n}\n\n.cal-month-view {\n    min-height: 80px !important;\n    font-weight: bold;\n}\n\n.lightskyblue {\n    min-height: 80px !important;\n    background-color: #1061a7 !important;\n}\n\n.lightskyblue:hover {\n    min-height: 80px !important;\n    background-color: #1061a780 !important;\n}\n\n.lightslategray {\n    min-height: 80px !important;\n    background-color: #e2e2e2 !important;\n}\n\n.lightslategray:hover {\n    min-height: 80px !important;\n    background-color: #e7e7e7 !important;\n}\n\n.cambio-mes{\n    margin: 0 0 10px;\n    font-size: 1.75rem;\n    padding-left: 2%;\n    padding-right: 2%;\n    padding-top: 1%;\n}\n\n.cambio-mes:hover {\n    cursor: pointer;\n}\n\n.cal-day-number {\n    color: black;\n    font-size: 20px !important;\n    font-weight: bold !important;\n}\n\n.cal-month-view .cal-day-number {\n    opacity: 0.8;\n}\n\n.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {\n    color:  #ff0000; \n    font-weight: bold;\n}\n\n.lightskyblue .cal-day-number {\n    color: white;\n    opacity: 1;\n}\n\n.lightskyblue .cal-weekend .cal-day-number {\n    color: white;\n    opacity: 1;\n}\n\n.lightskyblue:hover .cal-day-number {\n    color: black;\n    opacity: 0.8;\n}\n\n.lightskyblue:hover .cal-weekend .cal-day-number {\n    color: black;\n    opacity: 0.8;\n}\n\n.mat-radio-button {\n    margin-left: 10px;\n}\n\n::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {\n    opacity: 0.0 !important;     /*click effect color change*/\n    background-color: #1061a7 !important;\n}\n\n::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {\n    background-color: #1061a7 !important;   /*inner circle color change*/\n}\n\n::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {\n    border-color: #1061a7 !important; /*outer ring color change*/\n}\n\n\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2NoZWR1bGVyL3NjaGVkdWxlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0NBQ3BCOztBQUVEO0lBQ0ksc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtDQUNyQjs7QUFFRDtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7Q0FDcEI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtJQUMxQixnQkFBZ0I7SUFDaEIsbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0kscUJBQXFCO0lBQ3JCLG9CQUFvQjtJQUNwQiwwQkFBMEI7SUFDMUIsZ0JBQWdCO0lBQ2hCLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHFCQUFxQjtJQUNyQixvQkFBb0I7SUFDcEIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixtQkFBbUI7Q0FDdEI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLDBCQUEwQjtJQUMxQixnQkFBZ0I7SUFDaEIsbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksaUJBQWlCO0lBQ2pCLG1CQUFtQjtDQUN0Qjs7QUFFRDtJQUNJLHFCQUFxQjtJQUNyQixzQkFBc0I7Q0FDekI7O0FBRUQ7SUFDSSxxQkFBcUI7SUFDckIsc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0kscUJBQXFCO0lBQ3JCLHNCQUFzQjtDQUN6Qjs7QUFFRDtJQUNJLDZCQUE2QjtFQUMvQjs7QUFFRjtHQUNHLDRCQUE0QjtDQUM5Qjs7QUFFRDtHQUNHLDhCQUE4QjtDQUNoQzs7QUFFRDtJQUNJLFlBQVk7SUFDWixnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSw0QkFBNEI7Q0FDL0I7O0FBQ0Q7SUFDSSw0QkFBNEI7Q0FDL0I7O0FBRUQ7SUFDSSw0QkFBNEI7SUFDNUIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksNEJBQTRCO0lBQzVCLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLDRCQUE0QjtJQUM1Qix1Q0FBdUM7Q0FDMUM7O0FBRUQ7SUFDSSw0QkFBNEI7SUFDNUIscUNBQXFDO0NBQ3hDOztBQUVEO0lBQ0ksNEJBQTRCO0lBQzVCLHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxnQkFBZ0I7Q0FDbkI7O0FBRUQ7SUFDSSxhQUFhO0lBQ2IsMkJBQTJCO0lBQzNCLDZCQUE2QjtDQUNoQzs7QUFFRDtJQUNJLGFBQWE7Q0FDaEI7O0FBRUQ7SUFDSSxnQkFBZ0I7SUFDaEIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksYUFBYTtJQUNiLFdBQVc7Q0FDZDs7QUFFRDtJQUNJLGFBQWE7SUFDYixXQUFXO0NBQ2Q7O0FBRUQ7SUFDSSxhQUFhO0lBQ2IsYUFBYTtDQUNoQjs7QUFFRDtJQUNJLGFBQWE7SUFDYixhQUFhO0NBQ2hCOztBQUdEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksd0JBQXdCLEtBQUssNkJBQTZCO0lBQzFELHFDQUFxQztDQUN4Qzs7QUFFRDtJQUNJLHFDQUFxQyxHQUFHLDZCQUE2QjtDQUN4RTs7QUFFRDtJQUNJLGlDQUFpQyxDQUFDLDJCQUEyQjtDQUNoRSIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NjaGVkdWxlci9zY2hlZHVsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuLnJvd1JlZiB7XG4gICAgbWFyZ2luOiAwJSAhaW1wb3J0YW50O1xufVxuXG4uY29sLW1kLTEyIHtcbiAgICBmbGV4OiAwIDAgMTAwLjAlO1xuICAgIG1heC13aWR0aDogMTAwLjAlO1xufVxuXG4uY29sLW1kLTYge1xuICAgIGZsZXg6IDAgMCA1MC4wJTtcbiAgICBtYXgtd2lkdGg6IDUwLjAlO1xufVxuXG4uaW5mbyB7XG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgICBjb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50O1xuICAgIGZvbnQtc2l6ZTogMjdweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbi5jb250dXJub3Mge1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XG4gICAgY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDtcbiAgICBmb250LXNpemU6IDI3cHg7XG4gICAgcGFkZGluZy1yaWdodDogNXB4O1xufVxuXG4uY29udHVybm9zIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG4gICAgZm9udC1zaXplOiAyN3B4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDVweDtcbn1cblxuLnNpbnR1cm5vcyB7XG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbiAgICBjb2xvcjogI2UyZTJlMiAhaW1wb3J0YW50O1xuICAgIGZvbnQtc2l6ZTogMjdweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbmgzIHtcbiAgICBtYXJnaW46IDAgMCAxMHB4O1xuICAgIGZvbnQtc2l6ZTogMS43NXJlbTtcbn0gIFxuXG4uY29sLW1kLTIge1xuICAgIGZsZXg6IDAgMCAxNi42NjY2NjclO1xuICAgIG1heC13aWR0aDogMTYuNjY2NjY3JTtcbn1cblxuLmNvbC1tZC01IHtcbiAgICBmbGV4OiAwIDAgNDEuNjY2NjY3JTtcbiAgICBtYXgtd2lkdGg6IDQxLjY2NjY2NyU7XG59XG5cbi5jb2wtbWQtNCB7XG4gICAgZmxleDogMCAwIDMzLjMzMzMzMyU7XG4gICAgbWF4LXdpZHRoOiAzMy4zMzMzMzMlO1xufVxuXG4udGV4dC1yaWdodCB7XG4gICAgdGV4dC1hbGlnbjogcmlnaHQgIWltcG9ydGFudDtcbiB9XG5cbi50ZXh0LWxlZnQge1xuICAgdGV4dC1hbGlnbjogbGVmdCAhaW1wb3J0YW50O1xufVxuXG4udGV4dC1jZW50ZXIge1xuICAgdGV4dC1hbGlnbjogY2VudGVyICFpbXBvcnRhbnQ7XG59XG5cbi5jYWwtbW9udGgtdmlldyAuY2FsLWV2ZW50cyB7XG4gICAgbWFyZ2luOiAwcHg7XG4gICAgbWF4LWhlaWdodDogMHB4O1xufVxuXG4uY2FsLW1vbnRoLXZpZXcgLmNhbC1jZWxsLXRvcCB7XG4gICAgbWluLWhlaWdodDogODBweCAhaW1wb3J0YW50O1xufVxuLmNhbC1tb250aC12aWV3IC5jYWwtZGF5LWNlbGwge1xuICAgIG1pbi1oZWlnaHQ6IDgwcHggIWltcG9ydGFudDtcbn1cblxuLmNhbC1tb250aC12aWV3IHtcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi5saWdodHNreWJsdWUge1xuICAgIG1pbi1oZWlnaHQ6IDgwcHggIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi5saWdodHNreWJsdWU6aG92ZXIge1xuICAgIG1pbi1oZWlnaHQ6IDgwcHggIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTA2MWE3ODAgIWltcG9ydGFudDtcbn1cblxuLmxpZ2h0c2xhdGVncmF5IHtcbiAgICBtaW4taGVpZ2h0OiA4MHB4ICFpbXBvcnRhbnQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2UyZTJlMiAhaW1wb3J0YW50O1xufVxuXG4ubGlnaHRzbGF0ZWdyYXk6aG92ZXIge1xuICAgIG1pbi1oZWlnaHQ6IDgwcHggIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTdlN2U3ICFpbXBvcnRhbnQ7XG59XG5cbi5jYW1iaW8tbWVze1xuICAgIG1hcmdpbjogMCAwIDEwcHg7XG4gICAgZm9udC1zaXplOiAxLjc1cmVtO1xuICAgIHBhZGRpbmctbGVmdDogMiU7XG4gICAgcGFkZGluZy1yaWdodDogMiU7XG4gICAgcGFkZGluZy10b3A6IDElO1xufVxuXG4uY2FtYmlvLW1lczpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uY2FsLWRheS1udW1iZXIge1xuICAgIGNvbG9yOiBibGFjaztcbiAgICBmb250LXNpemU6IDIwcHggIWltcG9ydGFudDtcbiAgICBmb250LXdlaWdodDogYm9sZCAhaW1wb3J0YW50O1xufVxuXG4uY2FsLW1vbnRoLXZpZXcgLmNhbC1kYXktbnVtYmVyIHtcbiAgICBvcGFjaXR5OiAwLjg7XG59XG5cbi5jYWwtbW9udGgtdmlldyAuY2FsLWRheS1jZWxsLmNhbC13ZWVrZW5kIC5jYWwtZGF5LW51bWJlciB7XG4gICAgY29sb3I6ICAjZmYwMDAwOyBcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLmxpZ2h0c2t5Ymx1ZSAuY2FsLWRheS1udW1iZXIge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBvcGFjaXR5OiAxO1xufVxuXG4ubGlnaHRza3libHVlIC5jYWwtd2Vla2VuZCAuY2FsLWRheS1udW1iZXIge1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBvcGFjaXR5OiAxO1xufVxuXG4ubGlnaHRza3libHVlOmhvdmVyIC5jYWwtZGF5LW51bWJlciB7XG4gICAgY29sb3I6IGJsYWNrO1xuICAgIG9wYWNpdHk6IDAuODtcbn1cblxuLmxpZ2h0c2t5Ymx1ZTpob3ZlciAuY2FsLXdlZWtlbmQgLmNhbC1kYXktbnVtYmVyIHtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgb3BhY2l0eTogMC44O1xufVxuXG5cbi5tYXQtcmFkaW8tYnV0dG9uIHtcbiAgICBtYXJnaW4tbGVmdDogMTBweDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtcmFkaW8tYnV0dG9uLm1hdC1hY2NlbnQgLm1hdC1yYWRpby1yaXBwbGUgLm1hdC1yaXBwbGUtZWxlbWVudCB7XG4gICAgb3BhY2l0eTogMC4wICFpbXBvcnRhbnQ7ICAgICAvKmNsaWNrIGVmZmVjdCBjb2xvciBjaGFuZ2UqL1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDtcbn1cblxuOjpuZy1kZWVwIC5tYXQtcmFkaW8tYnV0dG9uLm1hdC1hY2NlbnQgLm1hdC1yYWRpby1pbm5lci1jaXJjbGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDsgICAvKmlubmVyIGNpcmNsZSBjb2xvciBjaGFuZ2UqL1xufVxuXG46Om5nLWRlZXAubWF0LXJhZGlvLWJ1dHRvbi5tYXQtYWNjZW50Lm1hdC1yYWRpby1jaGVja2VkIC5tYXQtcmFkaW8tb3V0ZXItY2lyY2xlIHtcbiAgICBib3JkZXItY29sb3I6ICMxMDYxYTcgIWltcG9ydGFudDsgLypvdXRlciByaW5nIGNvbG9yIGNoYW5nZSovXG59XG5cblxuXG5cbiJdfQ== */"
 
 /***/ }),
 
@@ -26017,7 +26157,7 @@ module.exports = ".texto {\r\n    line-height:26px;\r\n}\r\n\r\n.rowRef {\r\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((eventsLength$ | async) > 0) && ((estado$ | async) >= 3))\">\r\n  <div class=\"row clearfix\">\r\n      <div class=\"texto\" *ngIf=\"(profesionalSelected$ | async) != undefined\">\r\n        <span class=\"material-icons icon-image-preview info\">person</span>\r\n        <span>Profesional: Dr/a. {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}</span>\r\n      </div>\r\n      <div class=\"texto\" *ngIf=\"(profesionalSelected$ | async) == undefined\">\r\n        <span class=\"material-icons icon-image-preview info\">work</span>\r\n        <span>Especialidad: {{especialidad.nombre || 'N/A'}}</span>\r\n      </div>\r\n  </div>\r\n\r\n  <div class=\"rowRef clearfix\">\r\n    <div class=\"col-md-12 texto\">\r\n        <span class=\"material-icons icon-image-preview conturnos\">label</span>\r\n        <span>Día con turnos disponibles. Haga click para ver los horarios disponibles.</span>\r\n    </div>\r\n    <div class=\"col-md-12 texto\">\r\n        <span class=\"material-icons icon-image-preview sinturnos\">label</span>\r\n        <span>Día con atención, sin turnos disponibles.</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <div class=\"row clearfix text-center\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"cambio-mes text-right\" mwlCalendarPreviousView \r\n            [view]=\"view\" \r\n            [(viewDate)]=\"viewDate\"\r\n            (viewDateChange)=\"closeOpenMonthViewDay()\">\r\n            <span class=\"material-icons icon-image-preview\">arrow_back</span> \r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"cambio-mes text-left\" mwlCalendarNextView  \r\n          [view]=\"view\" \r\n          [(viewDate)]=\"viewDate\"\r\n          (viewDateChange)=\"closeOpenMonthViewDay()\">\r\n          <span class=\"material-icons icon-image-preview\">arrow_forward</span> \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"\">\r\n    <mwl-calendar-month-view\r\n      [viewDate]=\"viewDate\"\r\n      [events]=\"events$ | async\"\r\n      [refresh]=\"refresh\"\r\n      (beforeViewRender)=\"beforeMonthViewRender($event)\"\r\n      [locale]=\"locale\"\r\n      (dayClicked)=\"dayClicked($event.day)\">\r\n    </mwl-calendar-month-view>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"((eventsLength$ | async) > 0)\">\n  <div class=\"row clearfix\">\n      <div *ngIf=\"(profesionalSelected$ | async) != undefined\">\n        <div class=\"texto\"> \n          <span class=\"material-icons icon-image-preview info\">person</span>\n          <span>Profesional: Dr/a. {{(profesionalSelected$ | async)?.nombreApellido || 'N/A'}}</span>\n        </div>\n        <div class=\"texto\"> \n          <span class=\"material-icons icon-image-preview info\">work</span>\n          <span>Especialidad: {{(profesionalSelected$ | async)?.especialidad?.nombre || 'N/A'}}</span>\n        </div>\n      </div>\n      <div class=\"texto\" *ngIf=\"(profesionalSelected$ | async) == undefined\">\n        <span class=\"material-icons icon-image-preview info\">work</span>\n        <span>Especialidad: {{especialidad?.nombre || 'N/A'}}</span>\n      </div>\n  </div>\n\n  <div class=\"row clearfix\"></div>\n  \n  <div class=\"rowRef clearfix\">\n    <div class=\"col-md-12 texto\">\n        <span class=\"material-icons icon-image-preview conturnos\">label</span>\n        <span>Día con turnos disponibles. Haga click para ver los horarios disponibles.</span>\n    </div>\n    <div class=\"col-md-12 texto\">\n        <span class=\"material-icons icon-image-preview sinturnos\">label</span>\n        <span>Día con atención, sin turnos disponibles.</span>\n    </div>\n  </div>\n\n  <div class=\"row clearfix\"></div>\n\n  <div class=\"row clearfix\">\n    <mat-label>Visualizar Turnos </mat-label>\n    <mat-radio-group (change)=\"cambiarFiltro2($event);\"  [(ngModel)]=\"turnoFilter2\"> \n        <mat-radio-button value=\"Todos\">\n            Mañana o tarde\n        </mat-radio-button>\n        <mat-radio-button value=\"AM\">\n            Mañana\n        </mat-radio-button>\n        <mat-radio-button value=\"PM\">\n            Tarde\n        </mat-radio-button>                \n    </mat-radio-group>\n  </div>\n\n  <div>\n    <div class=\"row clearfix text-center\">\n      <div class=\"col-md-4\">\n        <div class=\"cambio-mes text-right\" mwlCalendarPreviousView \n            [view]=\"view\" \n            [(viewDate)]=\"viewDate\"\n            (viewDateChange)=\"closeOpenMonthViewDay()\">\n            <span class=\"material-icons icon-image-preview\">arrow_back</span> \n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <h3>{{ _toMonthString(viewDate.getMonth()) }}</h3>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"cambio-mes text-left\" mwlCalendarNextView  \n          [view]=\"view\" \n          [(viewDate)]=\"viewDate\"\n          (viewDateChange)=\"closeOpenMonthViewDay()\">\n          <span class=\"material-icons icon-image-preview\">arrow_forward</span> \n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"\">\n    <mwl-calendar-month-view\n      [viewDate]=\"viewDate\"\n      [events]=\"events$ | async\"\n      [refresh]=\"refresh\"\n      (beforeViewRender)=\"beforeMonthViewRender($event)\"\n      [locale]=\"locale\"\n      (dayClicked)=\"dayClicked($event.day)\">\n    </mwl-calendar-month-view>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -26037,18 +26177,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-calendar */ "./node_modules/angular-calendar/fesm5/angular-calendar.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/contexto.actions */ "./src/app/core/store/actions/contexto.actions.ts");
-/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
-/* harmony import */ var _custom_date_formatter_provider__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./custom-date-formatter.provider */ "./src/app/modules/home/components/scheduler/custom-date-formatter.provider.ts");
+/* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
+/* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
+/* harmony import */ var _scheduler_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scheduler-utils */ "./src/app/modules/home/components/scheduler/scheduler-utils.ts");
+/* harmony import */ var _custom_date_formatter_provider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./custom-date-formatter.provider */ "./src/app/modules/home/components/scheduler/custom-date-formatter.provider.ts");
 
 
 
 // tslint:disable-next-line: max-line-length
-
-
 
 
 
@@ -26066,24 +26202,27 @@ var SchedulerComponent = /** @class */ (function () {
         this.view = angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarView"].Month;
         this.refresh = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.locale = 'es-AR';
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_8__["getEstado"]);
         // crea los eventos (puntitos)
-        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasTurnosDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_10__["disponibilidadDiasToCalendarEvent"])(x); }); }));
+        this.events$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasTurnosDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["disponibilidadDiasToCalendarEvent"])(x); }); }));
         this.events$.subscribe(function (e) { return _this.events = e; });
-        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasDisponiblesLength"]);
-        this.profesionalSelected$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getProfesionalSelected"]);
-        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getProfesionalesDisponibles"]);
+        this.eventsLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponiblesLength"]);
+        this.profesionalSelected$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getProfesionalSelected"]);
+        this.profesionalesDisponibles$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getProfesionalesDisponibles"]);
         this.profesionalesDisponibles$.subscribe(function (disponibilidad) {
             disponibilidad.filter(function (x) {
                 _this.especialidad = x.profesional.especialidad;
             });
+        });
+        this.filtroHora2$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getFiltroHora"]);
+        this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getFiltroHora2"]).subscribe(function (filtro) {
+            _this.cambiarColumna2(filtro);
         });
     }
     SchedulerComponent.prototype.beforeMonthViewRender = function (renderEvent) {
         renderEvent.body.forEach(function (day) {
             day.badgeTotal = day.events.filter(function (event) { return event.meta.incrementsBadgeTotal; }).length;
         });
-        this.dias$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getDiasDisponibles"]);
+        this.dias$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponibles"]);
         this.dias$.subscribe(function (x) {
             return x.forEach(function (d) {
                 renderEvent.body.forEach(function (day) {
@@ -26092,7 +26231,7 @@ var SchedulerComponent = /** @class */ (function () {
                         day.date.getMonth() === d.fecha.getMonth() &&
                         day.date.getFullYear() === d.fecha.getFullYear()) {
                         a = false;
-                        if (d.conDisponibilidad) {
+                        if (d.conDisponibilidadTM || d.conDisponibilidadTT) { // TODO:
                             day.cssClass = 'lightskyblue';
                         }
                         else {
@@ -26103,20 +26242,33 @@ var SchedulerComponent = /** @class */ (function () {
             });
         });
     };
+    SchedulerComponent.prototype.cambiarFiltro2 = function (event) {
+        if (event != undefined) {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFiltroHora2"]({ filtroHora2: event.value }));
+        }
+        else {
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFiltroHora2"]({ filtroHora2: 'Todos' }));
+        }
+    };
+    SchedulerComponent.prototype.cambiarColumna2 = function (filtro) {
+        var _this = this;
+        this.turnoFilter2 = filtro;
+        this.events$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasTurnosDisponibles"]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (ev) { return ev.map(function (x) { return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["disponibilidadDiasToCalendarEvent"])(x); }); }));
+        this.events$.subscribe(function (e) { return _this.events = e; });
+        this.eventsLength$ = this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getDiasDisponiblesLength"]);
+    };
     SchedulerComponent.prototype.dayClicked = function (_a) {
         var _this = this;
         var date = _a.date;
         if (this.isPartOfEvents(this.events, date)) {
-            this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["setEstado"]({ newEstado: 4 }));
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["setFechaSelected"]({ fecha: date }));
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["setHorariosDisponibles"]({ horarios: [] }));
-            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_9__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
-                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["getHorariosDisponibles"]({ filter: filtro }));
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setFechaSelected"]({ fecha: date }));
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
+            this.store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_7__["getBusquedaHorariosRequest"]).subscribe(function (filtro) {
+                return _this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["getHorariosDisponibles"]({ filter: filtro }));
             }).unsubscribe();
         }
         else {
-            this.store.dispatch(_core_store_actions_contexto_actions__WEBPACK_IMPORTED_MODULE_6__["setEstado"]({ newEstado: 3 }));
-            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_7__["setHorariosDisponibles"]({ horarios: [] }));
+            this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_6__["setHorariosDisponibles"]({ horarios: [] }));
         }
     };
     SchedulerComponent.prototype.isPartOfEvents = function (events, date) {
@@ -26129,7 +26281,7 @@ var SchedulerComponent = /** @class */ (function () {
         this.activeDayIsOpen = false;
     };
     SchedulerComponent.prototype._toMonthString = function (month) {
-        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_10__["toMonthString"])(month);
+        return Object(_scheduler_utils__WEBPACK_IMPORTED_MODULE_8__["toMonthString"])(month);
     };
     SchedulerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -26140,7 +26292,7 @@ var SchedulerComponent = /** @class */ (function () {
             providers: [
                 {
                     provide: angular_calendar__WEBPACK_IMPORTED_MODULE_3__["CalendarDateFormatter"],
-                    useClass: _custom_date_formatter_provider__WEBPACK_IMPORTED_MODULE_11__["CustomDateFormatter"],
+                    useClass: _custom_date_formatter_provider__WEBPACK_IMPORTED_MODULE_9__["CustomDateFormatter"],
                 },
             ],
             styles: [__webpack_require__(/*! ./scheduler.component.css */ "./src/app/modules/home/components/scheduler/scheduler.component.css")]
@@ -26161,7 +26313,7 @@ var SchedulerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\r\n    width: 100%;\r\n}\r\n\r\n/* Structure */\r\n\r\n.example-container {\r\n    position: relative;\r\n}\r\n\r\n.example-table-container {\r\n    position: relative;\r\n    max-height: 400px;\r\n    overflow: auto;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}\r\n\r\n.example-loading-shade {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    bottom: 56px;\r\n    right: 0;\r\n    background: rgba(0, 0, 0, 0.15);\r\n    z-index: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.example-rate-limit-reached {\r\n    color: #980000;\r\n    max-width: 360px;\r\n    text-align: center;\r\n}\r\n\r\n/* Column Widths */\r\n\r\n.mat-column-number, .mat-column-state {\r\n    max-width: 64px;\r\n}\r\n\r\n.mat-column-created {\r\n    max-width: 124px;\r\n}\r\n\r\n.material-icons{\r\n    color: #1061a7 !important;\r\n}\r\n\r\n.texto {\r\n    line-height:26px;\r\n}\r\n\r\n.mat-row.ng-star-inserted:hover {\r\n    background-color: #e2e2e2 !important;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2VsZWNjaW9uLWhvcmFyaW8vc2VsZWNjaW9uLWhvcmFyaW8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZjs7QUFFRCxlQUFlOztBQUVmO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtJQUNsQixlQUFlO0NBQ2xCOztBQUVEO0lBQ0ksWUFBWTtDQUNmOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLE9BQU87SUFDUCxRQUFRO0lBQ1IsYUFBYTtJQUNiLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsV0FBVztJQUNYLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0NBQzNCOztBQUVEO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixtQkFBbUI7Q0FDdEI7O0FBRUQsbUJBQW1COztBQUVuQjtJQUNJLGdCQUFnQjtDQUNuQjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLHFDQUFxQztDQUN4QyIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NlbGVjY2lvbi1ob3JhcmlvL3NlbGVjY2lvbi1ob3JhcmlvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLyogU3RydWN0dXJlICovXHJcblxyXG4uZXhhbXBsZS1jb250YWluZXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4uZXhhbXBsZS10YWJsZS1jb250YWluZXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgbWF4LWhlaWdodDogNDAwcHg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxufVxyXG5cclxudGFibGUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5leGFtcGxlLWxvYWRpbmctc2hhZGUge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdG9wOiAwO1xyXG4gICAgbGVmdDogMDtcclxuICAgIGJvdHRvbTogNTZweDtcclxuICAgIHJpZ2h0OiAwO1xyXG4gICAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjE1KTtcclxuICAgIHotaW5kZXg6IDE7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uZXhhbXBsZS1yYXRlLWxpbWl0LXJlYWNoZWQge1xyXG4gICAgY29sb3I6ICM5ODAwMDA7XHJcbiAgICBtYXgtd2lkdGg6IDM2MHB4O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4vKiBDb2x1bW4gV2lkdGhzICovXHJcblxyXG4ubWF0LWNvbHVtbi1udW1iZXIsIC5tYXQtY29sdW1uLXN0YXRlIHtcclxuICAgIG1heC13aWR0aDogNjRweDtcclxufVxyXG5cclxuLm1hdC1jb2x1bW4tY3JlYXRlZCB7XHJcbiAgICBtYXgtd2lkdGg6IDEyNHB4O1xyXG59XHJcblxyXG4ubWF0ZXJpYWwtaWNvbnN7XHJcbiAgICBjb2xvcjogIzEwNjFhNyAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4udGV4dG8ge1xyXG4gICAgbGluZS1oZWlnaHQ6MjZweDtcclxufVxyXG5cclxuLm1hdC1yb3cubmctc3Rhci1pbnNlcnRlZDpob3ZlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTJlMmUyICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbiJdfQ== */"
+module.exports = "table {\n    width: 100%;\n}\n\n/* Structure */\n\n.example-container {\n    position: relative;\n}\n\n.example-table-container {\n    position: relative;\n    max-height: 400px;\n    overflow: auto;\n}\n\ntable {\n    width: 100%;\n}\n\n.example-loading-shade {\n    position: absolute;\n    top: 0;\n    left: 0;\n    bottom: 56px;\n    right: 0;\n    background: rgba(0, 0, 0, 0.15);\n    z-index: 1;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.example-rate-limit-reached {\n    color: #980000;\n    max-width: 360px;\n    text-align: center;\n}\n\n/* Column Widths */\n\n.mat-column-number, .mat-column-state {\n    max-width: 64px;\n}\n\n.mat-column-created {\n    max-width: 124px;\n}\n\n.material-icons{\n    color: #1061a7 !important;\n}\n\n.texto {\n    line-height:26px;\n}\n\n.mat-row.ng-star-inserted:hover {\n    background-color: #e2e2e2 !important;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9ob21lL2NvbXBvbmVudHMvc2VsZWNjaW9uLWhvcmFyaW8vc2VsZWNjaW9uLWhvcmFyaW8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZjs7QUFFRCxlQUFlOztBQUVmO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtJQUNsQixlQUFlO0NBQ2xCOztBQUVEO0lBQ0ksWUFBWTtDQUNmOztBQUVEO0lBQ0ksbUJBQW1CO0lBQ25CLE9BQU87SUFDUCxRQUFRO0lBQ1IsYUFBYTtJQUNiLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsV0FBVztJQUNYLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0NBQzNCOztBQUVEO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixtQkFBbUI7Q0FDdEI7O0FBRUQsbUJBQW1COztBQUVuQjtJQUNJLGdCQUFnQjtDQUNuQjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLDBCQUEwQjtDQUM3Qjs7QUFFRDtJQUNJLGlCQUFpQjtDQUNwQjs7QUFFRDtJQUNJLHFDQUFxQztDQUN4QyIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvaG9tZS9jb21wb25lbnRzL3NlbGVjY2lvbi1ob3JhcmlvL3NlbGVjY2lvbi1ob3JhcmlvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XG4gICAgd2lkdGg6IDEwMCU7XG59XG5cbi8qIFN0cnVjdHVyZSAqL1xuXG4uZXhhbXBsZS1jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmV4YW1wbGUtdGFibGUtY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNDAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbnRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuLmV4YW1wbGUtbG9hZGluZy1zaGFkZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICBsZWZ0OiAwO1xuICAgIGJvdHRvbTogNTZweDtcbiAgICByaWdodDogMDtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMTUpO1xuICAgIHotaW5kZXg6IDE7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uZXhhbXBsZS1yYXRlLWxpbWl0LXJlYWNoZWQge1xuICAgIGNvbG9yOiAjOTgwMDAwO1xuICAgIG1heC13aWR0aDogMzYwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBDb2x1bW4gV2lkdGhzICovXG5cbi5tYXQtY29sdW1uLW51bWJlciwgLm1hdC1jb2x1bW4tc3RhdGUge1xuICAgIG1heC13aWR0aDogNjRweDtcbn1cblxuLm1hdC1jb2x1bW4tY3JlYXRlZCB7XG4gICAgbWF4LXdpZHRoOiAxMjRweDtcbn1cblxuLm1hdGVyaWFsLWljb25ze1xuICAgIGNvbG9yOiAjMTA2MWE3ICFpbXBvcnRhbnQ7XG59XG5cbi50ZXh0byB7XG4gICAgbGluZS1oZWlnaHQ6MjZweDtcbn1cblxuLm1hdC1yb3cubmctc3Rhci1pbnNlcnRlZDpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2UyZTJlMiAhaW1wb3J0YW50O1xufVxuXG4iXX0= */"
 
 /***/ }),
 
@@ -26172,7 +26324,7 @@ module.exports = "table {\r\n    width: 100%;\r\n}\r\n\r\n/* Structure */\r\n\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((horariosLength$ | async) > 0) && ((estado$ | async) >=4))\">\r\n\r\n  <div class=\"row clearfix\">\r\n    <p>\r\n      Haga click sobre el turno que desee para seleccionarlo.\r\n    </p>\r\n  </div>\r\n\r\n  <div class=\"example-container\">\r\n    <div class=\"example-table-container\">\r\n      <table mat-table [dataSource]=\"horarios$ | async\">\r\n\r\n        <ng-container matColumnDef=\"profesional\">\r\n          <th mat-header-cell *matHeaderCellDef>Profesional</th>\r\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\r\n            title=\"Seleccionar turno\">\r\n            {{row.profesional.nombreApellido}}\r\n          </td>\r\n        </ng-container>\r\n\r\n        <ng-container matColumnDef=\"fecha\">\r\n          <th mat-header-cell *matHeaderCellDef>Horario</th>\r\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\r\n            title=\"Seleccionar turno\">\r\n            {{row.fecha | date: 'dd/MM/yyyy'}} {{row.hora}} \r\n          </td>\r\n        </ng-container>\r\n\r\n        <ng-container matColumnDef=\"observaciones\">\r\n          <th mat-header-cell *matHeaderCellDef></th>\r\n          <td mat-cell *matCellDef=\"let row\">\r\n              <span *ngIf=\"row.observaciones\">\r\n                <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.observaciones }}\" \r\n                  matTooltipPosition=\"left\">notification_important </mat-icon>\r\n              </span>\r\n          </td>\r\n        </ng-container>\r\n\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n      </table>\r\n    </div>\r\n\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"cuadro-formulario\" *ngIf=\"(((horariosLength$ | async) > 0))\">\n\n  <div class=\"row clearfix\">\n    <p>\n      Haga click sobre el turno que desee para seleccionarlo.\n    </p>\n  </div>\n\n  <div class=\"example-container\">\n    <div class=\"example-table-container\">\n      <table mat-table [dataSource]=\"horarios$ | async\">\n\n        <ng-container matColumnDef=\"profesional\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 70%;\">Profesional</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Destacar primer turno disponible del profesional para este día\">\n            {{row.profesional.nombreApellido}}\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"fecha\">\n          <th mat-header-cell *matHeaderCellDef style=\"width: 30%;\">Horario</th>\n          <td mat-cell *matCellDef=\"let row\" style=\"cursor: pointer;\" (click)=\"onClickTurno(row)\"\n            title=\"Seleccionar turno\">\n            <span *ngIf=\"proxTurno?.codigo === row.codigo\" style=\"color:#1061a7; font-weight: bold;\">\n              {{row.fecha | date: 'dd/MM/yyyy'}} {{row.hora}} \n            </span>\n            <span *ngIf=\"proxTurno?.codigo != row.codigo\">\n              {{row.fecha | date: 'dd/MM/yyyy'}} {{row.hora}} \n            </span>\n          </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"observaciones\">\n          <th mat-header-cell *matHeaderCellDef></th>\n          <td mat-cell *matCellDef=\"let row\">\n              <span *ngIf=\"row.observaciones\">\n                <mat-icon  #tooltip=\"matTooltip\" (click)=\"tooltip.toggle()\" matTooltip=\"{{ row.observaciones }}\" \n                  matTooltipPosition=\"left\">notification_important </mat-icon>\n              </span>\n          </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n    </div>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -26191,8 +26343,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm5/store.js");
 /* harmony import */ var _core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../core/store/actions/calendar.actions */ "./src/app/core/store/actions/calendar.actions.ts");
 /* harmony import */ var _core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../core/store/selectors/caledar.selectors */ "./src/app/core/store/selectors/caledar.selectors.ts");
-/* harmony import */ var _core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../core/store/selectors/contexto.selectors */ "./src/app/core/store/selectors/contexto.selectors.ts");
-
 
 
 
@@ -26202,7 +26352,6 @@ var SeleccionHorarioComponent = /** @class */ (function () {
     function SeleccionHorarioComponent(store) {
         this.store = store;
         this.displayedColumns = ['profesional', 'fecha', 'observaciones'];
-        this.estado$ = store.select(_core_store_selectors_contexto_selectors__WEBPACK_IMPORTED_MODULE_5__["getEstado"]);
         this.horarios$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getHorariosDisponibles"]);
         this.horariosLength$ = store.select(_core_store_selectors_caledar_selectors__WEBPACK_IMPORTED_MODULE_4__["getHorariosDisponiblesLength"]);
     }
@@ -26210,6 +26359,29 @@ var SeleccionHorarioComponent = /** @class */ (function () {
     };
     SeleccionHorarioComponent.prototype.onClickTurno = function (turnoSelected) {
         this.store.dispatch(_core_store_actions_calendar_actions__WEBPACK_IMPORTED_MODULE_3__["setTurnoSelected"]({ turnoSelected: turnoSelected }));
+    };
+    SeleccionHorarioComponent.prototype.onClickProfesional = function (turnoSelected) {
+        var _this = this;
+        this.proxTurno = turnoSelected;
+        this.horarios$.subscribe(function (hs) {
+            hs.forEach(function (h) {
+                if (h.profesional.codigo === turnoSelected.profesional.codigo) {
+                    if (h.hora.split(" ")[1] <= _this.proxTurno.hora.split(" ")[1]) { // am pm
+                        if (h.hora.split(" ")[1] < _this.proxTurno.hora.split(" ")[1]) {
+                            _this.proxTurno = h; // am < pm
+                        }
+                        else if (h.hora.split(":")[0] == "12" && _this.proxTurno.hora.split(":")[0] != "12") {
+                            _this.proxTurno = h; // caso especial 12 pm
+                        }
+                        else if (h.hora < _this.proxTurno.hora &&
+                            (h.hora.split(":")[0] == _this.proxTurno.hora.split(":")[0]
+                                || _this.proxTurno.hora.split(":")[0] != "12")) {
+                            _this.proxTurno = h; // misma franja horaria, compara horario
+                        }
+                    }
+                }
+            });
+        }).unsubscribe();
     };
     SeleccionHorarioComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -26410,6 +26582,8 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatAutocompleteModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTooltipModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatRadioModule"]
             ],
             declarations: [],
             providers: [
@@ -26445,7 +26619,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\r\n    <div class=\"my-col-40\">\r\n        <app-formulario></app-formulario>\r\n    </div>\r\n    <div class=\"my-col-60\">\r\n        <app-grilla-turnos></app-grilla-turnos>\r\n    </div>\r\n</div>\r\n<div class=\"content\">\r\n    <div class=\"my-col-60\">\r\n        <app-scheduler></app-scheduler>\r\n    </div>\r\n    <div class=\"my-col-40\">\r\n        <app-seleccion-horario></app-seleccion-horario>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"content\">\n    <div class=\"my-col-40\">\n        <app-formulario></app-formulario>\n    </div>\n    <div class=\"my-col-60\">\n        <app-grilla-turnos></app-grilla-turnos>\n    </div>\n</div>\n<div class=\"content\">\n    <div class=\"my-col-60\">\n        <app-scheduler></app-scheduler>\n    </div>\n    <div class=\"my-col-40\">\n        <app-seleccion-horario></app-seleccion-horario>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -26501,7 +26675,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\r\n  <div class=\"my-col-60\">\r\n      <app-reserva></app-reserva>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"content\">\n  <div class=\"my-col-60\">\n      <app-reserva></app-reserva>\n  </div>\n</div>"
 
 /***/ }),
 
